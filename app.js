@@ -1,7 +1,7 @@
 
 const express = require('express');
 require('dotenv').config()
-const sqlite3 = require('./GarageIT/node_modules/sqlite3/lib/sqlite3').verbose();
+const sqlite3 = require('sqlite3').verbose();
 const bodyParser = require('body-parser');
 const axios = require('axios');
 
@@ -90,6 +90,26 @@ const addClient = (id, ip) => {
   });
 };
 
+const addClientToGroup = (client_id, group_id) => {
+  return new Promise((resolve, reject) => {
+    let db = new sqlite3.Database(process.env.BAZA, sqlite3.OPEN_READWRITE, (err) => {
+      if (err) {
+        return reject(err);
+      }
+    });
+
+    const query = `INSERT INTO client_by_group (client_id, group_id) VALUES (?, ?)`;
+    db.run(query, [client_id, group_id], function (err) {
+      db.close();
+      if (err) {
+        return reject(err);
+      }
+      resolve({ success: true, message: 'Client assigned to group successfully', id: this.lastID });
+    });
+  });
+};
+
+
 app.get('/enable', async (req, res) => {
     try {
         const message = await enablePiHole();
@@ -151,6 +171,22 @@ app.post('/clients', async (req, res) => {
     res.status(500).json({ success: false, message: 'Failed to add client', error: error.message });
   }
 });
+
+app.post('/group-assignment', async (req, res) => {
+  const { client_id, group_id } = req.body;
+
+  if (!client_id || !group_id) {
+    return res.status(400).json({ success: false, message: 'Missing required fields' });
+  }
+
+  try {
+    const result = await addClientToGroup(client_id, group_id);
+    res.json(result);
+  } catch (error) {
+    res.status(500).json({ success: false, message: 'Failed to assign client to group', error: error.message });
+  }
+});
+
 
 app.listen(process.env.PORT, () => {
     console.log(`Server is running properly.`);
