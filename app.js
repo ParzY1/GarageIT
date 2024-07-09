@@ -51,6 +51,19 @@ async function addToBlacklist(domain) {
     }
 }
 
+async function addToWhitelist(domain) {
+  try {
+      const response = await axios.get(`${process.env.SERWER}/admin/api.php?list=white&add=${domain}&auth=${process.env.KLUCZ}`);
+      if (response.data === 'OK') {
+          return `Domain "${domain}" added to whitelist successfully`;
+      } else {
+          throw new Error('Failed to add domain to whitelist');
+      }
+  } catch (error) {
+      throw new Error(`Error adding domain to whitelist: ${error.message}`);
+  }
+}
+
 const addGroup = (id, name, description) => {
   return new Promise((resolve, reject) => {
     let db = new sqlite3.Database(process.env.BAZA, sqlite3.OPEN_READWRITE, (err) => {
@@ -195,6 +208,19 @@ app.post('/blacklist', async (req, res) => {
     } catch (error) {
         res.status(500).send(error.message);
     }
+});
+
+app.post('/whitelist', async (req, res) => {
+  const { domain } = req.body;
+  if (!domain) {
+      return res.status(400).send('Domain is required');
+  }
+  try {
+      const message = await addToWhitelist(domain);
+      res.send(message);
+  } catch (error) {
+      res.status(500).send(error.message);
+  }
 });
 
 app.post('/groups', async (req, res) => {
