@@ -1,4 +1,3 @@
-
 const express = require('express');
 require('dotenv').config()
 const sqlite3 = require('sqlite3').verbose();
@@ -109,6 +108,62 @@ const addClientToGroup = (client_id, group_id) => {
   });
 };
 
+const removeClientFromGroup = (client_id, group_id) => {
+  return new Promise((resolve, reject) => {
+    let db = new sqlite3.Database(process.env.BAZA, sqlite3.OPEN_READWRITE, (err) => {
+      if (err) {
+        return reject(err);
+      }
+    });
+
+    const query = `DELETE FROM client_by_group WHERE client_id = ? AND group_id = ?`;
+    db.run(query, [client_id, group_id], function (err) {
+      db.close();
+      if (err) {
+        return reject(err);
+      }
+      resolve({ success: true, message: 'Client removed from group successfully' });
+    });
+  });
+}
+
+const addDomainToGroup = (domainlist_id, group_id) => {
+  return new Promise((resolve, reject) => {
+      let db = new sqlite3.Database(process.env.BAZA, sqlite3.OPEN_READWRITE, (err) => {
+          if (err) {
+              return reject(err);
+          }
+      });
+
+      const query = `INSERT INTO domainlist_by_group (domainlist_id, group_id) VALUES (?, ?)`;
+      db.run(query, [domainlist_id, group_id], function (err) {
+          db.close();
+          if (err) {
+              return reject(err);
+          }
+          resolve({ success: true, message: 'Domain assigned to group successfully', id: this.lastID });
+      });
+  });
+};
+
+const removeDomainFromGroup = (domainlist_id, group_id) => {
+  return new Promise((resolve, reject) => {
+      let db = new sqlite3.Database(process.env.BAZA, sqlite3.OPEN_READWRITE, (err) => {
+          if (err) {
+              return reject(err);
+          }
+      });
+
+      const query = `DELETE FROM domainlist_by_group WHERE domainlist_id = ? AND group_id = ?`;
+      db.run(query, [domainlist_id, group_id], function (err) {
+          db.close();
+          if (err) {
+              return reject(err);
+          }
+          resolve({ success: true, message: 'Domain removed from group successfully' });
+      });
+  });
+};
 
 app.get('/enable', async (req, res) => {
     try {
@@ -187,6 +242,52 @@ app.post('/group-assignment', async (req, res) => {
   }
 });
 
+app.delete('/group-assignment/:client_id/:group_id', async (req, res) => {
+  const { client_id, group_id } = req.params;
+
+  if (!client_id || !group_id) {
+      return res.status(400).json({ success: false, message: 'Client ID and Group ID are required' });
+  }
+
+  try {
+      const result = await removeClientFromGroup(client_id, group_id);
+      res.json(result);
+  } catch (error) {
+      res.status(500).json({ success: false, message: 'Failed to remove client from group', error: error.message });
+  }
+});
+
+app.post('/domain-group-assignment', async (req, res) => {
+  const { domainlist_id, group_id } = req.body;
+
+  if (!domainlist_id || !group_id) {
+      return res.status(400).json({ success: false, message: 'Missing required fields' });
+  }
+
+  try {
+      console.log(`Assigning domain ${domainlist_id} to group ${group_id}`); // Logging
+      const result = await addDomainToGroup(domainlist_id, group_id);
+      res.json(result);
+  } catch (error) {
+      res.status(500).json({ success: false, message: 'Failed to assign domain to group', error: error.message });
+  }
+});
+
+app.delete('/domain-group-assignment/:domainlist_id/:group_id', async (req, res) => {
+  const { domainlist_id, group_id } = req.params;
+
+  if (!domainlist_id || !group_id) {
+      return res.status(400).json({ success: false, message: 'Domainlist ID and Group ID are required' });
+  }
+
+  try {
+      console.log(`Removing domain ${domainlist_id} from group ${group_id}`); // Logging
+      const result = await removeDomainFromGroup(domainlist_id, group_id);
+      res.json(result);
+  } catch (error) {
+      res.status(500).json({ success: false, message: 'Failed to remove domain from group', error: error.message });
+  }
+});
 
 app.listen(process.env.PORT, () => {
     console.log(`Server is running properly.`);
