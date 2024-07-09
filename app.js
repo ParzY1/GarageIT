@@ -178,6 +178,25 @@ const removeDomainFromGroup = (domainlist_id, group_id) => {
   });
 };
 
+const removeFromDomainList = (id) => {
+  return new Promise((resolve, reject) => {
+    let db = new sqlite3.Database(process.env.BAZA, sqlite3.OPEN_READWRITE, (err) => {
+      if (err) {
+        return reject(err);
+      }
+    });
+
+    const query = `DELETE FROM domainlist WHERE id = ?`;
+    db.run(query, [id], function (err) {
+      db.close();
+      if (err) {
+        return reject(err);
+      }
+      resolve({ success: true, message: `Domain with ID ${id} removed successfully from domainlist` });
+    });
+  });
+};
+
 app.get('/enable', async (req, res) => {
     try {
         const message = await enablePiHole();
@@ -312,6 +331,21 @@ app.delete('/domain-group-assignment/:domainlist_id/:group_id', async (req, res)
       res.json(result);
   } catch (error) {
       res.status(500).json({ success: false, message: 'Failed to remove domain from group', error: error.message });
+  }
+});
+
+app.post('/remove-domain', async (req, res) => {
+  const { id } = req.body;
+
+  if (!id) {
+    return res.status(400).json({ success: false, message: 'Domain ID is required' });
+  }
+
+  try {
+    const result = await removeFromDomainList(id);
+    res.json(result);
+  } catch (error) {
+    res.status(500).json({ success: false, message: 'Failed to remove domain', error: error.message });
   }
 });
 
