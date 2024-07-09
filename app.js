@@ -349,6 +349,15 @@ app.post('/remove-domain', async (req, res) => {
   }
 });
 
+app.get('/queries', async (req, res) => {
+  try {
+      const response = await axios.get(`${process.env.SERWER}/admin/api.php?getAllQueries&auth=${process.env.KLUCZ}`);
+      res.json(response.data);
+  } catch (error) {
+      res.status(500).send(`Error fetching queries: ${error.message}`);
+  }
+});
+
 app.listen(process.env.PORT, () => {
     console.log(`Server is running properly.`);
 });
