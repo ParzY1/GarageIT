@@ -358,6 +358,15 @@ app.get('/queries', async (req, res) => {
   }
 });
 
+app.get('/top-clients', async (req, res) => {
+  try {
+      const response = await axios.get(`${process.env.SERWER}/admin/api.php?auth=${process.env.KLUCZ}&topClients=10`);
+      res.json(response.data);
+  } catch (error) {
+      res.status(500).send(`Error fetching top clients: ${error.message}`);
+  }
+});
+
 app.listen(process.env.PORT, () => {
     console.log(`Server is running properly.`);
 });
