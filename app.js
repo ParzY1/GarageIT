@@ -199,9 +199,10 @@ const removeFromDomainList = (id) => {
 
 async function fetchSummaryStatistics() {
   try {
-      const response = await axios.get(`${process.env.SERWER}/admin/api.php?auth=${process.env.KLUCZ}`);
-      if (response.status === 200) {
+      const response = await axios.get(`${process.env.SERWER}/admin/api.php?summary&auth=${process.env.KLUCZ}`);
+      if (response.status === 200 && response.data) {
           const data = response.data;
+          console.log('Fetched data from Pi-hole API:', data);
           return {
               dnsQueriesToday: data.dns_queries_today,
               adsBlockedToday: data.ads_blocked_today,
@@ -238,8 +239,10 @@ app.get('/disable', async (req, res) => {
 app.get('/summary-statistics', async (req, res) => {
   try {
       const stats = await fetchSummaryStatistics();
+      console.log('Summary statistics:', stats);
       res.json(stats);
   } catch (error) {
+      console.error('Error in /summary-statistics route:', error);
       res.status(500).json({ success: false, message: error.message });
   }
 });
@@ -374,15 +377,6 @@ app.post('/remove-domain', async (req, res) => {
     res.json(result);
   } catch (error) {
     res.status(500).json({ success: false, message: 'Failed to remove domain', error: error.message });
-  }
-});
-
-app.get('/queries', async (req, res) => {
-  try {
-      const response = await axios.get(`${process.env.SERWER}/admin/api.php?getAllQueries&auth=${process.env.KLUCZ}`);
-      res.json(response.data);
-  } catch (error) {
-      res.status(500).send(`Error fetching queries: ${error.message}`);
   }
 });
 
