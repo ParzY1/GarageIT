@@ -64,6 +64,32 @@ async function addToWhitelist(domain) {
   }
 }
 
+async function removeFromBlacklist(domain) {
+  try {
+      const response = await axios.get(`${process.env.SERWER}/admin/api.php?list=black&sub=${domain}&auth=${process.env.KLUCZ}`);
+      if (response.data === 'OK') {
+          return `Domain "${domain}" removed from blacklist successfully`;
+      } else {
+          throw new Error('Failed to remove domain from blacklist');
+      }
+  } catch (error) {
+      throw new Error(`Error removing domain from blacklist: ${error.message}`);
+  }
+}
+
+async function removeFromWhitelist(domain) {
+  try {
+      const response = await axios.get(`${process.env.SERWER}/admin/api.php?list=white&sub=${domain}&auth=${process.env.KLUCZ}`);
+      if (response.data === 'OK') {
+          return `Domain "${domain}" removed from whitelist successfully`;
+      } else {
+          throw new Error('Failed to remove domain from whitelist');
+      }
+  } catch (error) {
+      throw new Error(`Error removing domain from whitelist: ${error.message}`);
+  }
+}
+
 const addGroup = (id, name, description) => {
   return new Promise((resolve, reject) => {
     let db = new sqlite3.Database(process.env.BAZA, sqlite3.OPEN_READWRITE, (err) => {
@@ -260,6 +286,19 @@ app.post('/blacklist', async (req, res) => {
     }
 });
 
+app.delete('/blacklist/:domain', async (req, res) => {
+  const { domain } = req.params;
+  if (!domain) {
+      return res.status(400).send('Domain is required');
+  }
+  try {
+      const message = await removeFromBlacklist(domain);
+      res.send(message);
+  } catch (error) {
+      res.status(500).send(error.message);
+  }
+});
+
 app.post('/whitelist', async (req, res) => {
   const { domain } = req.body;
   if (!domain) {
@@ -267,6 +306,19 @@ app.post('/whitelist', async (req, res) => {
   }
   try {
       const message = await addToWhitelist(domain);
+      res.send(message);
+  } catch (error) {
+      res.status(500).send(error.message);
+  }
+});
+
+app.delete('/whitelist/:domain', async (req, res) => {
+  const { domain } = req.params;
+  if (!domain) {
+      return res.status(400).send('Domain is required');
+  }
+  try {
+      const message = await removeFromWhitelist(domain);
       res.send(message);
   } catch (error) {
       res.status(500).send(error.message);
