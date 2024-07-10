@@ -243,6 +243,12 @@ async function fetchSummaryStatistics() {
   }
 }
 
+//requires further diagnosis and testing due to lack of data
+const filterQueriesFromLast24Hours = (queries) => {
+  const last24Hours = Date.now() / 1000 - 24 * 60 * 60;
+  return queries.filter(query => query[0] >= last24Hours);
+};
+
 app.get('/enable', async (req, res) => {
     try {
         const message = await enablePiHole();
@@ -431,6 +437,33 @@ app.post('/remove-domain', async (req, res) => {
     res.status(500).json({ success: false, message: 'Failed to remove domain', error: error.message });
   }
 });
+
+app.get('/queries', async (req, res) => {
+  try {
+      const response = await axios.get(`${process.env.SERWER}/admin/api.php?getAllQueries&auth=${process.env.KLUCZ}`);
+      res.json(response.data);
+  } catch (error) {
+      res.status(500).send(`Error fetching queries: ${error.message}`);
+  }
+});
+
+//requires further diagnosis and testing due to lack of data
+app.get('/queries-last-24-hours', async (req, res) => {
+    try {
+        const response = await axios.get(`${process.env.SERWER}/admin/api.php?getAllQueries&auth=${process.env.KLUCZ}`);
+        if (response.status === 200 && response.data) {
+            const allQueries = response.data.data;
+            const filteredQueries = filterQueriesFromLast24Hours(allQueries);
+            res.json(filteredQueries);
+        } else {
+            throw new Error('Failed to fetch queries from Pi-hole API');
+        }
+    } catch (error) {
+        console.error('Error fetching queries from the last 24 hours:', error);
+        res.status(500).json({ success: false, message: error.message });
+    }
+});
+
 
 app.get('/top-clients', async (req, res) => {
   try {
