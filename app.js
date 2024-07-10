@@ -90,6 +90,44 @@ async function removeFromWhitelist(domain) {
   }
 }
 
+const enableDomain = (id) => {
+  return new Promise((resolve, reject) => {
+    let db = new sqlite3.Database(process.env.BAZA, sqlite3.OPEN_READWRITE, (err) => {
+      if (err) {
+        return reject(err);
+      }
+    });
+
+    const query = `UPDATE domainlist SET enabled = 1 WHERE id = ?`;
+    db.run(query, [id], function (err) {
+      db.close();
+      if (err) {
+        return reject(err);
+      }
+      resolve({ success: true, message: `Domain with ID ${id} enabled successfully` });
+    });
+  });
+};
+
+const disableDomain = (id) => {
+  return new Promise((resolve, reject) => {
+    let db = new sqlite3.Database(process.env.BAZA, sqlite3.OPEN_READWRITE, (err) => {
+      if (err) {
+        return reject(err);
+      }
+    });
+
+    const query = `UPDATE domainlist SET enabled = 0 WHERE id = ?`;
+    db.run(query, [id], function (err) {
+      db.close();
+      if (err) {
+        return reject(err);
+      }
+      resolve({ success: true, message: `Domain with ID ${id} disabled successfully` });
+    });
+  });
+};
+
 const addGroup = (id, name, description) => {
   return new Promise((resolve, reject) => {
     let db = new sqlite3.Database(process.env.BAZA, sqlite3.OPEN_READWRITE, (err) => {
@@ -248,6 +286,8 @@ const filterQueriesFromLast24Hours = (queries) => {
   const last24Hours = Date.now() / 1000 - 24 * 60 * 60;
   return queries.filter(query => query[0] >= last24Hours);
 };
+
+
 
 app.get('/enable', async (req, res) => {
     try {
@@ -435,6 +475,36 @@ app.post('/remove-domain', async (req, res) => {
     res.json(result);
   } catch (error) {
     res.status(500).json({ success: false, message: 'Failed to remove domain', error: error.message });
+  }
+});
+
+app.post('/enable-domain', async (req, res) => {
+  const { id } = req.body;
+
+  if (!id) {
+    return res.status(400).json({ success: false, message: 'Domain ID is required' });
+  }
+
+  try {
+    const result = await enableDomain(id);
+    res.json(result);
+  } catch (error) {
+    res.status(500).json({ success: false, message: 'Failed to enable domain', error: error.message });
+  }
+});
+
+app.post('/disable-domain', async (req, res) => {
+  const { id } = req.body;
+
+  if (!id) {
+    return res.status(400).json({ success: false, message: 'Domain ID is required' });
+  }
+
+  try {
+    const result = await disableDomain(id);
+    res.json(result);
+  } catch (error) {
+    res.status(500).json({ success: false, message: 'Failed to disable domain', error: error.message });
   }
 });
 
