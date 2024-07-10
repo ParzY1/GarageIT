@@ -197,6 +197,25 @@ const removeFromDomainList = (id) => {
   });
 };
 
+async function fetchSummaryStatistics() {
+  try {
+      const response = await axios.get(`${process.env.SERWER}/admin/api.php?auth=${process.env.KLUCZ}`);
+      if (response.status === 200) {
+          const data = response.data;
+          return {
+              dnsQueriesToday: data.dns_queries_today,
+              adsBlockedToday: data.ads_blocked_today,
+              adsPercentageToday: data.ads_percentage_today,
+              domainsBlocked: data.domains_being_blocked
+          };
+      } else {
+          throw new Error('Failed to fetch data from Pi-hole API');
+      }
+  } catch (error) {
+      throw new Error(`Error fetching summary statistics: ${error.message}`);
+  }
+}
+
 app.get('/enable', async (req, res) => {
     try {
         const message = await enablePiHole();
@@ -214,6 +233,15 @@ app.get('/disable', async (req, res) => {
     } catch (error) {
         res.status(500).send(error.message);
     }
+});
+
+app.get('/summary-statistics', async (req, res) => {
+  try {
+      const stats = await fetchSummaryStatistics();
+      res.json(stats);
+  } catch (error) {
+      res.status(500).json({ success: false, message: error.message });
+  }
 });
 
 app.post('/blacklist', async (req, res) => {
