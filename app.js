@@ -147,6 +147,25 @@ const addGroup = (id, name, description) => {
   });
 };
 
+const deleteGroup = (id) => {
+  return new Promise((resolve, reject) => {
+      let db = new sqlite3.Database(process.env.BAZA, sqlite3.OPEN_READWRITE, (err) => {
+          if (err) {
+              return reject(err);
+          }
+      });
+
+      const query = `DELETE FROM "group" WHERE id = ?`;
+      db.run(query, [id], function (err) {
+          db.close();
+          if (err) {
+              return reject(err);
+          }
+          resolve({ success: true, message: `Group with ID ${id} deleted successfully` });
+      });
+  });
+};
+
 const addClient = (id, ip) => {
   return new Promise((resolve, reject) => {
     let db = new sqlite3.Database(process.env.BAZA, sqlite3.OPEN_READWRITE, (err) => {
@@ -163,6 +182,25 @@ const addClient = (id, ip) => {
       }
       resolve({ success: true, message: 'Client added successfully', id: this.lastID });
     });
+  });
+};
+
+const removeClient = (id) => {
+  return new Promise((resolve, reject) => {
+      let db = new sqlite3.Database(process.env.BAZA, sqlite3.OPEN_READWRITE, (err) => {
+          if (err) {
+              return reject(err);
+          }
+      });
+
+      const query = `DELETE FROM client WHERE id = ?`;
+      db.run(query, [id], function (err) {
+          db.close();
+          if (err) {
+              return reject(err);
+          }
+          resolve({ success: true, message: `Client with ID ${id} removed successfully` });
+      });
   });
 };
 
@@ -386,6 +424,21 @@ app.post('/groups', async (req, res) => {
   }
 });
 
+app.delete('/groups/:id', async (req, res) => {
+  const { id } = req.params;
+
+  if (!id) {
+      return res.status(400).json({ success: false, message: 'Group ID is required' });
+  }
+
+  try {
+      const result = await deleteGroup(id);
+      res.json(result);
+  } catch (error) {
+      res.status(500).json({ success: false, message: 'Failed to delete group', error: error.message });
+  }
+});
+
 app.post('/clients', async (req, res) => {
   const { id, ip } = req.body;
 
@@ -398,6 +451,21 @@ app.post('/clients', async (req, res) => {
     res.json(result);
   } catch (error) {
     res.status(500).json({ success: false, message: 'Failed to add client', error: error.message });
+  }
+});
+
+app.delete('/clients/:id', async (req, res) => {
+  const { id } = req.params;
+
+  if (!id) {
+      return res.status(400).json({ success: false, message: 'Client ID is required' });
+  }
+
+  try {
+      const result = await removeClient(id);
+      res.json(result);
+  } catch (error) {
+      res.status(500).json({ success: false, message: 'Failed to remove client', error: error.message });
   }
 });
 
