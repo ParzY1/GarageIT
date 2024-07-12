@@ -62,7 +62,7 @@
             <Button Content="Dashboard" Tag="" Style="{StaticResource SidebarButtonStyle}" Click="Dashboard_Click"/>
             <Button Content="Query Log" Tag="" Style="{StaticResource SidebarButtonStyle}" Click="QueryLog_Click"/>
             <Button Content="Groups" Tag="" Style="{StaticResource SidebarButtonStyle}" Click="Groups_Click"/>
-            <Button Content="Client" Tag="" Style="{StaticResource SidebarButtonStyle}" Click="ManageClients_Click"/>
+            <Button Content="Client" Tag="" Style="{StaticResource SidebarButtonStyle}" Click="Clients_Click"/>
             <Button Content="Domains" Tag="" Style="{StaticResource SidebarButtonStyle}" Click="Domains_Click"/>
             <Button Content="Settings" Tag="" Style="{StaticResource SidebarButtonStyle}" Click="Settings_Click"/>
         </StackPanel>

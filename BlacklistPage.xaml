@@ -112,6 +112,16 @@
             <Setter Property="VerticalContentAlignment" Value="Center"/>
         </Style>
 
+        <!-- Styl GroupBox -->
+        <Style x:Key="GroupBoxStyle" TargetType="Border">
+            <Setter Property="Margin" Value="0,0,0,20"/>
+            <Setter Property="Background" Value="{StaticResource CardColor}"/>
+            <Setter Property="Padding" Value="10"/>
+            <Setter Property="BorderBrush" Value="{StaticResource BorderColor}"/>
+            <Setter Property="BorderThickness" Value="1"/>
+            <Setter Property="CornerRadius" Value="5"/>
+        </Style>
+
     </UserControl.Resources>
 
     <Grid Background="{StaticResource BackgroundColor}">
@@ -134,58 +144,62 @@
             </Grid.RowDefinitions>
 
             <!-- Sekcja dodawania nowej grupy -->
-            <StackPanel Grid.Row="0" Background="{StaticResource CardColor}" Margin="0,0,0,20">
-                <TextBlock Text="Dodaj nową grupę" Style="{StaticResource HeaderStyle}" Margin="10"/>
-                <StackPanel Orientation="Horizontal" Margin="0,10,0,10">
-                    <TextBlock Text="Nazwa:" Style="{StaticResource LabelStyle}" VerticalAlignment="Center"/>
-                    <TextBox Name="groupNameTextBox" Width="300" Style="{StaticResource TextBoxStyle}"/>
-                    <TextBlock Text="Opis:" Style="{StaticResource LabelStyle}" Margin="10,0,0,0" VerticalAlignment="Center"/>
-                    <TextBox Name="groupDescriptionTextBox" Width="300" Style="{StaticResource TextBoxStyle}"/>
-                    <Button Content="Dodaj" Style="{StaticResource ButtonStyle}" Margin="10,0,0,0" Click="AddButton_Click"/>
+            <Border Grid.Row="0" Style="{StaticResource GroupBoxStyle}">
+                <StackPanel>
+                    <TextBlock Text="Dodaj nową grupę" Style="{StaticResource HeaderStyle}" Margin="10"/>
+                    <StackPanel Orientation="Horizontal" Margin="0,10,0,10">
+                        <TextBlock Text="Nazwa:" Style="{StaticResource LabelStyle}" VerticalAlignment="Center"/>
+                        <TextBox Name="groupNameTextBox" Width="300" Style="{StaticResource TextBoxStyle}"/>
+                        <TextBlock Text="Opis:" Style="{StaticResource LabelStyle}" Margin="10,0,0,0" VerticalAlignment="Center"/>
+                        <TextBox Name="groupDescriptionTextBox" Width="300" Style="{StaticResource TextBoxStyle}"/>
+                        <Button Content="Dodaj" Style="{StaticResource ButtonStyle}" Margin="10,0,0,0" Click="AddButton_Click"/>
+                    </StackPanel>
+                    <TextBlock Text="Wskazówki:" Style="{StaticResource LabelStyle}" FontWeight="Bold" Margin="10,0,0,0"/>
+                    <TextBlock Text="1. Można dodać wiele grup, oddzielając każdą nazwę grupy spacją." Style="{StaticResource LabelStyle}" Margin="10,0,0,0"/>
+                    <TextBlock Text='2. Nazwy grup mogą zawierać spacje, jeśli są wprowadzone w cudzysłowiu. Na przykład "Moja nowa grupa".' Style="{StaticResource LabelStyle}" Margin="10,0,0,0"/>
                 </StackPanel>
-                <TextBlock Text="Wskazówki:" Style="{StaticResource LabelStyle}" FontWeight="Bold"/>
-                <TextBlock Text="1. Można dodać wiele grup, oddzielając każdą nazwę grupy spacją." Style="{StaticResource LabelStyle}"/>
-                <TextBlock Text='2. Nazwy grup mogą zawierać spacje, jeśli są wprowadzone w cudzysłowiu. Na przykład "Moja nowa grupa".' Style="{StaticResource LabelStyle}"/>
-            </StackPanel>
+            </Border>
 
             <!-- Sekcja listy grup -->
-            <StackPanel Grid.Row="1" Background="{StaticResource CardColor}" Margin="0,0,0,20">
-                <TextBlock Text="Lista grup" Style="{StaticResource HeaderStyle}" Margin="10"/>
-                <StackPanel Orientation="Horizontal" VerticalAlignment="Center" Margin="10,0,10,0">
-                    <TextBlock Text="Pokaż" Style="{StaticResource LabelStyle}" VerticalAlignment="Center"/>
-                    <ComboBox Width="60" Style="{StaticResource ComboBoxStyle}" SelectedIndex="0">
-                        <ComboBoxItem Content="10"/>
-                        <ComboBoxItem Content="25"/>
-                        <ComboBoxItem Content="50"/>
-                    </ComboBox>
-                    <TextBlock Text="wpisów" Style="{StaticResource LabelStyle}" VerticalAlignment="Center" Margin="10,0,0,0"/>
+            <Border Grid.Row="1" Style="{StaticResource GroupBoxStyle}">
+                <StackPanel>
+                    <TextBlock Text="Lista grup" Style="{StaticResource HeaderStyle}" Margin="10"/>
+                    <StackPanel Orientation="Horizontal" VerticalAlignment="Center" Margin="10,0,10,0">
+                        <TextBlock Text="Pokaż" Style="{StaticResource LabelStyle}" VerticalAlignment="Center"/>
+                        <ComboBox Width="60" Style="{StaticResource ComboBoxStyle}" SelectedIndex="0">
+                            <ComboBoxItem Content="10"/>
+                            <ComboBoxItem Content="25"/>
+                            <ComboBoxItem Content="50"/>
+                        </ComboBox>
+                        <TextBlock Text="wpisów" Style="{StaticResource LabelStyle}" VerticalAlignment="Center" Margin="10,0,0,0"/>
+                    </StackPanel>
+
+                    <!-- Pole wyszukiwania -->
+                    <TextBox Name="searchTextBox" Width="200" HorizontalAlignment="Right" Style="{StaticResource TextBoxStyle}" Margin="0,10,20,10" VerticalAlignment="Center"/>
+
+                    <!-- Lista danych -->
+                    <DataGrid Name="groupsDataGrid" AutoGenerateColumns="False" ItemsSource="{Binding Groups}" Background="{StaticResource BackgroundColor}"
+                              GridLinesVisibility="None" HorizontalAlignment="Stretch" VerticalAlignment="Stretch"
+                              CanUserAddRows="False" CanUserDeleteRows="False" SelectionMode="Single" Margin="10"
+                              CellStyle="{StaticResource DataGridCellStyle}" ColumnHeaderStyle="{StaticResource DataGridColumnHeaderStyle}">
+                        <DataGrid.Columns>
+                            <DataGridTextColumn Header="Nazwa" Binding="{Binding Name}" Width="*" ElementStyle="{StaticResource LabelStyle}"/>
+                            <DataGridTextColumn Header="Status" Binding="{Binding Status}" Width="*" ElementStyle="{StaticResource LabelStyle}"/>
+                            <DataGridTextColumn Header="Opis" Binding="{Binding Description}" Width="*" ElementStyle="{StaticResource LabelStyle}"/>
+                            <DataGridTemplateColumn Header="Akcje" Width="Auto">
+                                <DataGridTemplateColumn.CellTemplate>
+                                    <DataTemplate>
+                                        <StackPanel Orientation="Horizontal">
+                                            <Button Content="Edytuj" Style="{StaticResource ButtonStyle}" Click="EditButton_Click" Background="{StaticResource CardColor}"/>
+                                            <Button Content="Usuń" Style="{StaticResource ButtonStyle}" Click="DeleteButton_Click" Background="{StaticResource CardColor}"/>
+                                        </StackPanel>
+                                    </DataTemplate>
+                                </DataGridTemplateColumn.CellTemplate>
+                            </DataGridTemplateColumn>
+                        </DataGrid.Columns>
+                    </DataGrid>
                 </StackPanel>
-
-                <!-- Pole wyszukiwania -->
-                <TextBox Name="searchTextBox" Width="200" HorizontalAlignment="Right" Style="{StaticResource TextBoxStyle}" Margin="0,10,20,10" VerticalAlignment="Center"/>
-
-                <!-- Lista danych -->
-                <DataGrid Name="groupsDataGrid" AutoGenerateColumns="False" ItemsSource="{Binding Groups}" Background="{StaticResource BackgroundColor}"
-                          GridLinesVisibility="None" HorizontalAlignment="Stretch" VerticalAlignment="Stretch"
-                          CanUserAddRows="False" CanUserDeleteRows="False" SelectionMode="Single" Margin="10"
-                          CellStyle="{StaticResource DataGridCellStyle}" ColumnHeaderStyle="{StaticResource DataGridColumnHeaderStyle}">
-                    <DataGrid.Columns>
-                        <DataGridTextColumn Header="Nazwa" Binding="{Binding Name}" Width="*" ElementStyle="{StaticResource LabelStyle}"/>
-                        <DataGridTextColumn Header="Status" Binding="{Binding Status}" Width="*" ElementStyle="{StaticResource LabelStyle}"/>
-                        <DataGridTextColumn Header="Opis" Binding="{Binding Description}" Width="*" ElementStyle="{StaticResource LabelStyle}"/>
-                        <DataGridTemplateColumn Header="Akcje" Width="Auto">
-                            <DataGridTemplateColumn.CellTemplate>
-                                <DataTemplate>
-                                    <StackPanel Orientation="Horizontal">
-                                        <Button Content="Edytuj" Style="{StaticResource ButtonStyle}" Click="EditButton_Click" Background="{StaticResource CardColor}"/>
-                                        <Button Content="Usuń" Style="{StaticResource ButtonStyle}" Click="DeleteButton_Click" Background="{StaticResource CardColor}"/>
-                                    </StackPanel>
-                                </DataTemplate>
-                            </DataGridTemplateColumn.CellTemplate>
-                        </DataGridTemplateColumn>
-                    </DataGrid.Columns>
-                </DataGrid>
-            </StackPanel>
+            </Border>
         </Grid>
     </Grid>
 </UserControl>

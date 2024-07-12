@@ -74,46 +74,44 @@
         </Style>
     </UserControl.Resources>
 
-    <Grid Background="{StaticResource BackgroundColor}">
-        <!-- Search bar -->
+    <Grid Background="#3B3F45">
+        <!-- Pasek wyszukiwania -->
         <StackPanel Orientation="Horizontal" VerticalAlignment="Top" Margin="10">
-            <TextBlock Text="Search:" VerticalAlignment="Center" Margin="0,0,5,0" Style="{StaticResource LabelStyle}" />
+            <TextBlock Text="Szukaj:" VerticalAlignment="Center" Margin="0,0,5,0" Style="{StaticResource LabelStyle}" />
             <TextBox Width="200" VerticalAlignment="Center" Style="{StaticResource TextBoxStyle}" />
-            <TextBlock Text="Type / Domain / Client" VerticalAlignment="Center" FontStyle="Italic" Foreground="{StaticResource PlaceholderTextColor}" />
+            <TextBlock Text="Typ / Domen / Klient" VerticalAlignment="Center" FontStyle="Italic" Foreground="{StaticResource PlaceholderTextColor}" />
         </StackPanel>
 
-        <!-- DataGrid for displaying recent queries -->
-        <DataGrid x:Name="RecentQueriesDataGrid" AutoGenerateColumns="False" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Margin="10,40,10,70" Background="{StaticResource BackgroundColor}"
+        <!-- DataGrid do wyświetlania ostatnich zapytań -->
+        <DataGrid x:Name="RecentQueriesDataGrid" AutoGenerateColumns="False" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Margin="10,40,10,80" Background="{StaticResource BackgroundColor}"
                   BorderBrush="DarkGray" BorderThickness="1" SelectionChanged="RecentQueriesDataGrid_SelectionChanged"
                   ColumnHeaderStyle="{StaticResource DataGridColumnHeaderStyle}">
             <DataGrid.Columns>
-                <DataGridTextColumn Header="Time" Binding="{Binding Time}" Width="*" ElementStyle="{StaticResource LabelStyle}"/>
-                <DataGridTextColumn Header="Type" Binding="{Binding Type}" Width="*" ElementStyle="{StaticResource LabelStyle}"/>
-                <DataGridTextColumn Header="Domain" Binding="{Binding Domain}" Width="*" ElementStyle="{StaticResource LabelStyle}"/>
-                <DataGridTextColumn Header="Client" Binding="{Binding Client}" Width="*" ElementStyle="{StaticResource LabelStyle}"/>
+                <DataGridTextColumn Header="Czas" Binding="{Binding Time}" Width="*" ElementStyle="{StaticResource LabelStyle}"/>
+                <DataGridTextColumn Header="Typ" Binding="{Binding Type}" Width="*" ElementStyle="{StaticResource LabelStyle}"/>
+                <DataGridTextColumn Header="Domena" Binding="{Binding Domain}" Width="*" ElementStyle="{StaticResource LabelStyle}"/>
+                <DataGridTextColumn Header="Klient" Binding="{Binding Client}" Width="*" ElementStyle="{StaticResource LabelStyle}"/>
                 <DataGridTextColumn Header="Status" Binding="{Binding Status}" Width="*" ElementStyle="{StaticResource LabelStyle}"/>
-                <DataGridTextColumn Header="Reply" Binding="{Binding Reply}" Width="*" ElementStyle="{StaticResource LabelStyle}"/>
-                <DataGridTextColumn Header="Action" Binding="{Binding Action}" Width="*" ElementStyle="{StaticResource LabelStyle}"/>
+                <DataGridTextColumn Header="Odpowiedź" Binding="{Binding Reply}" Width="*" ElementStyle="{StaticResource LabelStyle}"/>
+                <DataGridTextColumn Header="Akcja" Binding="{Binding Action}" Width="*" ElementStyle="{StaticResource LabelStyle}"/>
             </DataGrid.Columns>
         </DataGrid>
 
-        <!-- Bottom controls -->
-        <StackPanel Orientation="Horizontal" VerticalAlignment="Bottom" HorizontalAlignment="Right" Margin="10" RenderTransformOrigin="0.463,0.553">
-            <Button Content="Previous" Style="{StaticResource ButtonStyle}" Margin="0,0,5,0"/>
-            <Button Content="Next" Style="{StaticResource ButtonStyle}"/>
+        <!-- Dolne kontrolki -->
+        <StackPanel Orientation="Horizontal" VerticalAlignment="Bottom" HorizontalAlignment="Stretch" Margin="10">
+            <TextBlock Text="Pokaż" VerticalAlignment="Center" Style="{StaticResource LabelStyle}" Margin="0,0,10,0"/>
+            <ComboBox Width="60" VerticalAlignment="Center" Style="{StaticResource ComboBoxStyle}" Margin="0,0,10,0">
+                <ComboBoxItem Content="10" IsSelected="True"/>
+                <ComboBoxItem Content="25"/>
+                <ComboBoxItem Content="50"/>
+            </ComboBox>
+            <TextBlock Text="wpisów" VerticalAlignment="Center" Style="{StaticResource LabelStyle}" Margin="0,0,10,0"/>
+            <TextBlock VerticalAlignment="Center" Style="{StaticResource LabelStyle}" Margin="0,0,10,0" Width="421"><Run Text="                                "/><Run Text="Po"/><Run Language="pl-pl" Text="k"/><Run Text="azuje 0 do 0 z 0 wpisów"/></TextBlock>
+            <Button Content="Poprzednie" Style="{StaticResource ButtonStyle}" Margin="0,0,5,0"/>
+            <Button Content="Następne" Style="{StaticResource ButtonStyle}"/>
         </StackPanel>
 
-        <!-- Information text -->
-        <TextBlock Text="No data available in table" HorizontalAlignment="Center" VerticalAlignment="Center" Style="{StaticResource InfoTextStyle}"/>
-
-        <!-- Pagination info -->
-        <TextBlock Text="Showing 0 to 0 of 0 entries" HorizontalAlignment="Center" VerticalAlignment="Top" Margin="0,417,0,0" Style="{StaticResource LabelStyle}"/>
-        <TextBlock Text="entries" VerticalAlignment="Top" Margin="117,416,641,0" Style="{StaticResource LabelStyle}"/>
-        <TextBlock Text="Show" VerticalAlignment="Top" Margin="22,416,744,0" Style="{StaticResource LabelStyle}"/>
-        <ComboBox Width="NaN" VerticalAlignment="Top" Style="{StaticResource ComboBoxStyle}" Margin="61,411,693,0">
-            <ComboBoxItem Content="10" IsSelected="True"/>
-            <ComboBoxItem Content="25"/>
-            <ComboBoxItem Content="50"/>
-        </ComboBox>
+        <!-- Tekst informacyjny -->
+        <TextBlock Text="Brak danych w tabeli" HorizontalAlignment="Center" VerticalAlignment="Center" Style="{StaticResource InfoTextStyle}"/>
     </Grid>
 </UserControl>

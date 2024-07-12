@@ -4,8 +4,145 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              mc:Ignorable="d"
-             d:DesignHeight="450" d:DesignWidth="800">
-    <Grid>
-        <TextBlock Text="Manage Account Page Content" FontSize="24" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+             d:DesignHeight="800" d:DesignWidth="1200">
+    <UserControl.Resources>
+        <!-- Color resources -->
+        <SolidColorBrush x:Key="PrimaryColor" Color="#4CAF50"/>
+        <SolidColorBrush x:Key="SecondaryColor" Color="#2196F3"/>
+        <SolidColorBrush x:Key="TextColor" Color="#FFFFFF"/>
+        <SolidColorBrush x:Key="BackgroundColor" Color="#1E1E1E"/>
+        <SolidColorBrush x:Key="CardColor" Color="#2B2B2B"/>
+        <SolidColorBrush x:Key="HighlightColor" Color="#FF5722"/>
+        <SolidColorBrush x:Key="PanelBackgroundColor" Color="#2E3338"/>
+        <SolidColorBrush x:Key="BorderColor" Color="#CCCCCC"/>
+
+        <!-- Styles -->
+        <Style x:Key="HeaderStyle" TargetType="TextBlock">
+            <Setter Property="FontSize" Value="20"/>
+            <Setter Property="Foreground" Value="{StaticResource TextColor}"/>
+            <Setter Property="Margin" Value="10"/>
+        </Style>
+
+        <Style x:Key="LabelStyle" TargetType="TextBlock">
+            <Setter Property="FontSize" Value="16"/>
+            <Setter Property="Foreground" Value="{StaticResource TextColor}"/>
+            <Setter Property="Margin" Value="5"/>
+        </Style>
+
+        <Style x:Key="TextBoxStyle" TargetType="TextBox">
+            <Setter Property="Width" Value="300"/>
+            <Setter Property="Height" Value="30"/>
+            <Setter Property="Margin" Value="5"/>
+            <Setter Property="Background" Value="{StaticResource CardColor}"/>
+            <Setter Property="Foreground" Value="{StaticResource TextColor}"/>
+            <Setter Property="BorderBrush" Value="{StaticResource BorderColor}"/>
+            <Setter Property="BorderThickness" Value="1"/>
+        </Style>
+
+        <Style x:Key="ButtonStyle" TargetType="Button">
+            <Setter Property="Width" Value="120"/>
+            <Setter Property="Height" Value="30"/>
+            <Setter Property="Margin" Value="5"/>
+            <Setter Property="Background" Value="{StaticResource SecondaryColor}"/>
+            <Setter Property="Foreground" Value="{StaticResource TextColor}"/>
+            <Setter Property="BorderBrush" Value="{StaticResource BorderColor}"/>
+            <Setter Property="BorderThickness" Value="1"/>
+            <Setter Property="HorizontalAlignment" Value="Right"/>
+            <Setter Property="VerticalAlignment" Value="Bottom"/>
+        </Style>
+
+        <Style x:Key="DataGridCellStyle" TargetType="DataGridCell">
+            <Setter Property="Background" Value="{StaticResource CardColor}"/>
+            <Setter Property="Foreground" Value="{StaticResource TextColor}"/>
+            <Setter Property="BorderBrush" Value="{StaticResource BorderColor}"/>
+            <Setter Property="BorderThickness" Value="1"/>
+            <Setter Property="Padding" Value="10"/>
+            <Setter Property="VerticalContentAlignment" Value="Center"/>
+        </Style>
+
+        <Style x:Key="DataGridColumnHeaderStyle" TargetType="DataGridColumnHeader">
+            <Setter Property="Background" Value="{StaticResource CardColor}"/>
+            <Setter Property="Foreground" Value="{StaticResource TextColor}"/>
+            <Setter Property="BorderBrush" Value="{StaticResource BorderColor}"/>
+            <Setter Property="BorderThickness" Value="1"/>
+            <Setter Property="Padding" Value="10"/>
+            <Setter Property="VerticalContentAlignment" Value="Center"/>
+        </Style>
+
+        <Style x:Key="GroupBoxStyle" TargetType="Border">
+            <Setter Property="Margin" Value="0,0,0,20"/>
+            <Setter Property="Background" Value="{StaticResource CardColor}"/>
+            <Setter Property="Padding" Value="10"/>
+            <Setter Property="BorderBrush" Value="{StaticResource BorderColor}"/>
+            <Setter Property="BorderThickness" Value="1"/>
+            <Setter Property="CornerRadius" Value="10"/>
+            <Setter Property="Height" Value="500"/>
+            <!-- Zwiększona wysokość Bordera -->
+        </Style>
+    </UserControl.Resources>
+
+    <Grid Background="{StaticResource BackgroundColor}" Margin="10,10,10,10">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto" MinHeight="30"/>
+            <RowDefinition/>
+            <RowDefinition Height="Auto" MinHeight="261.098"/>
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="*"/>
+        </Grid.ColumnDefinitions>
+
+        <TextBlock Text="Zarządzanie domenami" Style="{StaticResource HeaderStyle}" Margin="15,5,15,5" Grid.Row="0" Grid.ColumnSpan="2"/>
+
+        <StackPanel Orientation="Vertical" Margin="20,10,20,0" Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="2" Height="452" VerticalAlignment="Top">
+            <Border Style="{StaticResource GroupBoxStyle}" Height="300">
+                <StackPanel Orientation="Vertical" Margin="10">
+                    <StackPanel Orientation="Horizontal" Margin="0,0,0,10">
+                        <TextBlock Text="Domena:" Style="{StaticResource LabelStyle}" VerticalAlignment="Center"/>
+                        <TextBox Width="300" Style="{StaticResource TextBoxStyle}"/>
+                    </StackPanel>
+                    <StackPanel Orientation="Horizontal" Margin="0,0,0,10">
+                        <TextBlock Text="Komentarz:" Style="{StaticResource LabelStyle}" VerticalAlignment="Center"/>
+                        <TextBox Width="300" Style="{StaticResource TextBoxStyle}"/>
+                    </StackPanel>
+                    <CheckBox Content="Dodaj domenę jako wildcard" Margin="0,0,0,10" Foreground="{StaticResource TextColor}"/>
+                    <TextBlock Text="Uwaga: Domena zostanie automatycznie przypisana do grupy domyślnej. Inne grupy można opcjonalnie przypisać w poniższej liście (używając przydziału grupy)." TextWrapping="Wrap" Foreground="{StaticResource TextColor}"/>
+                    <!-- Buttons aligned to bottom right -->
+                    <StackPanel Orientation="Horizontal" HorizontalAlignment="Right" Margin="0,10,0,0">
+                        <Button Content="Dodaj do białej listy" Style="{StaticResource ButtonStyle}" Height="30" RenderTransformOrigin="0.875,1.559"/>
+                        <Button Content="Dodaj do czarnej listy" Style="{StaticResource ButtonStyle}" Height="30" Width="120"/>
+                    </StackPanel>
+                </StackPanel>
+            </Border>
+        </StackPanel>
+
+        <StackPanel Orientation="Vertical" Margin="20,20,20,20" Grid.Row="2" Grid.Column="0" Grid.ColumnSpan="2">
+            <TextBlock Text="Lista domen" Style="{StaticResource HeaderStyle}" Margin="0,0,0,5" Height="24"/>
+            <StackPanel Orientation="Horizontal">
+                <CheckBox Content="Dokładna biała lista" IsChecked="True" Margin="0,0,10,0" Foreground="{StaticResource TextColor}"/>
+                <CheckBox Content="Dokładna czarna lista" IsChecked="True" Margin="0,0,10,0" Foreground="{StaticResource TextColor}"/>
+            </StackPanel>
+            <DataGrid AutoGenerateColumns="False" Height="177" Background="{StaticResource CardColor}"
+                      GridLinesVisibility="None"
+                      CanUserAddRows="False" CanUserDeleteRows="False" SelectionMode="Single"
+                      CellStyle="{StaticResource DataGridCellStyle}" ColumnHeaderStyle="{StaticResource DataGridColumnHeaderStyle}" SelectionChanged="DataGrid_SelectionChanged">
+                <DataGrid.Columns>
+                    <DataGridTextColumn Header="Domena" Width="*" Binding="{Binding Domain}"/>
+                    <DataGridTextColumn Header="Typ" Width="*" Binding="{Binding Type}"/>
+                    <DataGridTextColumn Header="Status" Width="*" Binding="{Binding Status}"/>
+                    <DataGridTextColumn Header="Komentarz" Width="*" Binding="{Binding Comment}"/>
+                    <DataGridTemplateColumn Header="Akcje" Width="Auto">
+                        <DataGridTemplateColumn.CellTemplate>
+                            <DataTemplate>
+                                <StackPanel Orientation="Horizontal">
+                                    <Button Content="Edytuj" Style="{StaticResource ButtonStyle}" Background="{StaticResource SecondaryColor}" Margin="5"/>
+                                    <Button Content="Usuń" Style="{StaticResource ButtonStyle}" Background="{StaticResource HighlightColor}" Margin="5"/>
+                                </StackPanel>
+                            </DataTemplate>
+                        </DataGridTemplateColumn.CellTemplate>
+                    </DataGridTemplateColumn>
+                </DataGrid.Columns>
+            </DataGrid>
+        </StackPanel>
     </Grid>
 </UserControl>

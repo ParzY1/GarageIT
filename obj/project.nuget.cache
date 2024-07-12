@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "VljbYtT8//k=",
+  "dgSpecHash": "hs86HVJGZoY=",
   "success": true,
-  "projectFilePath": "C:\\Users\\ADMIN\\Desktop\\GarageIT-master\\Garage.csproj",
+  "projectFilePath": "C:\\Users\\ADMIN\\source\\repos\\Garage\\Garage.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\ADMIN\\.nuget\\packages\\livecharts\\0.9.7\\livecharts.0.9.7.nupkg.sha512",
     "C:\\Users\\ADMIN\\.nuget\\packages\\livecharts.wpf\\0.9.7\\livecharts.wpf.0.9.7.nupkg.sha512",

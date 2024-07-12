@@ -44,9 +44,9 @@ namespace Garage
             ShowBlacklistPage();
         }
 
-        private void ManageClients_Click(object sender, RoutedEventArgs e)
+        private void Clients_Click(object sender, RoutedEventArgs e)
         {
-            ShowManageClientsPage();
+            ShowManageAccountPage();
         }
 
         private void Domains_Click(object sender, RoutedEventArgs e)
@@ -74,19 +74,14 @@ namespace Garage
             MainContent.Content = new BlacklistPage();
         }
 
-        private void ShowManageClientsPage()
+        private void ShowManageAccountPage()
         {
-            MainContent.Content = new ManageClientsPage();
+            MainContent.Content = new ManageAccountPage();
         }
 
         private void ShowSettingsPage()
         {
             MainContent.Content = new SettingsPage();
-        }
-
-        private void ShowManageAccountPage()
-        {
-            MainContent.Content = new ManageAccountPage();
         }
 
         private void ShowDomainsPage()

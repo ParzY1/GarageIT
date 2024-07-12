@@ -242,11 +242,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\ADMIN\\Desktop\\GarageIT-master\\Garage.csproj",
+      "projectUniqueName": "C:\\Users\\ADMIN\\source\\repos\\Garage\\Garage.csproj",
       "projectName": "Garage",
-      "projectPath": "C:\\Users\\ADMIN\\Desktop\\GarageIT-master\\Garage.csproj",
+      "projectPath": "C:\\Users\\ADMIN\\source\\repos\\Garage\\Garage.csproj",
       "packagesPath": "C:\\Users\\ADMIN\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\ADMIN\\Desktop\\GarageIT-master\\obj\\",
+      "outputPath": "C:\\Users\\ADMIN\\source\\repos\\Garage\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
