@@ -5,6 +5,7 @@ const bodyParser = require('body-parser');
 const axios = require('axios');
 const connectDB = require('./db');
 const userRoutes = require('./routes/userRoutes');
+const auth = require('./middleware/auth');
 
 connectDB();
 
@@ -13,6 +14,8 @@ const app = express();
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
 app.use('/', userRoutes);
+
+app.use(auth);
 
 async function enablePiHole() {
     try {
