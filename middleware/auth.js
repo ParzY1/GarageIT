@@ -1,7 +1,7 @@
 const jwt = require('jsonwebtoken');
-const { JWT_SECRET } = process.env;
+const User = require('../models/User');
 
-function auth(req, res, next) {
+async function auth(req, res, next) {
     const token = req.header('Authorization');
 
     if (!token) {
@@ -9,8 +9,13 @@ function auth(req, res, next) {
     }
 
     try {
-        const decoded = jwt.verify(token.replace('Bearer ', ''), JWT_SECRET);
+        const bearerToken = token.replace('Bearer ', '');
+        const user = await User.findOne({ token: bearerToken });
+        if (!user) {
+            return res.status(401).json({ message: 'Invalid token' });
+        }
 
+        const decoded = jwt.verify(bearerToken, user.tokenSecret);
         req.user = decoded;
         next();
     } catch (error) {

@@ -1,15 +1,23 @@
 const jwt = require('jsonwebtoken');
+const crypto = require('crypto');
 
-const generateToken = (id) => {
-    return jwt.sign({ id }, process.env.JWT_SECRET, {
+const generateToken = (id, secret) => {
+    return jwt.sign({ id }, secret, {
         expiresIn: '1h',
     });
 };
 
-const generateRefreshToken = (id) => {
-    return jwt.sign({ id }, process.env.JWT_REFRESH_SECRET, {
+const generateRefreshToken = (id, secret) => {
+    return jwt.sign({ id }, secret, {
         expiresIn: '7d',
     });
 };
 
-module.exports = { generateToken, generateRefreshToken };
+const generateSecrets = () => {
+    return {
+        tokenSecret: crypto.randomBytes(64).toString('hex'),
+        refreshTokenSecret: crypto.randomBytes(64).toString('hex')
+    };
+};
+
+module.exports = { generateToken, generateRefreshToken, generateSecrets };

@@ -1,7 +1,7 @@
 const express = require('express');
 const router = express.Router();
 const User = require('../models/User');
-const { generateToken, generateRefreshToken } = require('../utils/token');
+const { generateToken, generateRefreshToken, generateSecrets } = require('../utils/token');
 const auth = require('../middleware/auth');
 
 router.post('/register', async (req, res) => {
@@ -12,12 +12,25 @@ router.post('/register', async (req, res) => {
             return res.status(400).json({ message: 'User already exists' });
         }
 
-        const user = await User.create({ username, password });
+        const { tokenSecret, refreshTokenSecret } = generateSecrets();
+        const user = await User.create({ 
+            username, 
+            password, 
+            tokenSecret, 
+            refreshTokenSecret 
+        });
+        const token = generateToken(user._id, user.tokenSecret);
+        const refreshToken = generateRefreshToken(user._id, user.refreshTokenSecret);
+
+        user.token = token;
+        user.refreshToken = refreshToken;
+        await user.save();
+
         res.status(201).json({
             _id: user._id,
             username: user.username,
-            token: generateToken(user._id),
-            refreshToken: generateRefreshToken(user._id),
+            token,
+            refreshToken,
         });
     } catch (error) {
         res.status(500).json({ message: error.message });
@@ -29,11 +42,18 @@ router.post('/login', async (req, res) => {
     try {
         const user = await User.findOne({ username });
         if (user && (await user.matchPassword(password))) {
+            const token = generateToken(user._id, user.tokenSecret);
+            const refreshToken = generateRefreshToken(user._id, user.refreshTokenSecret);
+
+            user.token = token;
+            user.refreshToken = refreshToken;
+            await user.save();
+
             res.json({
                 _id: user._id,
                 username: user.username,
-                token: generateToken(user._id),
-                refreshToken: generateRefreshToken(user._id),
+                token,
+                refreshToken,
             });
         } else {
             res.status(401).json({ message: 'Invalid username or password' });
@@ -60,15 +80,22 @@ router.post('/refresh-token', async (req, res) => {
     }
 
     try {
-        const decoded = jwt.verify(token, process.env.JWT_REFRESH_SECRET);
-        const user = await User.findById(decoded.id);
+        const user = await User.findOne({ refreshToken: token });
         if (!user) {
             return res.status(401).json({ message: 'Invalid token' });
         }
 
+        const decoded = jwt.verify(token, user.refreshTokenSecret);
+        const newToken = generateToken(user._id, user.tokenSecret);
+        const newRefreshToken = generateRefreshToken(user._id, user.refreshTokenSecret);
+
+        user.token = newToken;
+        user.refreshToken = newRefreshToken;
+        await user.save();
+
         res.json({
-            token: generateToken(user._id),
-            refreshToken: generateRefreshToken(user._id),
+            token: newToken,
+            refreshToken: newRefreshToken,
         });
     } catch (error) {
         res.status(401).json({ message: 'Invalid token' });
