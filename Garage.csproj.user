@@ -1,0 +1,64 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="Current" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+	<PropertyGroup />
+	<ItemGroup>
+		<ApplicationDefinition Update="App.xaml">
+			<SubType>Designer</SubType>
+		</ApplicationDefinition>
+	</ItemGroup>
+	<ItemGroup>
+		<Compile Update="BlacklistPage.xaml.cs">
+			<SubType>Code</SubType>
+		</Compile>
+		<Compile Update="DomainsPage.xaml.cs">
+			<SubType>Code</SubType>
+		</Compile>
+		<Compile Update="LoginWindow.xaml.cs">
+			<SubType>Code</SubType>
+		</Compile>
+		<Compile Update="ManageAccountPage.xaml.cs">
+			<SubType>Code</SubType>
+		</Compile>
+		<Compile Update="ManageClientsPage.xaml.cs">
+			<SubType>Code</SubType>
+		</Compile>
+		<Compile Update="SettingsPage.xaml.cs">
+			<SubType>Code</SubType>
+		</Compile>
+		<Compile Update="StatisticsPage.xaml.cs">
+			<SubType>Code</SubType>
+		</Compile>
+		<Compile Update="WhitelistPage.xaml.cs">
+			<SubType>Code</SubType>
+		</Compile>
+	</ItemGroup>
+	<ItemGroup>
+		<Page Update="BlacklistPage.xaml">
+			<SubType>Designer</SubType>
+		</Page>
+		<Page Update="DomainsPage.xaml">
+			<SubType>Designer</SubType>
+		</Page>
+		<Page Update="LoginWindow.xaml">
+			<SubType>Designer</SubType>
+		</Page>
+		<Page Update="MainWindow.xaml">
+			<SubType>Designer</SubType>
+		</Page>
+		<Page Update="ManageAccountPage.xaml">
+			<SubType>Designer</SubType>
+		</Page>
+		<Page Update="ManageClientsPage.xaml">
+			<SubType>Designer</SubType>
+		</Page>
+		<Page Update="SettingsPage.xaml">
+			<SubType>Designer</SubType>
+		</Page>
+		<Page Update="StatisticsPage.xaml">
+			<SubType>Designer</SubType>
+		</Page>
+		<Page Update="WhitelistPage.xaml">
+			<SubType>Designer</SubType>
+		</Page>
+	</ItemGroup>
+</Project>

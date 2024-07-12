@@ -1,0 +1,191 @@
+﻿<UserControl x:Class="Garage.BlacklistPage"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:local="clr-namespace:Garage"
+             mc:Ignorable="d"
+             d:DesignHeight="800" d:DesignWidth="1200">
+    <UserControl.Resources>
+        <!-- FontAwesome -->
+        <FontFamily x:Key="FontAwesome">/Resources/#FontAwesome</FontFamily>
+
+        <!-- StatusToColorConverter -->
+        <local:StatusToColorConverter x:Key="StatusToColorConverter"/>
+
+        <!-- Zasoby kolorów -->
+        <SolidColorBrush x:Key="PrimaryColor" Color="#4CAF50"/>
+        <SolidColorBrush x:Key="SecondaryColor" Color="#2196F3"/>
+        <SolidColorBrush x:Key="TextColor" Color="#FFFFFF"/>
+        <SolidColorBrush x:Key="BackgroundColor" Color="#1E1E1E"/>
+        <!-- Kolor tła zmieniony na ciemnoszary -->
+        <SolidColorBrush x:Key="CardColor" Color="#2B2B2B"/>
+        <!-- Kolor tła karty zmieniony na ciemnoszary -->
+        <SolidColorBrush x:Key="HighlightColor" Color="#FF5722"/>
+        <SolidColorBrush x:Key="PanelBackgroundColor" Color="#2E3338"/>
+        <SolidColorBrush x:Key="BorderColor" Color="#CCCCCC"/>
+
+        <!-- Styl przycisku w sidebarze -->
+        <Style x:Key="SidebarButtonStyle" TargetType="ToggleButton">
+            <Setter Property="Foreground" Value="{StaticResource TextColor}"/>
+            <Setter Property="Background" Value="{StaticResource BackgroundColor}"/>
+            <Setter Property="FontSize" Value="18"/>
+            <Setter Property="Padding" Value="5"/>
+            <Setter Property="Margin" Value="0 5"/>
+            <Setter Property="BorderBrush" Value="Transparent"/>
+            <Setter Property="Cursor" Value="Hand"/>
+            <Setter Property="HorizontalAlignment" Value="Stretch"/>
+            <Setter Property="Height" Value="50"/>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="ToggleButton">
+                        <Grid>
+                            <Rectangle Fill="{TemplateBinding Background}" RadiusX="5" RadiusY="5"/>
+                            <StackPanel Orientation="Horizontal" VerticalAlignment="Center" HorizontalAlignment="Left" Margin="10 0">
+                                <TextBlock FontFamily="{StaticResource FontAwesome}" FontSize="24" Text="{TemplateBinding Tag}" Margin="0 10 10 0"/>
+                                <ContentPresenter VerticalAlignment="Center"/>
+                            </StackPanel>
+                        </Grid>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+            <Style.Triggers>
+                <Trigger Property="IsMouseOver" Value="True">
+                    <Setter Property="Background" Value="{StaticResource CardColor}"/>
+                </Trigger>
+                <Trigger Property="IsPressed" Value="True">
+                    <Setter Property="Background" Value="#FF7043"/>
+                </Trigger>
+            </Style.Triggers>
+        </Style>
+
+        <!-- Styl nagłówka -->
+        <Style x:Key="HeaderStyle" TargetType="TextBlock">
+            <Setter Property="FontSize" Value="20"/>
+            <Setter Property="Foreground" Value="{StaticResource TextColor}"/>
+            <Setter Property="Margin" Value="10"/>
+        </Style>
+
+        <!-- Styl etykiety -->
+        <Style x:Key="LabelStyle" TargetType="TextBlock">
+            <Setter Property="FontSize" Value="16"/>
+            <Setter Property="Foreground" Value="{StaticResource TextColor}"/>
+            <Setter Property="Margin" Value="5"/>
+        </Style>
+
+        <!-- Styl TextBox -->
+        <Style x:Key="TextBoxStyle" TargetType="TextBox">
+            <Setter Property="Width" Value="200"/>
+            <Setter Property="Height" Value="30"/>
+            <Setter Property="Margin" Value="5"/>
+        </Style>
+
+        <!-- Styl ComboBox -->
+        <Style x:Key="ComboBoxStyle" TargetType="ComboBox">
+            <Setter Property="Width" Value="200"/>
+            <Setter Property="Height" Value="30"/>
+            <Setter Property="Margin" Value="5"/>
+        </Style>
+
+        <!-- Styl przycisku -->
+        <Style x:Key="ButtonStyle" TargetType="Button">
+            <Setter Property="Width" Value="100"/>
+            <Setter Property="Height" Value="30"/>
+            <Setter Property="Margin" Value="5"/>
+        </Style>
+
+        <!-- Styl komórki w DataGrid -->
+        <Style x:Key="DataGridCellStyle" TargetType="DataGridCell">
+            <Setter Property="Background" Value="{StaticResource CardColor}"/>
+            <Setter Property="Foreground" Value="{StaticResource TextColor}"/>
+            <Setter Property="BorderThickness" Value="0"/>
+            <Setter Property="Padding" Value="10"/>
+            <Setter Property="VerticalContentAlignment" Value="Center"/>
+        </Style>
+
+        <!-- Styl nagłówka w DataGrid -->
+        <Style x:Key="DataGridColumnHeaderStyle" TargetType="DataGridColumnHeader">
+            <Setter Property="Background" Value="{StaticResource CardColor}"/>
+            <Setter Property="Foreground" Value="{StaticResource TextColor}"/>
+            <Setter Property="BorderThickness" Value="0"/>
+            <Setter Property="Padding" Value="10"/>
+            <Setter Property="VerticalContentAlignment" Value="Center"/>
+        </Style>
+
+    </UserControl.Resources>
+
+    <Grid Background="{StaticResource BackgroundColor}">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+
+        <!-- Nagłówek -->
+        <TextBlock Text="Zarządzanie grupami" Style="{StaticResource HeaderStyle}" Margin="20"/>
+
+        <!-- Główna zawartość -->
+        <Grid Grid.Row="1" Margin="20">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="*"/>
+            </Grid.RowDefinitions>
+
+            <!-- Sekcja dodawania nowej grupy -->
+            <StackPanel Grid.Row="0" Background="{StaticResource CardColor}" Margin="0,0,0,20">
+                <TextBlock Text="Dodaj nową grupę" Style="{StaticResource HeaderStyle}" Margin="10"/>
+                <StackPanel Orientation="Horizontal" Margin="0,10,0,10">
+                    <TextBlock Text="Nazwa:" Style="{StaticResource LabelStyle}" VerticalAlignment="Center"/>
+                    <TextBox Name="groupNameTextBox" Width="300" Style="{StaticResource TextBoxStyle}"/>
+                    <TextBlock Text="Opis:" Style="{StaticResource LabelStyle}" Margin="10,0,0,0" VerticalAlignment="Center"/>
+                    <TextBox Name="groupDescriptionTextBox" Width="300" Style="{StaticResource TextBoxStyle}"/>
+                    <Button Content="Dodaj" Style="{StaticResource ButtonStyle}" Margin="10,0,0,0" Click="AddButton_Click"/>
+                </StackPanel>
+                <TextBlock Text="Wskazówki:" Style="{StaticResource LabelStyle}" FontWeight="Bold"/>
+                <TextBlock Text="1. Można dodać wiele grup, oddzielając każdą nazwę grupy spacją." Style="{StaticResource LabelStyle}"/>
+                <TextBlock Text='2. Nazwy grup mogą zawierać spacje, jeśli są wprowadzone w cudzysłowiu. Na przykład "Moja nowa grupa".' Style="{StaticResource LabelStyle}"/>
+            </StackPanel>
+
+            <!-- Sekcja listy grup -->
+            <StackPanel Grid.Row="1" Background="{StaticResource CardColor}" Margin="0,0,0,20">
+                <TextBlock Text="Lista grup" Style="{StaticResource HeaderStyle}" Margin="10"/>
+                <StackPanel Orientation="Horizontal" VerticalAlignment="Center" Margin="10,0,10,0">
+                    <TextBlock Text="Pokaż" Style="{StaticResource LabelStyle}" VerticalAlignment="Center"/>
+                    <ComboBox Width="60" Style="{StaticResource ComboBoxStyle}" SelectedIndex="0">
+                        <ComboBoxItem Content="10"/>
+                        <ComboBoxItem Content="25"/>
+                        <ComboBoxItem Content="50"/>
+                    </ComboBox>
+                    <TextBlock Text="wpisów" Style="{StaticResource LabelStyle}" VerticalAlignment="Center" Margin="10,0,0,0"/>
+                </StackPanel>
+
+                <!-- Pole wyszukiwania -->
+                <TextBox Name="searchTextBox" Width="200" HorizontalAlignment="Right" Style="{StaticResource TextBoxStyle}" Margin="0,10,20,10" VerticalAlignment="Center"/>
+
+                <!-- Lista danych -->
+                <DataGrid Name="groupsDataGrid" AutoGenerateColumns="False" ItemsSource="{Binding Groups}" Background="{StaticResource BackgroundColor}"
+                          GridLinesVisibility="None" HorizontalAlignment="Stretch" VerticalAlignment="Stretch"
+                          CanUserAddRows="False" CanUserDeleteRows="False" SelectionMode="Single" Margin="10"
+                          CellStyle="{StaticResource DataGridCellStyle}" ColumnHeaderStyle="{StaticResource DataGridColumnHeaderStyle}">
+                    <DataGrid.Columns>
+                        <DataGridTextColumn Header="Nazwa" Binding="{Binding Name}" Width="*" ElementStyle="{StaticResource LabelStyle}"/>
+                        <DataGridTextColumn Header="Status" Binding="{Binding Status}" Width="*" ElementStyle="{StaticResource LabelStyle}"/>
+                        <DataGridTextColumn Header="Opis" Binding="{Binding Description}" Width="*" ElementStyle="{StaticResource LabelStyle}"/>
+                        <DataGridTemplateColumn Header="Akcje" Width="Auto">
+                            <DataGridTemplateColumn.CellTemplate>
+                                <DataTemplate>
+                                    <StackPanel Orientation="Horizontal">
+                                        <Button Content="Edytuj" Style="{StaticResource ButtonStyle}" Click="EditButton_Click" Background="{StaticResource CardColor}"/>
+                                        <Button Content="Usuń" Style="{StaticResource ButtonStyle}" Click="DeleteButton_Click" Background="{StaticResource CardColor}"/>
+                                    </StackPanel>
+                                </DataTemplate>
+                            </DataGridTemplateColumn.CellTemplate>
+                        </DataGridTemplateColumn>
+                    </DataGrid.Columns>
+                </DataGrid>
+            </StackPanel>
+        </Grid>
+    </Grid>
+</UserControl>
