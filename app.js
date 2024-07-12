@@ -1,13 +1,18 @@
 const express = require('express');
-require('dotenv').config()
+require('dotenv').config();
 const sqlite3 = require('sqlite3').verbose();
 const bodyParser = require('body-parser');
 const axios = require('axios');
+const connectDB = require('./db');
+const userRoutes = require('./routes/userRoutes');
+
+connectDB();
 
 const app = express();
 
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
+app.use('/', userRoutes);
 
 async function enablePiHole() {
     try {
