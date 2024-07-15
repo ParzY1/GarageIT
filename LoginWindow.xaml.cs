@@ -1,30 +1,48 @@
-﻿using System.Windows;
-using System.Windows.Input;
+﻿using System;
+using System.Windows;
+using Newtonsoft.Json;
+using Garage.Services;
 
 namespace Garage
 {
     public partial class LoginWindow : Window
     {
+        public event EventHandler LoginSuccessful; // Zdarzenie sygnalizujące pomyślne zalogowanie
+
+        private readonly ApiService _apiService;
+
         public LoginWindow()
         {
             InitializeComponent();
+            _apiService = new ApiService();
         }
 
-        private void LoginButton_Click(object sender, RoutedEventArgs e)
+        private async void LoginButton_Click(object sender, RoutedEventArgs e)
         {
             string username = UsernameTextBox.Text;
             string password = PasswordBox.Password;
 
-            // Sprawdzenie logowania (to tylko przykład, w praktyce należy używać bezpieczniejszych metod)
-            if (username == "admin" && password == "password")
+            try
             {
-                MainWindow mainWindow = new MainWindow();
-                mainWindow.Show();
-                this.Close();
+                string loginResponse = await _apiService.LoginUser("https://blockdns.garageit.pl", username, password);
+                dynamic loginData = JsonConvert.DeserializeObject<dynamic>(loginResponse);
+
+                if (loginData != null)
+                {
+                    // Podnieś zdarzenie informujące o pomyślnym zalogowaniu
+                    LoginSuccessful?.Invoke(this, EventArgs.Empty);
+
+                    // Ukryj LoginWindow
+                    this.Hide();
+                }
+                else
+                {
+                    MessageBox.Show("Invalid username or password", "Login failed", MessageBoxButton.OK, MessageBoxImage.Error);
+                }
             }
-            else
+            catch (Exception ex)
             {
-                MessageBox.Show("Invalid username or password", "Login Failed", MessageBoxButton.OK, MessageBoxImage.Error);
+                MessageBox.Show($"Login failed: {ex.Message}", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
             }
         }
     }

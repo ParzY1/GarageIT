@@ -1,4 +1,5 @@
-﻿using System.Windows;
+﻿using System;
+using System.Windows;
 
 namespace Garage
 {
@@ -7,8 +8,19 @@ namespace Garage
         protected override void OnStartup(StartupEventArgs e)
         {
             base.OnStartup(e);
+
+            // Pokaż LoginWindow
             LoginWindow loginWindow = new LoginWindow();
-            loginWindow.Show();
+            loginWindow.LoginSuccessful += (sender, args) =>
+            {
+                // Pokaż MainWindow po pomyślnym zalogowaniu
+                MainWindow mainWindow = new MainWindow();
+                mainWindow.Show();
+
+                // Zamknij LoginWindow
+                loginWindow.Close();
+            };
+            loginWindow.ShowDialog();
         }
     }
 }
