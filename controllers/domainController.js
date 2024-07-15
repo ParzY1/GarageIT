@@ -100,6 +100,17 @@ const removeFromDomainList = async (req, res) => {
     }
 };
 
+const changeDomainListType = async (req, res) => {
+    const { domain } = req.body;
+    try{
+        const result = await domainService.changeDomainListType(domain);
+        await auditService.logAction('changeDomainListType', `Changed ${domain} list type`);
+        res.json(result);
+    } catch(error) {
+        res.status(500).json({ message: error.message });
+    }
+};
+
 module.exports = {
     addToBlacklist,
     addToWhitelist,
@@ -109,5 +120,6 @@ module.exports = {
     disableDomain,
     addDomainToGroup,
     removeDomainFromGroup,
-    removeFromDomainList
+    removeFromDomainList,
+    changeDomainListType
 };

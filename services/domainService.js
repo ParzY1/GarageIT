@@ -151,6 +151,39 @@ const removeFromDomainList = (name) => {
     });
 };
 
+const changeDomainListType = (domain) => {
+    return new Promise((resolve, reject) => {
+        let db = new sqlite3.Database(process.env.BAZA, sqlite3.OPEN_READWRITE, (err) => {
+            if (err) {
+                return reject(err);
+            }
+        });
+
+        const selectQuery = `SELECT type FROM domainlist WHERE domain = ?`;
+        db.get(selectQuery, [domain], (err, row) => {
+            if (err) {
+                db.close();
+                return reject(err);
+            }
+
+            if (!row) {
+                db.close();
+                return reject(new Error(`Domain "${domain}" not found`));
+            }
+
+            const newType = row.type === 0 ? 1 : 0;
+            const updateQuery = `UPDATE domainlist SET type = ? WHERE domain = ?`;
+            db.run(updateQuery, [newType, domain], function (err) {
+                db.close();
+                if (err) {
+                    return reject(err);
+                }
+                resolve({ success: true, message: `Domain "${domain}" type changed successfully to ${newType === 0 ? 'whitelist' : 'blacklist'}` });
+            });
+        });
+    });
+};
+
 module.exports = {
     addToBlacklist,
     addToWhitelist,
@@ -160,5 +193,6 @@ module.exports = {
     disableDomain,
     addDomainToGroup,
     removeDomainFromGroup,
-    removeFromDomainList
+    removeFromDomainList,
+    changeDomainListType
 };

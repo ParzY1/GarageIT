@@ -14,5 +14,6 @@ router.post('/disableDomain', domainController.disableDomain);
 router.post('/addDomainToGroup', domainController.addDomainToGroup);
 router.post('/removeDomainFromGroup', domainController.removeDomainFromGroup);
 router.post('/removeFromDomainList', domainController.removeFromDomainList);
+router.post('/changeDomainListType', domainController.changeDomainListType);
 
 module.exports = router;
