@@ -30,7 +30,7 @@ namespace Garage.Services
             }
         }
 
-        private async Task<string> PostAsync<T>(string uri, T data)
+        public async Task<string> PostAsync<T>(string uri, T data)
         {
             AddAuthorizationHeader();
             var content = new StringContent(JsonConvert.SerializeObject(data), Encoding.UTF8, "application/json");
@@ -79,7 +79,7 @@ namespace Garage.Services
         public async Task<string> GetStatisticsAsync(string baseUrl)
         {
             AddAuthorizationHeader();
-            var response = await _httpClient.GetAsync($"{baseUrl}/statistics");
+            var response = await _httpClient.GetAsync($"{baseUrl}/pi-hole/summary-statistics");
             return await response.Content.ReadAsStringAsync();
         }
 

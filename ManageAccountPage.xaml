@@ -6,60 +6,71 @@
              mc:Ignorable="d"
              d:DesignHeight="600" d:DesignWidth="800">
     <UserControl.Resources>
-        <!-- Zasoby kolorów -->
         <SolidColorBrush x:Key="BackgroundColor" Color="#1E1E1E"/>
         <SolidColorBrush x:Key="TextColor" Color="#FFFFFF"/>
         <SolidColorBrush x:Key="PlaceholderTextColor" Color="Gray"/>
         <SolidColorBrush x:Key="DataGridHeaderBackgroundColor" Color="#000000"/>
-        <!-- Czarny kolor nagłówka DataGrid -->
         <SolidColorBrush x:Key="DataGridHeaderForegroundColor" Color="#FFFFFF"/>
-        <!-- Kolor tekstu nagłówka DataGrid -->
         <SolidColorBrush x:Key="ComboBoxBackgroundColor" Color="#333333"/>
-        <!-- Czarny kolor ComboBox -->
         <SolidColorBrush x:Key="ComboBoxItemBackgroundColor" Color="#333333"/>
-        <!-- Kolor tła ComboBoxItem -->
 
-        <!-- Style -->
-        <Style TargetType="TextBlock">
+        <Style x:Key="HeaderStyle" TargetType="TextBlock">
+            <Setter Property="FontSize" Value="20"/>
             <Setter Property="Foreground" Value="{StaticResource TextColor}"/>
+            <Setter Property="Margin" Value="10"/>
         </Style>
-        <Style TargetType="TextBox">
+
+        <Style x:Key="LabelStyle" TargetType="TextBlock">
+            <Setter Property="FontSize" Value="16"/>
             <Setter Property="Foreground" Value="{StaticResource TextColor}"/>
-            <Setter Property="Background" Value="{StaticResource BackgroundColor}"/>
+            <Setter Property="Margin" Value="5"/>
         </Style>
+
+        <Style x:Key="TextBoxStyle" TargetType="TextBox">
+            <Setter Property="Width" Value="200"/>
+            <Setter Property="Height" Value="30"/>
+            <Setter Property="Margin" Value="5"/>
+        </Style>
+
         <Style x:Key="ComboBoxStyle" TargetType="ComboBox">
+            <Setter Property="Width" Value="200"/>
+            <Setter Property="Height" Value="30"/>
+            <Setter Property="Margin" Value="5"/>
             <Setter Property="Foreground" Value="{StaticResource TextColor}"/>
             <Setter Property="Background" Value="{StaticResource ComboBoxBackgroundColor}"/>
         </Style>
+
         <Style x:Key="ComboBoxItemStyle" TargetType="ComboBoxItem">
             <Setter Property="Foreground" Value="{StaticResource TextColor}"/>
             <Setter Property="Background" Value="{StaticResource ComboBoxItemBackgroundColor}"/>
         </Style>
-        <Style TargetType="Button">
-            <Setter Property="Foreground" Value="{StaticResource TextColor}"/>
-            <Setter Property="Background" Value="{StaticResource BackgroundColor}"/>
+
+        <Style x:Key="ButtonStyle" TargetType="Button">
+            <Setter Property="Width" Value="100"/>
+            <Setter Property="Height" Value="30"/>
+            <Setter Property="Margin" Value="5"/>
         </Style>
-        <Style TargetType="DataGrid">
-            <Setter Property="Foreground" Value="{StaticResource TextColor}"/>
+
+        <Style x:Key="DataGridCellStyle" TargetType="DataGridCell">
             <Setter Property="Background" Value="{StaticResource BackgroundColor}"/>
-            <Setter Property="RowBackground" Value="#333"/>
-            <Setter Property="AlternatingRowBackground" Value="#444"/>
+            <Setter Property="Foreground" Value="{StaticResource TextColor}"/>
+            <Setter Property="BorderThickness" Value="0"/>
+            <Setter Property="Padding" Value="10"/>
+            <Setter Property="VerticalContentAlignment" Value="Center"/>
         </Style>
-        <Style TargetType="DataGridColumnHeader">
+
+        <Style x:Key="DataGridColumnHeaderStyle" TargetType="DataGridColumnHeader">
             <Setter Property="Background" Value="{StaticResource DataGridHeaderBackgroundColor}"/>
             <Setter Property="Foreground" Value="{StaticResource DataGridHeaderForegroundColor}"/>
-        </Style>
-        <Style TargetType="GroupBox">
-            <Setter Property="Foreground" Value="{StaticResource TextColor}"/>
-            <Setter Property="Background" Value="{StaticResource BackgroundColor}"/>
+            <Setter Property="BorderThickness" Value="0"/>
+            <Setter Property="Padding" Value="10"/>
+            <Setter Property="VerticalContentAlignment" Value="Center"/>
         </Style>
     </UserControl.Resources>
 
     <Grid Margin="10" Background="{StaticResource BackgroundColor}">
-        <!-- Tytuł -->
         <TextBlock Text="Zarządzanie grupami klientów" FontSize="24" FontWeight="Bold" Margin="0,0,0,20"/>
 
-        <!-- Sekcja dodawania nowego klienta -->
         <GroupBox Header="Dodaj nowego klienta" Margin="0,40,0,0">
             <StackPanel Margin="10">
                 <StackPanel Orientation="Horizontal" Width="712">
@@ -75,11 +86,10 @@
                 <TextBlock Text="Możesz wybrać istniejącego klienta lub dodać nowego, wpisując powyżej i potwierdzając enterem." TextWrapping="Wrap" Margin="0,10,0,0"/>
                 <TextBlock Text="Klienci mogą być opisani poprzez adresy IP (IPv4 i IPv6 są obsługiwane), podsieci IP (notacja CIDR, np. 192.168.2.0/24), adresy MAC (np. 12:34:56:78:9A:BC), nazwy hostów (np. localhost) lub interfejsy, do których są podłączone (poprzedzone dwukropkiem, np. :eth0)." TextWrapping="Wrap" Margin="0,10,0,0"/>
                 <TextBlock Text="Zauważ, że rozpoznanie klienta przez adresy IP (włącznie z zakresami podsieciowymi) jest preferowane nad rozpoznaniem po adresie MAC, nazwie hosta lub interfejsie, które będą dostępne dopiero po pewnym czasie. Ponadto rozpoznawanie po adresie MAC działa tylko dla urządzeń znajdujących się maksymalnie o jeden skok sieciowy od Twojego Pi-hole." TextWrapping="Wrap" Margin="0,10,0,0"/>
-                <Button Content="Dodaj" HorizontalAlignment="Left" Width="100" Margin="0,10,0,0"/>
+                <Button Content="Dodaj" HorizontalAlignment="Left" Width="100" Margin="0,10,0,0" Click="AddClient_Click"/>
             </StackPanel>
         </GroupBox>
 
-        <!-- Lista skonfigurowanych klientów -->
         <GroupBox Header="Lista skonfigurowanych klientów" Margin="0,300,0,0">
             <Grid Margin="10">
                 <Grid.RowDefinitions>
@@ -96,10 +106,10 @@
                     <TextBlock Text="wpisów" VerticalAlignment="Center" Margin="10,0"/>
                     <TextBox Width="200" HorizontalAlignment="Right" Margin="10,0,0,0" VerticalAlignment="Center"/>
                 </StackPanel>
-                <DataGrid Grid.Row="1" AutoGenerateColumns="False" CanUserAddRows="False" Margin="0,10,0,0" ColumnHeaderStyle="{StaticResource {x:Type DataGridColumnHeader}}">
+                <DataGrid x:Name="configuredClientsDataGrid" Grid.Row="1" AutoGenerateColumns="False" CanUserAddRows="False" Margin="0,10,0,0" ColumnHeaderStyle="{StaticResource DataGridColumnHeaderStyle}">
                     <DataGrid.Columns>
                         <DataGridCheckBoxColumn Width="50" />
-                        <DataGridTextColumn Header="Klient" Binding="{Binding Client}" Width="*"/>
+                        <DataGridTextColumn Header="Klient" Binding="{Binding ClientName}" Width="*"/>
                         <DataGridTextColumn Header="Komentarz" Binding="{Binding Comment}" Width="*"/>
                         <DataGridTemplateColumn Header="Przypisanie do grupy" Width="150">
                             <DataGridTemplateColumn.CellTemplate>
@@ -115,7 +125,7 @@
                         <DataGridTemplateColumn Width="50">
                             <DataGridTemplateColumn.CellTemplate>
                                 <DataTemplate>
-                                    <Button Content="❌" Width="30"/>
+                                    <Button Content="❌" Width="30" Click="RemoveClient_Click"/>
                                 </DataTemplate>
                             </DataGridTemplateColumn.CellTemplate>
                         </DataGridTemplateColumn>

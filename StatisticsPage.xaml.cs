@@ -1,9 +1,13 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Threading.Tasks;
 using System.Windows.Controls;
+using System.Windows.Threading;
 using LiveCharts;
 using LiveCharts.Defaults;
 using LiveCharts.Wpf;
+using Garage.Services;
+using Newtonsoft.Json;
 
 namespace Garage
 {
@@ -12,84 +16,129 @@ namespace Garage
         public SeriesCollection SeriesCollection { get; set; }
         public Func<double, string> TimeFormatter { get; set; }
         public List<string> Labels { get; set; }
+        private readonly ApiService _apiService;
+        private DispatcherTimer _timer;
 
-        public StatisticsPage()
+        public ChartValues<ObservableValue> TotalQueries { get; set; }
+        public ChartValues<ObservableValue> BlockedQueries { get; set; }
+        public ChartValues<ObservableValue> PercentageBlocked { get; set; }
+        public ChartValues<ObservableValue> DomainsOnAdlists { get; set; }
+
+        public StatisticsPage(ApiService apiService)
         {
             InitializeComponent();
+            _apiService = apiService;
+            InitializeCollections();
             SetupChart();
+
+            // Initialize and start the timer
+            _timer = new DispatcherTimer();
+            _timer.Interval = TimeSpan.FromMinutes(1); // Set the interval to 1 minute
+            _timer.Tick += async (s, e) => await LoadStatistics();
+            _timer.Start();
+        }
+
+        private void InitializeCollections()
+        {
+            SeriesCollection = new SeriesCollection();
+
+            TotalQueries = new ChartValues<ObservableValue>();
+            BlockedQueries = new ChartValues<ObservableValue>();
+            PercentageBlocked = new ChartValues<ObservableValue>();
+            DomainsOnAdlists = new ChartValues<ObservableValue>();
         }
 
         private void SetupChart()
         {
-            // Inicjalizacja SeriesCollection i dodanie przykładowych danych
-            SeriesCollection = new SeriesCollection
-            {
-                new ColumnSeries
-                {
-                    Title = "Total Queries",
-                    Values = new ChartValues<ObservableValue>
-                    {
-                        new ObservableValue(10), // Przykładowe dane
-                        new ObservableValue(20),
-                        new ObservableValue(30),
-                        new ObservableValue(25)
-                    },
-                    Fill = System.Windows.Media.Brushes.Blue
-                },
-                new ColumnSeries
-                {
-                    Title = "Queries Blocked",
-                    Values = new ChartValues<ObservableValue>
-                    {
-                        new ObservableValue(5), // Przykładowe dane
-                        new ObservableValue(15),
-                        new ObservableValue(12),
-                        new ObservableValue(8)
-                    },
-                    Fill = System.Windows.Media.Brushes.Orange
-                },
-                new ColumnSeries
-                {
-                    Title = "Percentage Blocked",
-                    Values = new ChartValues<ObservableValue>
-                    {
-                        new ObservableValue(15), // Przykładowe dane
-                        new ObservableValue(10),
-                        new ObservableValue(20),
-                        new ObservableValue(18)
-                    },
-                    Fill = System.Windows.Media.Brushes.Yellow
-                },
-                new ColumnSeries
-                {
-                    Title = "Domains on Adlists",
-                    Values = new ChartValues<ObservableValue>
-                    {
-                        new ObservableValue(8), // Przykładowe dane
-                        new ObservableValue(12),
-                        new ObservableValue(5),
-                        new ObservableValue(10)
-                    },
-                    Fill = System.Windows.Media.Brushes.Green
-                }
-            };
-
-            // Konfiguracja formatowania osi X
             TimeFormatter = value => DateTime.Today.AddHours(value).ToString("HH:mm");
-
-            // Konfiguracja etykiet osi X (labels)
             Labels = new List<string>();
-            for (int i = 0; i < 4; i++)
-            {
-                Labels.Add($"Label {i + 1}");
-            }
-
             DataContext = this;
         }
 
-        private void Chart_Loaded(object sender, System.Windows.RoutedEventArgs e)
+        private async void Chart_Loaded(object sender, System.Windows.RoutedEventArgs e)
         {
-
+            await LoadStatistics();
         }
+
+        public async Task LoadStatistics()
+        {
+            try
+            {
+                string response = await _apiService.GetStatisticsAsync("https://blockdns.garageit.pl");
+                var statistics = JsonConvert.DeserializeObject<Statistics>(response);
+
+                if (statistics == null)
+                {
+                    Console.WriteLine("Failed to fetch statistics: statistics is null");
+                    return;
+                }
+
+                TotalQueries.Clear();
+                BlockedQueries.Clear();
+                PercentageBlocked.Clear();
+                DomainsOnAdlists.Clear();
+
+                TotalQueries.Add(new ObservableValue(statistics.DnsQueriesToday));
+                BlockedQueries.Add(new ObservableValue(statistics.AdsBlockedToday));
+                PercentageBlocked.Add(new ObservableValue(statistics.AdsPercentageToday));
+                DomainsOnAdlists.Add(new ObservableValue(int.Parse(statistics.DomainsBlocked.Replace(",", ""))));
+
+                SeriesCollection.Clear();
+
+                SeriesCollection.Add(new ColumnSeries
+                {
+                    Title = "Total Queries",
+                    Values = TotalQueries
+                });
+                SeriesCollection.Add(new ColumnSeries
+                {
+                    Title = "Queries Blocked",
+                    Values = BlockedQueries
+                });
+                SeriesCollection.Add(new ColumnSeries
+                {
+                    Title = "Percentage Blocked",
+                    Values = PercentageBlocked
+                });
+                SeriesCollection.Add(new ColumnSeries
+                {
+                    Title = "Domains on Adlists",
+                    Values = DomainsOnAdlists
+                });
+
+                // Ensure these TextBlock elements are defined in the XAML
+                TextBlockTotalQueries.Text = statistics.DnsQueriesToday.ToString();
+                TextBlockBlockedQueries.Text = statistics.AdsBlockedToday.ToString();
+                TextBlockPercentageBlocked.Text = $"{statistics.AdsPercentageToday}%";
+                TextBlockDomainsOnAdlists.Text = statistics.DomainsBlocked;
+
+                Labels.Clear();
+                for (int i = 0; i < 24; i++)
+                {
+                    Labels.Add($"{i}:00");
+                }
+
+                Console.WriteLine("Statistics loaded successfully.");
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine($"Error loading statistics: {ex.Message}");
+            }
+        }
+    }
+
+    public class Statistics
+    {
+        [JsonProperty("dnsQueriesToday")]
+        public int DnsQueriesToday { get; set; }
+
+        [JsonProperty("adsBlockedToday")]
+        public int AdsBlockedToday { get; set; }
+
+        [JsonProperty("adsPercentageToday")]
+        public double AdsPercentageToday { get; set; }
+
+        [JsonProperty("domainsBlocked")]
+        public string DomainsBlocked { get; set; }
     }
 }

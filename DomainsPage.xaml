@@ -4,9 +4,9 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              mc:Ignorable="d"
-             d:DesignHeight="800" d:DesignWidth="1200">
+             d:DesignHeight="800" d:DesignWidth="1200"
+             Loaded="DomainsPage_Loaded">
     <UserControl.Resources>
-        <!-- Color resources -->
         <SolidColorBrush x:Key="PrimaryColor" Color="#4CAF50"/>
         <SolidColorBrush x:Key="SecondaryColor" Color="#2196F3"/>
         <SolidColorBrush x:Key="TextColor" Color="#FFFFFF"/>
@@ -16,7 +16,6 @@
         <SolidColorBrush x:Key="PanelBackgroundColor" Color="#2E3338"/>
         <SolidColorBrush x:Key="BorderColor" Color="#CCCCCC"/>
 
-        <!-- Styles -->
         <Style x:Key="HeaderStyle" TargetType="TextBlock">
             <Setter Property="FontSize" Value="20"/>
             <Setter Property="Foreground" Value="{StaticResource TextColor}"/>
@@ -30,32 +29,27 @@
         </Style>
 
         <Style x:Key="TextBoxStyle" TargetType="TextBox">
-            <Setter Property="Width" Value="300"/>
+            <Setter Property="Width" Value="200"/>
             <Setter Property="Height" Value="30"/>
             <Setter Property="Margin" Value="5"/>
-            <Setter Property="Background" Value="{StaticResource CardColor}"/>
-            <Setter Property="Foreground" Value="{StaticResource TextColor}"/>
-            <Setter Property="BorderBrush" Value="{StaticResource BorderColor}"/>
-            <Setter Property="BorderThickness" Value="1"/>
+        </Style>
+
+        <Style x:Key="ComboBoxStyle" TargetType="ComboBox">
+            <Setter Property="Width" Value="200"/>
+            <Setter Property="Height" Value="30"/>
+            <Setter Property="Margin" Value="5"/>
         </Style>
 
         <Style x:Key="ButtonStyle" TargetType="Button">
-            <Setter Property="Width" Value="120"/>
+            <Setter Property="Width" Value="100"/>
             <Setter Property="Height" Value="30"/>
             <Setter Property="Margin" Value="5"/>
-            <Setter Property="Background" Value="{StaticResource SecondaryColor}"/>
-            <Setter Property="Foreground" Value="{StaticResource TextColor}"/>
-            <Setter Property="BorderBrush" Value="{StaticResource BorderColor}"/>
-            <Setter Property="BorderThickness" Value="1"/>
-            <Setter Property="HorizontalAlignment" Value="Right"/>
-            <Setter Property="VerticalAlignment" Value="Bottom"/>
         </Style>
 
         <Style x:Key="DataGridCellStyle" TargetType="DataGridCell">
             <Setter Property="Background" Value="{StaticResource CardColor}"/>
             <Setter Property="Foreground" Value="{StaticResource TextColor}"/>
-            <Setter Property="BorderBrush" Value="{StaticResource BorderColor}"/>
-            <Setter Property="BorderThickness" Value="1"/>
+            <Setter Property="BorderThickness" Value="0"/>
             <Setter Property="Padding" Value="10"/>
             <Setter Property="VerticalContentAlignment" Value="Center"/>
         </Style>
@@ -63,8 +57,7 @@
         <Style x:Key="DataGridColumnHeaderStyle" TargetType="DataGridColumnHeader">
             <Setter Property="Background" Value="{StaticResource CardColor}"/>
             <Setter Property="Foreground" Value="{StaticResource TextColor}"/>
-            <Setter Property="BorderBrush" Value="{StaticResource BorderColor}"/>
-            <Setter Property="BorderThickness" Value="1"/>
+            <Setter Property="BorderThickness" Value="0"/>
             <Setter Property="Padding" Value="10"/>
             <Setter Property="VerticalContentAlignment" Value="Center"/>
         </Style>
@@ -75,74 +68,76 @@
             <Setter Property="Padding" Value="10"/>
             <Setter Property="BorderBrush" Value="{StaticResource BorderColor}"/>
             <Setter Property="BorderThickness" Value="1"/>
-            <Setter Property="CornerRadius" Value="10"/>
-            <Setter Property="Height" Value="500"/>
-            <!-- Zwiększona wysokość Bordera -->
+            <Setter Property="CornerRadius" Value="5"/>
         </Style>
     </UserControl.Resources>
 
-    <Grid Background="{StaticResource BackgroundColor}" Margin="10,10,10,10">
+    <Grid Background="{StaticResource BackgroundColor}">
         <Grid.RowDefinitions>
-            <RowDefinition Height="Auto" MinHeight="30"/>
-            <RowDefinition/>
-            <RowDefinition Height="Auto" MinHeight="261.098"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
         </Grid.RowDefinitions>
-        <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="*"/>
-            <ColumnDefinition Width="*"/>
-        </Grid.ColumnDefinitions>
 
-        <TextBlock Text="Zarządzanie domenami" Style="{StaticResource HeaderStyle}" Margin="15,5,15,5" Grid.Row="0" Grid.ColumnSpan="2"/>
+        <TextBlock Text="Zarządzanie domenami" Style="{StaticResource HeaderStyle}" Margin="20"/>
 
-        <StackPanel Orientation="Vertical" Margin="20,10,20,0" Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="2" Height="452" VerticalAlignment="Top">
-            <Border Style="{StaticResource GroupBoxStyle}" Height="300">
-                <StackPanel Orientation="Vertical" Margin="10">
-                    <StackPanel Orientation="Horizontal" Margin="0,0,0,10">
+        <Grid Grid.Row="1" Margin="20">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="*"/>
+            </Grid.RowDefinitions>
+
+            <Border Grid.Row="0" Style="{StaticResource GroupBoxStyle}">
+                <StackPanel>
+                    <TextBlock Text="Dodaj nową domenę" Style="{StaticResource HeaderStyle}" Margin="10"/>
+                    <StackPanel Orientation="Horizontal" Margin="0,10,0,10">
                         <TextBlock Text="Domena:" Style="{StaticResource LabelStyle}" VerticalAlignment="Center"/>
-                        <TextBox Width="300" Style="{StaticResource TextBoxStyle}"/>
+                        <TextBox x:Name="domainTextBox" Width="300" Style="{StaticResource TextBoxStyle}"/>
+                        <TextBlock Text="Komentarz:" Style="{StaticResource LabelStyle}" Margin="10,0,0,0" VerticalAlignment="Center"/>
+                        <TextBox x:Name="commentTextBox" Width="300" Style="{StaticResource TextBoxStyle}"/>
+                        <Button Content="Dodaj" Style="{StaticResource ButtonStyle}" Margin="10,0,0,0" Click="AddToDomains_Click"/>
                     </StackPanel>
-                    <StackPanel Orientation="Horizontal" Margin="0,0,0,10">
-                        <TextBlock Text="Komentarz:" Style="{StaticResource LabelStyle}" VerticalAlignment="Center"/>
-                        <TextBox Width="300" Style="{StaticResource TextBoxStyle}"/>
-                    </StackPanel>
-                    <CheckBox Content="Dodaj domenę jako wildcard" Margin="0,0,0,10" Foreground="{StaticResource TextColor}"/>
-                    <TextBlock Text="Uwaga: Domena zostanie automatycznie przypisana do grupy domyślnej. Inne grupy można opcjonalnie przypisać w poniższej liście (używając przydziału grupy)." TextWrapping="Wrap" Foreground="{StaticResource TextColor}"/>
-                    <!-- Buttons aligned to bottom right -->
-                    <StackPanel Orientation="Horizontal" HorizontalAlignment="Right" Margin="0,10,0,0">
-                        <Button Content="Dodaj do białej listy" Style="{StaticResource ButtonStyle}" Height="30" RenderTransformOrigin="0.875,1.559"/>
-                        <Button Content="Dodaj do czarnej listy" Style="{StaticResource ButtonStyle}" Height="30" Width="120"/>
-                    </StackPanel>
+                    <TextBlock Text="Wskazówki:" Style="{StaticResource LabelStyle}" FontWeight="Bold" Margin="10,0,0,0"/>
+                    <TextBlock Text="1. Można dodać wiele domen, oddzielając każdą nazwę domeny spacją." Style="{StaticResource LabelStyle}" Margin="10,0,0,0"/>
+                    <TextBlock Text='2. Nazwy domen mogą zawierać spacje, jeśli są wprowadzone w cudzysłowiu. Na przykład "example.com".' Style="{StaticResource LabelStyle}" Margin="10,0,0,0"/>
                 </StackPanel>
             </Border>
-        </StackPanel>
 
-        <StackPanel Orientation="Vertical" Margin="20,20,20,20" Grid.Row="2" Grid.Column="0" Grid.ColumnSpan="2">
-            <TextBlock Text="Lista domen" Style="{StaticResource HeaderStyle}" Margin="0,0,0,5" Height="24"/>
-            <StackPanel Orientation="Horizontal">
-                <CheckBox Content="Dokładna biała lista" IsChecked="True" Margin="0,0,10,0" Foreground="{StaticResource TextColor}"/>
-                <CheckBox Content="Dokładna czarna lista" IsChecked="True" Margin="0,0,10,0" Foreground="{StaticResource TextColor}"/>
-            </StackPanel>
-            <DataGrid AutoGenerateColumns="False" Height="177" Background="{StaticResource CardColor}"
-                      GridLinesVisibility="None"
-                      CanUserAddRows="False" CanUserDeleteRows="False" SelectionMode="Single"
-                      CellStyle="{StaticResource DataGridCellStyle}" ColumnHeaderStyle="{StaticResource DataGridColumnHeaderStyle}" SelectionChanged="DataGrid_SelectionChanged">
-                <DataGrid.Columns>
-                    <DataGridTextColumn Header="Domena" Width="*" Binding="{Binding Domain}"/>
-                    <DataGridTextColumn Header="Typ" Width="*" Binding="{Binding Type}"/>
-                    <DataGridTextColumn Header="Status" Width="*" Binding="{Binding Status}"/>
-                    <DataGridTextColumn Header="Komentarz" Width="*" Binding="{Binding Comment}"/>
-                    <DataGridTemplateColumn Header="Akcje" Width="Auto">
-                        <DataGridTemplateColumn.CellTemplate>
-                            <DataTemplate>
-                                <StackPanel Orientation="Horizontal">
-                                    <Button Content="Edytuj" Style="{StaticResource ButtonStyle}" Background="{StaticResource SecondaryColor}" Margin="5"/>
-                                    <Button Content="Usuń" Style="{StaticResource ButtonStyle}" Background="{StaticResource HighlightColor}" Margin="5"/>
-                                </StackPanel>
-                            </DataTemplate>
-                        </DataGridTemplateColumn.CellTemplate>
-                    </DataGridTemplateColumn>
-                </DataGrid.Columns>
-            </DataGrid>
-        </StackPanel>
+            <Border Grid.Row="1" Style="{StaticResource GroupBoxStyle}">
+                <StackPanel>
+                    <TextBlock Text="Lista domen" Style="{StaticResource HeaderStyle}" Margin="10"/>
+                    <StackPanel Orientation="Horizontal" VerticalAlignment="Center" Margin="10,0,10,0">
+                        <TextBlock Text="Pokaż" Style="{StaticResource LabelStyle}" VerticalAlignment="Center"/>
+                        <ComboBox Width="60" Style="{StaticResource ComboBoxStyle}" SelectedIndex="0">
+                            <ComboBoxItem Content="10"/>
+                            <ComboBoxItem Content="25"/>
+                            <ComboBoxItem Content="50"/>
+                        </ComboBox>
+                        <TextBlock Text="wpisów" Style="{StaticResource LabelStyle}" VerticalAlignment="Center" Margin="10,0,0,0"/>
+                    </StackPanel>
+                    <TextBox x:Name="searchTextBox" Width="200" HorizontalAlignment="Right" Style="{StaticResource TextBoxStyle}" Margin="0,10,20,10" VerticalAlignment="Center"/>
+                    <DataGrid x:Name="domainsDataGrid" AutoGenerateColumns="False" ItemsSource="{Binding Domains}" Background="{StaticResource BackgroundColor}"
+                              GridLinesVisibility="None" HorizontalAlignment="Stretch" VerticalAlignment="Stretch"
+                              CanUserAddRows="False" CanUserDeleteRows="False" SelectionMode="Single" Margin="10"
+                              CellStyle="{StaticResource DataGridCellStyle}" ColumnHeaderStyle="{StaticResource DataGridColumnHeaderStyle}">
+                        <DataGrid.Columns>
+                            <DataGridTextColumn Header="Domena" Binding="{Binding DomainName}" Width="*" ElementStyle="{StaticResource LabelStyle}"/>
+                            <DataGridTextColumn Header="Komentarz" Binding="{Binding Comment}" Width="*" ElementStyle="{StaticResource LabelStyle}"/>
+                            <DataGridTemplateColumn Header="Akcje" Width="Auto">
+                                <DataGridTemplateColumn.CellTemplate>
+                                    <DataTemplate>
+                                        <StackPanel Orientation="Horizontal">
+                                            <Button Content="Usuń" Style="{StaticResource ButtonStyle}" Click="RemoveFromDomains_Click"/>
+                                        </StackPanel>
+                                    </DataTemplate>
+                                </DataGridTemplateColumn.CellTemplate>
+                            </DataGridTemplateColumn>
+                        </DataGrid.Columns>
+                    </DataGrid>
+                </StackPanel>
+            </Border>
+        </Grid>
     </Grid>
 </UserControl>

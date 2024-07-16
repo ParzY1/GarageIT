@@ -1,16 +1,17 @@
 ﻿using System.Collections.Generic;
 using System.Windows.Controls;
+using Garage.Services;
 
 namespace Garage
 {
-    /// <summary>
-    /// Interaction logic for WhitelistPage.xaml
-    /// </summary>
     public partial class WhitelistPage : UserControl
     {
-        public WhitelistPage()
+        private readonly ApiService _apiService;
+
+        public WhitelistPage(ApiService apiService)
         {
             InitializeComponent();
+            _apiService = apiService;
             LoadSampleData();
         }
 

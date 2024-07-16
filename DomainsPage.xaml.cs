@@ -1,33 +1,32 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using Garage.Services;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
 
 namespace Garage
 {
-    /// <summary>
-    /// Logika interakcji dla klasy DomainsPage.xaml
-    /// </summary>
     public partial class DomainsPage : UserControl
     {
-        public DomainsPage()
+        private readonly ApiService _apiService;
+
+        public DomainsPage(ApiService apiService)
         {
             InitializeComponent();
+            _apiService = apiService;
         }
 
-        private void DataGrid_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        private void DomainsPage_Loaded(object sender, RoutedEventArgs e)
         {
+            // Logic to handle page loaded event
+        }
 
+        private void AddToDomains_Click(object sender, RoutedEventArgs e)
+        {
+            // Logic to add domain
+        }
+
+        private void RemoveFromDomains_Click(object sender, RoutedEventArgs e)
+        {
+            // Logic to remove domain
         }
     }
 }

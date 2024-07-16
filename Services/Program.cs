@@ -12,18 +12,15 @@ namespace Garage
             var apiService = new ApiService();
             string baseUrl = "https://blockdns.garageit.pl/";
 
-            // Example usage:
             try
             {
                 // Login User
                 string loginResponse = await apiService.LoginUser(baseUrl, "tesciu", "tesciu");
                 Console.WriteLine("Login Response: " + loginResponse);
 
-                // Assuming loginResponse contains a token. This is just an example.
                 var loginData = JsonConvert.DeserializeObject<dynamic>(loginResponse);
                 string token = loginData.token;
 
-                // Set the bearer token for subsequent requests
                 apiService.SetBearerToken(token);
 
                 // Get Profile

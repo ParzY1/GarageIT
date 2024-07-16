@@ -3,115 +3,18 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-             mc:Ignorable="d"
-             d:DesignHeight="450" d:DesignWidth="800">
-    <UserControl.Resources>
-        <!-- Zasoby kolorów -->
-        <SolidColorBrush x:Key="BackgroundColor" Color="#1E1E1E"/>
-        <!-- Kolor tła zmieniony na ciemnoszary -->
-        <SolidColorBrush x:Key="TextColor" Color="#FFFFFF"/>
-        <SolidColorBrush x:Key="PlaceholderTextColor" Color="Gray"/>
-
-        <!-- Styl nagłówka w DataGrid -->
-        <Style x:Key="DataGridColumnHeaderStyle" TargetType="DataGridColumnHeader">
-            <Setter Property="Background" Value="{StaticResource BackgroundColor}"/>
-            <Setter Property="Foreground" Value="{StaticResource TextColor}"/>
-            <Setter Property="BorderThickness" Value="1"/>
-            <Setter Property="BorderBrush" Value="DarkGray"/>
-            <Setter Property="Padding" Value="10"/>
-            <Setter Property="VerticalContentAlignment" Value="Center"/>
-        </Style>
-
-        <!-- Styl etykiety -->
-        <Style x:Key="LabelStyle" TargetType="TextBlock">
-            <Setter Property="FontSize" Value="14"/>
-            <Setter Property="Foreground" Value="{StaticResource TextColor}"/>
-            <Setter Property="Margin" Value="0,0,5,0"/>
-        </Style>
-
-        <!-- Styl TextBox -->
-        <Style x:Key="TextBoxStyle" TargetType="TextBox">
-            <Setter Property="Width" Value="200"/>
-            <Setter Property="Height" Value="30"/>
-            <Setter Property="Margin" Value="0,0,10,0"/>
-            <Setter Property="Background" Value="{StaticResource BackgroundColor}"/>
-            <Setter Property="Foreground" Value="{StaticResource TextColor}"/>
-            <Setter Property="BorderThickness" Value="1"/>
-            <Setter Property="BorderBrush" Value="DarkGray"/>
-            <Setter Property="Padding" Value="5"/>
-        </Style>
-
-        <!-- Styl ComboBox -->
-        <Style x:Key="ComboBoxStyle" TargetType="ComboBox">
-            <Setter Property="Width" Value="50"/>
-            <Setter Property="Height" Value="30"/>
-            <Setter Property="Margin" Value="0,0,10,0"/>
-            <Setter Property="Background" Value="{StaticResource BackgroundColor}"/>
-            <Setter Property="Foreground" Value="{StaticResource TextColor}"/>
-            <Setter Property="BorderThickness" Value="1"/>
-            <Setter Property="BorderBrush" Value="DarkGray"/>
-            <Setter Property="Padding" Value="5"/>
-        </Style>
-
-        <!-- Styl przycisku -->
-        <Style x:Key="ButtonStyle" TargetType="Button">
-            <Setter Property="Width" Value="75"/>
-            <Setter Property="Height" Value="30"/>
-            <Setter Property="Margin" Value="0,0,5,0"/>
-            <Setter Property="Background" Value="{StaticResource BackgroundColor}"/>
-            <Setter Property="Foreground" Value="{StaticResource TextColor}"/>
-            <Setter Property="BorderThickness" Value="1"/>
-            <Setter Property="BorderBrush" Value="DarkGray"/>
-            <Setter Property="Padding" Value="5"/>
-        </Style>
-
-        <!-- Styl TextBlock informacyjny -->
-        <Style x:Key="InfoTextStyle" TargetType="TextBlock">
-            <Setter Property="HorizontalAlignment" Value="Center"/>
-            <Setter Property="VerticalAlignment" Value="Center"/>
-            <Setter Property="Visibility" Value="Collapsed"/>
-            <Setter Property="Foreground" Value="{StaticResource TextColor}"/>
-        </Style>
-    </UserControl.Resources>
-
-    <Grid Background="#3B3F45">
-        <!-- Pasek wyszukiwania -->
-        <StackPanel Orientation="Horizontal" VerticalAlignment="Top" Margin="10">
-            <TextBlock Text="Szukaj:" VerticalAlignment="Center" Margin="0,0,5,0" Style="{StaticResource LabelStyle}" />
-            <TextBox Width="200" VerticalAlignment="Center" Style="{StaticResource TextBoxStyle}" />
-            <TextBlock Text="Typ / Domen / Klient" VerticalAlignment="Center" FontStyle="Italic" Foreground="{StaticResource PlaceholderTextColor}" />
-        </StackPanel>
-
-        <!-- DataGrid do wyświetlania ostatnich zapytań -->
-        <DataGrid x:Name="RecentQueriesDataGrid" AutoGenerateColumns="False" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Margin="10,40,10,80" Background="{StaticResource BackgroundColor}"
-                  BorderBrush="DarkGray" BorderThickness="1" SelectionChanged="RecentQueriesDataGrid_SelectionChanged"
-                  ColumnHeaderStyle="{StaticResource DataGridColumnHeaderStyle}">
+             mc:Ignorable="d" d:DesignHeight="450" d:DesignWidth="800">
+    <Grid>
+        <DataGrid x:Name="RecentQueriesDataGrid" AutoGenerateColumns="False" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Margin="10,40,10,80">
             <DataGrid.Columns>
-                <DataGridTextColumn Header="Czas" Binding="{Binding Time}" Width="*" ElementStyle="{StaticResource LabelStyle}"/>
-                <DataGridTextColumn Header="Typ" Binding="{Binding Type}" Width="*" ElementStyle="{StaticResource LabelStyle}"/>
-                <DataGridTextColumn Header="Domena" Binding="{Binding Domain}" Width="*" ElementStyle="{StaticResource LabelStyle}"/>
-                <DataGridTextColumn Header="Klient" Binding="{Binding Client}" Width="*" ElementStyle="{StaticResource LabelStyle}"/>
-                <DataGridTextColumn Header="Status" Binding="{Binding Status}" Width="*" ElementStyle="{StaticResource LabelStyle}"/>
-                <DataGridTextColumn Header="Odpowiedź" Binding="{Binding Reply}" Width="*" ElementStyle="{StaticResource LabelStyle}"/>
-                <DataGridTextColumn Header="Akcja" Binding="{Binding Action}" Width="*" ElementStyle="{StaticResource LabelStyle}"/>
+                <DataGridTextColumn Header="Czas" Binding="{Binding Time}" Width="*" />
+                <DataGridTextColumn Header="Typ" Binding="{Binding Type}" Width="*" />
+                <DataGridTextColumn Header="Domena" Binding="{Binding Domain}" Width="*" />
+                <DataGridTextColumn Header="Klient" Binding="{Binding Client}" Width="*" />
+                <DataGridTextColumn Header="Status" Binding="{Binding Status}" Width="*" />
+                <DataGridTextColumn Header="Odpowiedź" Binding="{Binding Reply}" Width="*" />
+                <DataGridTextColumn Header="Akcja" Binding="{Binding Action}" Width="*" />
             </DataGrid.Columns>
         </DataGrid>
-
-        <!-- Dolne kontrolki -->
-        <StackPanel Orientation="Horizontal" VerticalAlignment="Bottom" HorizontalAlignment="Stretch" Margin="10">
-            <TextBlock Text="Pokaż" VerticalAlignment="Center" Style="{StaticResource LabelStyle}" Margin="0,0,10,0"/>
-            <ComboBox Width="60" VerticalAlignment="Center" Style="{StaticResource ComboBoxStyle}" Margin="0,0,10,0">
-                <ComboBoxItem Content="10" IsSelected="True"/>
-                <ComboBoxItem Content="25"/>
-                <ComboBoxItem Content="50"/>
-            </ComboBox>
-            <TextBlock Text="wpisów" VerticalAlignment="Center" Style="{StaticResource LabelStyle}" Margin="0,0,10,0"/>
-            <TextBlock VerticalAlignment="Center" Style="{StaticResource LabelStyle}" Margin="0,0,10,0" Width="421"><Run Text="                                "/><Run Text="Po"/><Run Language="pl-pl" Text="k"/><Run Text="azuje 0 do 0 z 0 wpisów"/></TextBlock>
-            <Button Content="Poprzednie" Style="{StaticResource ButtonStyle}" Margin="0,0,5,0"/>
-            <Button Content="Następne" Style="{StaticResource ButtonStyle}"/>
-        </StackPanel>
-
-        <!-- Tekst informacyjny -->
-        <TextBlock Text="Brak danych w tabeli" HorizontalAlignment="Center" VerticalAlignment="Center" Style="{StaticResource InfoTextStyle}"/>
     </Grid>
 </UserControl>
