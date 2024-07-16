@@ -8,4 +8,6 @@ router.use(auth);
 router.post('/addGroup', groupController.addGroup);
 router.post('/deleteGroup', groupController.deleteGroup);
 
+router.get('/getGroups', groupController.getGroups);
+
 module.exports = router;

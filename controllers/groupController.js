@@ -23,7 +23,17 @@ const deleteGroup = async (req, res) => {
     }
 };
 
+const getGroups = async (req, res) => {
+    try {
+        const result = await groupService.getGroups();
+        res.json(result);
+    } catch (error) {
+        res.status(500).json({ error: error.message });
+    }
+};
+
 module.exports = {
     addGroup,
-    deleteGroup
+    deleteGroup,
+    getGroups
 };
