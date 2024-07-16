@@ -9,5 +9,7 @@ router.get('/summary-statistics', piHoleController.getSummaryStatistics);
 router.get('/queries', piHoleController.getAllQueries);
 router.get('/queries-last-24-hours', piHoleController.getQueriesLast24Hours);
 router.get('/top-clients', piHoleController.getTopClients);
+router.get('/top-items', piHoleController.getTopItems);
+router.get('/query-sources', piHoleController.getQuerySources);
 
 module.exports = router;
