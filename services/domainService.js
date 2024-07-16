@@ -53,6 +53,24 @@ const removeFromWhitelist = async (domain) => {
     }
 };
 
+const getBlacklist = async () => {
+    try {
+        const response = await axios.get(`${process.env.SERWER}/admin/api.php?list=black&auth=${process.env.KLUCZ}`);
+        return response.data;
+    } catch (error) {
+        throw new Error(`Error fetching blacklist: ${error.message}`);
+    }
+};
+
+const getWhitelist = async () => {
+    try {
+        const response = await axios.get(`${process.env.SERWER}/admin/api.php?list=white&auth=${process.env.KLUCZ}`);
+        return response.data;
+    } catch (error) {
+        throw new Error(`Error fetching whitelist: ${error.message}`);
+    }
+};
+
 const enableDomain = (name) => {
     return new Promise((resolve, reject) => {
         let db = new sqlite3.Database(process.env.BAZA, sqlite3.OPEN_READWRITE, (err) => {
@@ -189,6 +207,8 @@ module.exports = {
     addToWhitelist,
     removeFromBlacklist,
     removeFromWhitelist,
+    getBlacklist,
+    getWhitelist,
     enableDomain,
     disableDomain,
     addDomainToGroup,

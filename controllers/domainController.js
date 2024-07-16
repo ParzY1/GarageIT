@@ -34,6 +34,24 @@ const removeFromBlacklist = async (req, res) => {
     }
 };
 
+const getBlacklist = async (req, res) => {
+    try {
+        const result = await domainService.getBlacklist();
+        res.json(result);
+    } catch (error) {
+        res.status(500).json({ error: error.message });
+    }
+};
+
+const getWhitelist = async (req, res) => {
+    try {
+        const result = await domainService.getWhitelist();
+        res.json(result);
+    } catch (error) {
+        res.status(500).json({ error: error.message });
+    }
+};
+
 const removeFromWhitelist = async (req, res) => {
     const { domain } = req.body;
     try {
@@ -116,6 +134,8 @@ module.exports = {
     addToWhitelist,
     removeFromBlacklist,
     removeFromWhitelist,
+    getBlacklist,
+    getWhitelist,
     enableDomain,
     disableDomain,
     addDomainToGroup,
