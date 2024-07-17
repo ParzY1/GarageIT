@@ -202,6 +202,25 @@ const changeDomainListType = (domain) => {
     });
 };
 
+const editDomainName = (oldDomain, newDomain) => {
+    return new Promise((resolve, reject) => {
+        let db = new sqlite3.Database(process.env.BAZA, sqlite3.OPEN_READWRITE, (err) => {
+            if (err) {
+                return reject(err);
+            }
+        });
+
+        const query = `UPDATE domainlist SET domain = ? WHERE domain = ?`;
+        db.run(query, [newDomain, oldDomain], function (err) {
+            db.close();
+            if (err) {
+                return reject(err);
+            }
+            resolve({ success: true, message: `Domain name changed from "${oldDomain}" to "${newDomain}" successfully` });
+        });
+    });
+};
+
 module.exports = {
     addToBlacklist,
     addToWhitelist,
@@ -214,5 +233,6 @@ module.exports = {
     addDomainToGroup,
     removeDomainFromGroup,
     removeFromDomainList,
-    changeDomainListType
+    changeDomainListType,
+    editDomainName
 };

@@ -15,6 +15,7 @@ router.post('/addDomainToGroup', domainController.addDomainToGroup);
 router.post('/removeDomainFromGroup', domainController.removeDomainFromGroup);
 router.post('/removeFromDomainList', domainController.removeFromDomainList);
 router.post('/changeDomainListType', domainController.changeDomainListType);
+router.post('/editDomainName', domainController.editDomainName);
 
 router.get('/getBlacklist', domainController.getBlacklist);
 router.get('/getWhitelist', domainController.getWhitelist);

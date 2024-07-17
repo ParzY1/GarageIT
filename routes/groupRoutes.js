@@ -9,6 +9,7 @@ router.post('/addGroup', groupController.addGroup);
 router.post('/deleteGroup', groupController.deleteGroup);
 router.post('/enableGroup', groupController.enableGroup);
 router.post('/disableGroup', groupController.disableGroup);
+router.post('/editGroupName', groupController.editGroupName);
 
 router.get('/getGroups', groupController.getGroups);
 

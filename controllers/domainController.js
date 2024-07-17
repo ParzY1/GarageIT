@@ -129,6 +129,17 @@ const changeDomainListType = async (req, res) => {
     }
 };
 
+const editDomainName = async (req, res) => {
+    const { oldDomain, newDomain } = req.body;
+    try {
+        const result = await domainService.editDomainName(oldDomain, newDomain);
+        await auditService.logAction('editDomainName', `Changed domain name from ${oldDomain} to ${newDomain}`);
+        res.json(result);
+    } catch (error) {
+        res.status(500).json({ error: error.message });
+    }
+};
+
 module.exports = {
     addToBlacklist,
     addToWhitelist,
@@ -141,5 +152,6 @@ module.exports = {
     addDomainToGroup,
     removeDomainFromGroup,
     removeFromDomainList,
-    changeDomainListType
+    changeDomainListType,
+    editDomainName
 };

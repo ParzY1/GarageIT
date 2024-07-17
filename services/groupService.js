@@ -95,10 +95,31 @@ const disableGroup = (name) => {
     });
 };
 
+const editGroupName = (oldName, newName) => {
+    return new Promise((resolve, reject) => {
+        let db = new sqlite3.Database(process.env.BAZA, sqlite3.OPEN_READWRITE, (err) => {
+            if (err) {
+                return reject(err);
+            }
+        });
+
+        const query = `UPDATE "group" SET name = ? WHERE name = ?`;
+        db.run(query, [newName, oldName], function (err) {
+            if (err) {
+                db.close();
+                return reject(err);
+            }
+            db.close();
+            resolve({ success: true, message: `Group name changed from "${oldName}" to "${newName}" successfully` });
+        });
+    });
+};
+
 module.exports = {
     addGroup,
     deleteGroup,
     getGroups,
     enableGroup,
-    disableGroup
+    disableGroup,
+    editGroupName
 };

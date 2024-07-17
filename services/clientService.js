@@ -107,10 +107,30 @@ const getClients = () => {
     });
 };
 
+const editClientIp = (oldIp, newIp) => {
+    return new Promise((resolve, reject) => {
+        let db = new sqlite3.Database(process.env.BAZA, sqlite3.OPEN_READWRITE, (err) => {
+            if (err) {
+                return reject(err);
+            }
+        });
+
+        const query = `UPDATE client SET ip = ? WHERE ip = ?`;
+        db.run(query, [newIp, oldIp], function (err) {
+            db.close();
+            if (err) {
+                return reject(err);
+            }
+            resolve({ success: true, message: `Client IP changed from "${oldIp}" to "${newIp}" successfully` });
+        });
+    });
+};
+
 module.exports = {
     addClient,
     removeClient,
     addClientToGroup,
     removeClientFromGroup,
-    getClients
+    getClients,
+    editClientIp
 };

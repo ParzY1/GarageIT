@@ -9,6 +9,7 @@ router.post('/addClient', clientController.addClient);
 router.post('/removeClient', clientController.removeClient);
 router.post('/addClientToGroup', clientController.addClientToGroup);
 router.post('/removeClientFromGroup', clientController.removeClientFromGroup);
+router.post('/editClientIp', clientController.editClientIp);
 
 router.get('/getClients', clientController.getClients);
 

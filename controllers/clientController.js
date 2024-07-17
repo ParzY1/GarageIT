@@ -47,7 +47,18 @@ const removeClientFromGroup = async (req, res) => {
 
 const getClients = async (req, res) => {
     try {
-        const result = await clientService.getClientsWithGroups();
+        const result = await clientService.getClients();
+        res.json(result);
+    } catch (error) {
+        res.status(500).json({ error: error.message });
+    }
+};
+
+const editClientIp = async (req, res) => {
+    const { oldIp, newIp } = req.body;
+    try {
+        const result = await clientService.editClientIp(oldIp, newIp);
+        await auditService.logAction('editClientIp', `Changed client IP from ${oldIp} to ${newIp}`);
         res.json(result);
     } catch (error) {
         res.status(500).json({ error: error.message });
@@ -59,5 +70,6 @@ module.exports = {
     removeClient,
     addClientToGroup,
     removeClientFromGroup,
-    getClients
+    getClients,
+    editClientIp
 };

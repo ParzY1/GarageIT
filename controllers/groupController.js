@@ -54,10 +54,22 @@ const disableGroup = async (req, res) => {
     }
 };
 
+const editGroupName = async (req, res) => {
+    const { oldName, newName } = req.body;
+    try {
+        const result = await groupService.editGroupName(oldName, newName);
+        await auditService.logAction('editGroupName', `Changed group name from ${oldName} to ${newName}`);
+        res.json(result);
+    } catch (error) {
+        res.status(500).json({ error: error.message });
+    }
+};
+
 module.exports = {
     addGroup,
     deleteGroup,
     getGroups,
     enableGroup,
-    disableGroup
-};
+    disableGroup,
+    editGroupName
+}
