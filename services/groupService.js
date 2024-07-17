@@ -57,8 +57,48 @@ const getGroups = async () => {
     });
 };
 
+const enableGroup = (name) => {
+    return new Promise((resolve, reject) => {
+        let db = new sqlite3.Database(process.env.BAZA, sqlite3.OPEN_READWRITE, (err) => {
+            if (err) {
+                return reject(err);
+            }
+        });
+  
+        const query = `UPDATE "group" SET enabled = 1 WHERE name = ?`;
+        db.run(query, [name], function (err) {
+            db.close();
+            if (err) {
+                return reject(err);
+            }
+            resolve({ success: true, message: `Group "${name}" enabled successfully` });
+        });
+    });
+};
+
+const disableGroup = (name) => {
+    return new Promise((resolve, reject) => {
+        let db = new sqlite3.Database(process.env.BAZA, sqlite3.OPEN_READWRITE, (err) => {
+            if (err) {
+                return reject(err);
+            }
+        });
+  
+        const query = `UPDATE "group" SET enabled = 0 WHERE name = ?`;
+        db.run(query, [name], function (err) {
+            db.close();
+            if (err) {
+                return reject(err);
+            }
+            resolve({ success: true, message: `Group "${name}" disabled successfully` });
+        });
+    });
+};
+
 module.exports = {
     addGroup,
     deleteGroup,
-    getGroups
+    getGroups,
+    enableGroup,
+    disableGroup
 };

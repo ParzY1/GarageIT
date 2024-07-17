@@ -32,8 +32,32 @@ const getGroups = async (req, res) => {
     }
 };
 
+const enableGroup = async (req, res) => {
+    const { name } = req.body;
+    try {
+        const result = await groupService.enableGroup(name);
+        await auditService.logAction('enableGroup', `Enabled group ${name}`);
+        res.json(result);
+    } catch (error) {
+        res.status(500).json({ error: error.message });
+    }
+};
+
+const disableGroup = async (req, res) => {
+    const { name } = req.body;
+    try {
+        const result = await groupService.disableGroup(name);
+        await auditService.logAction('disableGroup', `Disabled group ${name}`);
+        res.json(result);
+    } catch (error) {
+        res.status(500).json({ error: error.message });
+    }
+};
+
 module.exports = {
     addGroup,
     deleteGroup,
-    getGroups
+    getGroups,
+    enableGroup,
+    disableGroup
 };

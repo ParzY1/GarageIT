@@ -7,6 +7,8 @@ router.use(auth);
 
 router.post('/addGroup', groupController.addGroup);
 router.post('/deleteGroup', groupController.deleteGroup);
+router.post('/enableGroup', groupController.enableGroup);
+router.post('/disableGroup', groupController.disableGroup);
 
 router.get('/getGroups', groupController.getGroups);
 
