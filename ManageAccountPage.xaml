@@ -13,6 +13,10 @@
         <SolidColorBrush x:Key="DataGridHeaderForegroundColor" Color="#FFFFFF"/>
         <SolidColorBrush x:Key="ComboBoxBackgroundColor" Color="#333333"/>
         <SolidColorBrush x:Key="ComboBoxItemBackgroundColor" Color="#333333"/>
+        <SolidColorBrush x:Key="ComboBoxItemForegroundColor" Color="#FFFFFF"/>
+        <SolidColorBrush x:Key="ButtonBackgroundColor" Color="#444444"/>
+        <SolidColorBrush x:Key="ButtonForegroundColor" Color="#FFFFFF"/>
+        <SolidColorBrush x:Key="DataGridGridLinesBrush" Color="#1E1E1E"/>
 
         <Style x:Key="HeaderStyle" TargetType="TextBlock">
             <Setter Property="FontSize" Value="20"/>
@@ -30,6 +34,8 @@
             <Setter Property="Width" Value="200"/>
             <Setter Property="Height" Value="30"/>
             <Setter Property="Margin" Value="5"/>
+            <Setter Property="Foreground" Value="{StaticResource TextColor}"/>
+            <Setter Property="Background" Value="{StaticResource ComboBoxBackgroundColor}"/>
         </Style>
 
         <Style x:Key="ComboBoxStyle" TargetType="ComboBox">
@@ -38,17 +44,109 @@
             <Setter Property="Margin" Value="5"/>
             <Setter Property="Foreground" Value="{StaticResource TextColor}"/>
             <Setter Property="Background" Value="{StaticResource ComboBoxBackgroundColor}"/>
+            <Setter Property="BorderBrush" Value="{StaticResource ComboBoxBackgroundColor}"/>
+            <Setter Property="BorderThickness" Value="1"/>
+            <Setter Property="Padding" Value="2"/>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="ComboBox">
+                        <Grid>
+                            <ToggleButton Name="ToggleButton" Grid.Column="2" Focusable="false"
+                                          IsChecked="{Binding Path=IsDropDownOpen, Mode=TwoWay, RelativeSource={RelativeSource TemplatedParent}}"
+                                          ClickMode="Press">
+                                <ToggleButton.Style>
+                                    <Style TargetType="ToggleButton">
+                                        <Setter Property="Template">
+                                            <Setter.Value>
+                                                <ControlTemplate TargetType="ToggleButton">
+                                                    <Grid>
+                                                        <Grid.ColumnDefinitions>
+                                                            <ColumnDefinition/>
+                                                            <ColumnDefinition Width="Auto"/>
+                                                        </Grid.ColumnDefinitions>
+                                                        <Border Name="Border" Background="{TemplateBinding Background}" BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="1"/>
+                                                        <Path Grid.Column="1" Fill="{TemplateBinding Foreground}" HorizontalAlignment="Center" VerticalAlignment="Center" Data="M 0 0 L 4 4 L 8 0 Z"/>
+                                                    </Grid>
+                                                </ControlTemplate>
+                                            </Setter.Value>
+                                        </Setter>
+                                    </Style>
+                                </ToggleButton.Style>
+                                <ToggleButton.Background>
+                                    <SolidColorBrush Color="#333333"/>
+                                </ToggleButton.Background>
+                            </ToggleButton>
+                            <ContentPresenter Name="ContentSite"
+                                              IsHitTestVisible="False"
+                                              Content="{TemplateBinding SelectionBoxItem}"
+                                              ContentTemplate="{TemplateBinding SelectionBoxItemTemplate}"
+                                              ContentTemplateSelector="{TemplateBinding ItemTemplateSelector}"
+                                              Margin="3,3,23,3"
+                                              VerticalAlignment="Center"
+                                              HorizontalAlignment="Left"/>
+                            <TextBox x:Name="PART_EditableTextBox"
+                                     Style="{x:Null}"
+                                     HorizontalAlignment="Left"
+                                     VerticalAlignment="Center"
+                                     Margin="3,3,23,3"
+                                     Focusable="True"
+                                     Background="Transparent"
+                                     Foreground="{StaticResource TextColor}"
+                                     Visibility="Hidden"
+                                     IsReadOnly="{TemplateBinding IsReadOnly}"/>
+                            <Popup Name="Popup"
+                                   Placement="Bottom"
+                                   IsOpen="{TemplateBinding IsDropDownOpen}"
+                                   AllowsTransparency="True"
+                                   Focusable="False"
+                                   PopupAnimation="Slide">
+                                <Grid Name="DropDown"
+                                      SnapsToDevicePixels="True"
+                                      MinWidth="{TemplateBinding ActualWidth}"
+                                      MaxHeight="{TemplateBinding MaxDropDownHeight}"
+                                      Background="{StaticResource ComboBoxBackgroundColor}">
+                                    <Border x:Name="DropDownBorder" Background="{StaticResource ComboBoxBackgroundColor}" BorderBrush="{StaticResource ComboBoxBackgroundColor}" BorderThickness="1"/>
+                                    <ScrollViewer Margin="4,6,4,6" SnapsToDevicePixels="True">
+                                        <StackPanel IsItemsHost="True" KeyboardNavigation.DirectionalNavigation="Contained"/>
+                                    </ScrollViewer>
+                                </Grid>
+                            </Popup>
+                        </Grid>
+                        <ControlTemplate.Triggers>
+                            <Trigger Property="HasItems" Value="false">
+                                <Setter TargetName="DropDownBorder" Property="MinHeight" Value="95"/>
+                            </Trigger>
+                            <Trigger Property="IsEnabled" Value="false">
+                                <Setter Property="Foreground" Value="{StaticResource PlaceholderTextColor}"/>
+                            </Trigger>
+                            <Trigger Property="IsGrouping" Value="true">
+                                <Setter Property="ScrollViewer.CanContentScroll" Value="false"/>
+                            </Trigger>
+                            <Trigger SourceName="Popup" Property="Popup.AllowsTransparency" Value="true">
+                                <Setter TargetName="DropDownBorder" Property="CornerRadius" Value="0"/>
+                            </Trigger>
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
         </Style>
 
         <Style x:Key="ComboBoxItemStyle" TargetType="ComboBoxItem">
-            <Setter Property="Foreground" Value="{StaticResource TextColor}"/>
+            <Setter Property="Foreground" Value="{StaticResource ComboBoxItemForegroundColor}"/>
             <Setter Property="Background" Value="{StaticResource ComboBoxItemBackgroundColor}"/>
+            <Setter Property="HorizontalContentAlignment" Value="Left"/>
+            <Setter Property="VerticalContentAlignment" Value="Center"/>
+            <Setter Property="Padding" Value="2"/>
+            <Setter Property="Margin" Value="1"/>
+            <Setter Property="BorderThickness" Value="0"/>
         </Style>
 
         <Style x:Key="ButtonStyle" TargetType="Button">
             <Setter Property="Width" Value="100"/>
             <Setter Property="Height" Value="30"/>
             <Setter Property="Margin" Value="5"/>
+            <Setter Property="Foreground" Value="{StaticResource ButtonForegroundColor}"/>
+            <Setter Property="Background" Value="{StaticResource ButtonBackgroundColor}"/>
         </Style>
 
         <Style x:Key="DataGridCellStyle" TargetType="DataGridCell">
@@ -66,66 +164,72 @@
             <Setter Property="Padding" Value="10"/>
             <Setter Property="VerticalContentAlignment" Value="Center"/>
         </Style>
+
+        <Style x:Key="DataGridRowStyle" TargetType="DataGridRow">
+            <Setter Property="Background" Value="{StaticResource BackgroundColor}"/>
+            <Setter Property="Foreground" Value="{StaticResource TextColor}"/>
+            <Setter Property="BorderBrush" Value="{StaticResource BackgroundColor}"/>
+            <Setter Property="BorderThickness" Value="0"/>
+        </Style>
+
+        <Style x:Key="DataGridStyle" TargetType="DataGrid">
+            <Setter Property="Background" Value="{StaticResource BackgroundColor}"/>
+            <Setter Property="Foreground" Value="{StaticResource TextColor}"/>
+            <Setter Property="GridLinesVisibility" Value="None"/>
+            <Setter Property="HorizontalGridLinesBrush" Value="{StaticResource DataGridGridLinesBrush}"/>
+            <Setter Property="VerticalGridLinesBrush" Value="{StaticResource DataGridGridLinesBrush}"/>
+        </Style>
     </UserControl.Resources>
 
     <Grid Margin="10" Background="{StaticResource BackgroundColor}">
-        <TextBlock Text="Zarządzanie grupami klientów" FontSize="24" FontWeight="Bold" Margin="0,0,0,20"/>
+        <TextBlock Text="Zarządzanie grupami klientów" FontSize="24" FontWeight="Bold" Margin="0,0,0,20" Style="{StaticResource HeaderStyle}"/>
 
-        <GroupBox Header="Dodaj nowego klienta" Margin="0,40,0,0">
+        <GroupBox Header="Dodaj nowego klienta" Margin="0,40,0,0" Background="{StaticResource BackgroundColor}" Foreground="{StaticResource TextColor}">
             <StackPanel Margin="10">
                 <StackPanel Orientation="Horizontal" Width="712">
-                    <TextBlock Text="Klienci:" VerticalAlignment="Center" Width="100"/>
-                    <ComboBox Width="200" Margin="10,0,0,0" Style="{StaticResource ComboBoxStyle}">
-                        <ComboBoxItem Content="10" IsSelected="True" Style="{StaticResource ComboBoxItemStyle}"/>
-                        <ComboBoxItem Content="25" Style="{StaticResource ComboBoxItemStyle}"/>
-                        <ComboBoxItem Content="50" Style="{StaticResource ComboBoxItemStyle}"/>
-                    </ComboBox>
-                    <TextBlock Text="Komentarz:" VerticalAlignment="Center" Width="70" Margin="10,0,0,0"/>
-                    <TextBox Width="200" TextChanged="TextBox_TextChanged"/>
+                    <TextBlock Text="Klienci:" VerticalAlignment="Center" Width="52" Style="{StaticResource LabelStyle}"/>
+                    <TextBox x:Name="ClientNameTextBox" Width="200" Style="{StaticResource TextBoxStyle}"/>
+                    <TextBlock Text="Komentarz:" VerticalAlignment="Center" Width="70" Margin="10,0,0,0" Style="{StaticResource LabelStyle}"/>
+                    <TextBox x:Name="CommentTextBox" Width="200" TextChanged="TextBox_TextChanged" Style="{StaticResource TextBoxStyle}"/>
                 </StackPanel>
-                <TextBlock Text="Możesz wybrać istniejącego klienta lub dodać nowego, wpisując powyżej i potwierdzając enterem." TextWrapping="Wrap" Margin="0,10,0,0"/>
-                <TextBlock Text="Klienci mogą być opisani poprzez adresy IP (IPv4 i IPv6 są obsługiwane), podsieci IP (notacja CIDR, np. 192.168.2.0/24), adresy MAC (np. 12:34:56:78:9A:BC), nazwy hostów (np. localhost) lub interfejsy, do których są podłączone (poprzedzone dwukropkiem, np. :eth0)." TextWrapping="Wrap" Margin="0,10,0,0"/>
-                <TextBlock Text="Zauważ, że rozpoznanie klienta przez adresy IP (włącznie z zakresami podsieciowymi) jest preferowane nad rozpoznaniem po adresie MAC, nazwie hosta lub interfejsie, które będą dostępne dopiero po pewnym czasie. Ponadto rozpoznawanie po adresie MAC działa tylko dla urządzeń znajdujących się maksymalnie o jeden skok sieciowy od Twojego Pi-hole." TextWrapping="Wrap" Margin="0,10,0,0"/>
-                <Button Content="Dodaj" HorizontalAlignment="Left" Width="100" Margin="0,10,0,0" Click="AddClient_Click"/>
+                <TextBlock Text="Możesz wybrać istniejącego klienta lub dodać nowego, wpisując powyżej i potwierdzając enterem." TextWrapping="Wrap" Margin="0,10,0,0" Style="{StaticResource LabelStyle}"/>
+                <TextBlock Text="Klienci mogą być opisani poprzez adresy IP (IPv4 i IPv6 są obsługiwane), podsieci IP (notacja CIDR, np. 192.168.2.0/24), adresy MAC (np. 12:34:56:78:9A:BC), nazwy hostów (np. localhost) lub interfejsy, do których są podłączone (poprzedzone dwukropkiem, np. :eth0)." TextWrapping="Wrap" Margin="0,10,0,0" Style="{StaticResource LabelStyle}"/>
+                <TextBlock Text="Zauważ, że rozpoznanie klienta przez adresy IP (włącznie z zakresami podsieciowymi) jest preferowane nad rozpoznaniem po adresie MAC, nazwie hosta lub interfejsie, które będą dostępne dopiero po pewnym czasie. Ponadto rozpoznawanie po adresie MAC działa tylko dla urządzeń znajdujących się maksymalnie o jeden skok sieciowy od Twojego Pi-hole." TextWrapping="Wrap" Margin="0,10,0,0" Style="{StaticResource LabelStyle}"/>
+                <Button Content="Dodaj" HorizontalAlignment="Left" Width="100" Margin="0,10,0,0" Click="AddClient_Click" Style="{StaticResource ButtonStyle}"/>
             </StackPanel>
         </GroupBox>
 
-        <GroupBox Header="Lista skonfigurowanych klientów" Margin="0,300,0,0">
+        <GroupBox Header="Lista skonfigurowanych klientów" Margin="0,300,0,0" Background="{StaticResource BackgroundColor}" Foreground="{StaticResource TextColor}">
             <Grid Margin="10">
                 <Grid.RowDefinitions>
                     <RowDefinition Height="Auto"/>
                     <RowDefinition Height="*"/>
                 </Grid.RowDefinitions>
                 <StackPanel Orientation="Horizontal" Grid.Row="0">
-                    <TextBlock Text="Pokaż" VerticalAlignment="Center"/>
+                    <TextBlock Text="Pokaż" VerticalAlignment="Center" Style="{StaticResource LabelStyle}"/>
                     <ComboBox Width="50" Margin="10,0" Style="{StaticResource ComboBoxStyle}">
                         <ComboBoxItem Content="10" IsSelected="True" Style="{StaticResource ComboBoxItemStyle}"/>
                         <ComboBoxItem Content="25" Style="{StaticResource ComboBoxItemStyle}"/>
                         <ComboBoxItem Content="50" Style="{StaticResource ComboBoxItemStyle}"/>
                     </ComboBox>
-                    <TextBlock Text="wpisów" VerticalAlignment="Center" Margin="10,0"/>
-                    <TextBox Width="200" HorizontalAlignment="Right" Margin="10,0,0,0" VerticalAlignment="Center"/>
+                    <TextBlock Text="wpisów" VerticalAlignment="Center" Margin="10,0" Style="{StaticResource LabelStyle}"/>
                 </StackPanel>
-                <DataGrid x:Name="configuredClientsDataGrid" Grid.Row="1" AutoGenerateColumns="False" CanUserAddRows="False" Margin="0,10,0,0" ColumnHeaderStyle="{StaticResource DataGridColumnHeaderStyle}">
+                <DataGrid x:Name="configuredClientsDataGrid" Grid.Row="1" AutoGenerateColumns="False" CanUserAddRows="False" Margin="0,10,0,0" 
+                          ColumnHeaderStyle="{StaticResource DataGridColumnHeaderStyle}" CellStyle="{StaticResource DataGridCellStyle}" 
+                          RowStyle="{StaticResource DataGridRowStyle}" Style="{StaticResource DataGridStyle}" 
+                          SelectionChanged="configuredClientsDataGrid_SelectionChanged">
                     <DataGrid.Columns>
                         <DataGridCheckBoxColumn Width="50" />
-                        <DataGridTextColumn Header="Klient" Binding="{Binding ClientName}" Width="*"/>
-                        <DataGridTextColumn Header="Komentarz" Binding="{Binding Comment}" Width="*"/>
-                        <DataGridTemplateColumn Header="Przypisanie do grupy" Width="150">
-                            <DataGridTemplateColumn.CellTemplate>
-                                <DataTemplate>
-                                    <ComboBox Width="100" SelectedItem="{Binding GroupAssignment}" Style="{StaticResource ComboBoxStyle}">
-                                        <ComboBoxItem Content="Domyślna" Style="{StaticResource ComboBoxItemStyle}"/>
-                                        <ComboBoxItem Content="Grupa 1" Style="{StaticResource ComboBoxItemStyle}"/>
-                                        <ComboBoxItem Content="Grupa 2" Style="{StaticResource ComboBoxItemStyle}"/>
-                                    </ComboBox>
-                                </DataTemplate>
-                            </DataGridTemplateColumn.CellTemplate>
-                        </DataGridTemplateColumn>
+                        <DataGridTextColumn Header="Id" Binding="{Binding Id}" Width="50" />
+                        <DataGridTextColumn Header="IP" Binding="{Binding Ip}" Width="*" />
+                        <DataGridTextColumn Header="Date Added" Binding="{Binding DateAdded}" Width="*" />
+                        <DataGridTextColumn Header="Date Modified" Binding="{Binding DateModified}" Width="*" />
+                        <DataGridTextColumn Header="Komentarz" Binding="{Binding Comment}" Width="*" />
+                        <DataGridTextColumn Header="Grupy" Binding="{Binding Groups}" Width="150" />
                         <DataGridTemplateColumn Width="50">
                             <DataGridTemplateColumn.CellTemplate>
                                 <DataTemplate>
-                                    <Button Content="❌" Width="30" Click="RemoveClient_Click"/>
+                                    <Button Content="❌" Width="30" Click="RemoveClient_Click" Style="{StaticResource ButtonStyle}"/>
                                 </DataTemplate>
                             </DataGridTemplateColumn.CellTemplate>
                         </DataGridTemplateColumn>

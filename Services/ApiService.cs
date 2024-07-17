@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Net.Http;
 using System.Net.Http.Headers;
 using System.Text;
@@ -131,6 +132,35 @@ namespace Garage.Services
             AddAuthorizationHeader();
             var response = await _httpClient.GetAsync($"{baseUrl}/pihole/disable?duration={duration}");
             return await response.Content.ReadAsStringAsync();
+        }
+
+        public async Task<List<Client>> GetClientsAsync(string baseUrl)
+        {
+            AddAuthorizationHeader();
+            var response = await _httpClient.GetAsync($"{baseUrl}/Clients/getClients");
+            if (response.IsSuccessStatusCode)
+            {
+                var content = await response.Content.ReadAsStringAsync();
+                var result = JsonConvert.DeserializeObject<dynamic>(content);
+
+                if ((bool)result.success)
+                {
+                    return JsonConvert.DeserializeObject<List<Client>>(Convert.ToString(result.data));
+                }
+            }
+            throw new Exception("Failed to fetch clients data");
+        }
+
+        public async Task<string> AddClient(string baseUrl, string clientIp, string comment)
+        {
+            var clientData = new { ip = clientIp, comment };
+            return await PostAsync($"{baseUrl}/Clients/addClient", clientData);
+        }
+
+        public async Task<string> RemoveClient(string baseUrl, string clientIp)
+        {
+            var clientData = new { ip = clientIp };
+            return await PostAsync($"{baseUrl}/Clients/removeClient", clientData);
         }
     }
 }
