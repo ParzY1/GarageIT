@@ -10,4 +10,6 @@ router.post('/removeClient', clientController.removeClient);
 router.post('/addClientToGroup', clientController.addClientToGroup);
 router.post('/removeClientFromGroup', clientController.removeClientFromGroup);
 
+router.get('/getClients', clientController.getClients);
+
 module.exports = router;

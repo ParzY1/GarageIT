@@ -45,9 +45,19 @@ const removeClientFromGroup = async (req, res) => {
     }
 };
 
+const getClients = async (req, res) => {
+    try {
+        const result = await clientService.getClientsWithGroups();
+        res.json(result);
+    } catch (error) {
+        res.status(500).json({ error: error.message });
+    }
+};
+
 module.exports = {
     addClient,
     removeClient,
     addClientToGroup,
-    removeClientFromGroup
+    removeClientFromGroup,
+    getClients
 };

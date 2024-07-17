@@ -79,9 +79,38 @@ const addClientToGroup = (client_ip, group_name) => {
     });
 };
 
+const getClients = () => {
+    return new Promise((resolve, reject) => {
+        let db = new sqlite3.Database(process.env.BAZA, sqlite3.OPEN_READWRITE, (err) => {
+            if (err) {
+                return reject(err);
+            }
+        });
+
+        const query = `
+            SELECT 
+                c.id, c.ip, c.date_added, c.date_modified, c.comment, 
+                GROUP_CONCAT(g.name, ', ') AS groups 
+            FROM client c
+            LEFT JOIN client_by_group cbg ON c.id = cbg.client_id
+            LEFT JOIN "group" g ON cbg.group_id = g.id
+            GROUP BY c.id, c.ip, c.date_added, c.date_modified, c.comment
+        `;
+
+        db.all(query, [], (err, rows) => {
+            db.close();
+            if (err) {
+                return reject(err);
+            }
+            resolve({ success: true, data: rows });
+        });
+    });
+};
+
 module.exports = {
     addClient,
     removeClient,
     addClientToGroup,
-    removeClientFromGroup
+    removeClientFromGroup,
+    getClients
 };
