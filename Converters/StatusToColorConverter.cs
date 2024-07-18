@@ -9,11 +9,11 @@ namespace Garage.Converters
     {
         public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
         {
-            if (value is int status)
+            if (value is string status)
             {
-                return status == 1 ? new SolidColorBrush(Colors.Green) : new SolidColorBrush(Colors.Red);
+                return status == "Włączony" ? Brushes.Green : Brushes.Red;
             }
-            return new SolidColorBrush(Colors.Gray);
+            return Brushes.Gray;
         }
 
         public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)

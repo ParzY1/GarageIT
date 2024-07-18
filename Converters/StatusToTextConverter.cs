@@ -8,9 +8,9 @@ namespace Garage.Converters
     {
         public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
         {
-            if (value is int status)
+            if (value is int enabled)
             {
-                return status == 1 ? "Włączona" : "Wyłączona";
+                return enabled == 1 ? "Włączony" : "Wyłączony";
             }
             return "Nieznany";
         }

@@ -14,6 +14,7 @@ namespace Garage.Models
         public long DateAdded { get; set; }
         public long DateModified { get; set; }
         public string Description { get; set; }
+        public string Status { get; set; } // This property is for display purposes
     }
 }
 

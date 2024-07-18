@@ -1,10 +1,7 @@
 ﻿using Garage.Models;
 using Garage.Services;
-using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Net.Http;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
@@ -33,6 +30,10 @@ namespace Garage
             {
                 var response = await _apiService.GetGroupsAsync(_baseUrl);
                 var groups = response.Data;
+                foreach (var group in groups)
+                {
+                    group.Status = group.Enabled == 1 ? "Włączony" : "Wyłączony"; // Assuming group.Enabled is of type int
+                }
                 groupsDataGrid.ItemsSource = groups;
             }
             catch (Exception ex)
@@ -75,7 +76,7 @@ namespace Garage
             try
             {
                 var group = (Group)((Button)sender).DataContext;
-                if (group.Enabled == 1)
+                if (group.Status == "Włączony")
                 {
                     await _apiService.DisableGroupAsync(_baseUrl, group.Name);
                 }
@@ -108,6 +109,35 @@ namespace Garage
                     MessageBox.Show($"Failed to edit group name: {ex.Message}", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
                 }
             }
+        }
+
+        private async void EditGroupDescription_Click(object sender, RoutedEventArgs e)
+        {
+            var group = (Group)((Button)sender).DataContext;
+            var newDescription = Microsoft.VisualBasic.Interaction.InputBox("Enter new description:", "Edit Group Description", group.Description);
+
+            if (!string.IsNullOrEmpty(newDescription) && newDescription != group.Description)
+            {
+                try
+                {
+                    await _apiService.EditGroupDescriptionAsync(_baseUrl, group.Name, newDescription);
+                    await LoadGroups();
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show($"Failed to edit group description: {ex.Message}", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+                }
+            }
+        }
+
+        private void groupsDataGrid_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+
+        }
+
+        private void groupsDataGrid_SelectionChanged_1(object sender, SelectionChangedEventArgs e)
+        {
+
         }
     }
 }

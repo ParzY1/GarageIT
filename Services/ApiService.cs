@@ -106,6 +106,13 @@ namespace Garage.Services
             Console.WriteLine("EditGroupNameAsync response: " + response);
         }
 
+        public async Task EditGroupDescriptionAsync(string baseUrl, string name, string description)
+        {
+            var groupData = new { name, description };
+            var response = await PostAsync($"{baseUrl}/groups/editGroupDescription", groupData);
+            Console.WriteLine("EditGroupDescriptionAsync response: " + response);
+        }
+
         public async Task<ApiResponse<List<Query>>> GetQueriesAsync(string baseUrl)
         {
             AddAuthorizationHeader();
@@ -241,6 +248,14 @@ namespace Garage.Services
             var clientData = new { ip = clientIp };
             return await PostAsync($"{baseUrl}/Clients/removeClient", clientData);
         }
+
+        public async Task EditClientCommentAsync(string baseUrl, string clientIp, string comment)
+        {
+            var clientData = new { ip = clientIp, comment };
+            var response = await PostAsync($"{baseUrl}/Clients/editClientComment", clientData);
+            Console.WriteLine("EditClientCommentAsync response: " + response);
+        }
+
     }
 
     public class ApiResponse<T>

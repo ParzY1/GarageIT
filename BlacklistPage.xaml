@@ -3,8 +3,8 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-             mc:Ignorable="d"
              xmlns:local="clr-namespace:Garage.Converters"
+             mc:Ignorable="d"
              d:DesignHeight="800" d:DesignWidth="1200"
              Loaded="BlacklistPage_Loaded">
     <UserControl.Resources>
@@ -18,8 +18,8 @@
         <SolidColorBrush x:Key="EnabledColor" Color="Green"/>
         <SolidColorBrush x:Key="DisabledColor" Color="Red"/>
 
-        <local:StatusToTextConverter x:Key="StatusToTextConverter"/>
         <local:StatusToColorConverter x:Key="StatusToColorConverter"/>
+        <local:StatusToTextConverter x:Key="StatusToTextConverter"/>
 
         <Style x:Key="HeaderStyle" TargetType="TextBlock">
             <Setter Property="FontSize" Value="20"/>
@@ -55,52 +55,12 @@
             <Setter Property="Foreground" Value="{StaticResource TextColor}"/>
             <Setter Property="BorderBrush" Value="{StaticResource BorderColor}"/>
             <Setter Property="ItemContainerStyle" Value="{StaticResource ComboBoxItemStyle}"/>
-            <Setter Property="Template">
-                <Setter.Value>
-                    <ControlTemplate TargetType="ComboBox">
-                        <Grid>
-                            <ToggleButton x:Name="ToggleButton"
-                                          Background="{TemplateBinding Background}"
-                                          Foreground="{TemplateBinding Foreground}"
-                                          BorderBrush="{TemplateBinding BorderBrush}"
-                                          BorderThickness="{TemplateBinding BorderThickness}"
-                                          ClickMode="Press"
-                                          IsChecked="{Binding Path=IsDropDownOpen, RelativeSource={RelativeSource TemplatedParent}, Mode=TwoWay}">
-                                <ContentPresenter />
-                            </ToggleButton>
-                            <Popup x:Name="Popup"
-                                   IsOpen="{TemplateBinding IsDropDownOpen}"
-                                   Placement="Bottom"
-                                   Focusable="False"
-                                   AllowsTransparency="True"
-                                   PopupAnimation="Slide">
-                                <Grid x:Name="DropDown"
-                                      SnapsToDevicePixels="True"
-                                      MinWidth="{TemplateBinding ActualWidth}"
-                                      MaxHeight="{TemplateBinding MaxDropDownHeight}"
-                                      Background="{StaticResource ComboBoxPopupBackgroundColor}">
-                                    <Border x:Name="DropDownBorder"
-                                            Background="{StaticResource ComboBoxPopupBackgroundColor}"
-                                            BorderBrush="{TemplateBinding BorderBrush}"
-                                            BorderThickness="1" />
-                                    <ScrollViewer Margin="4,6,4,6"
-                                                  SnapsToDevicePixels="True">
-                                        <StackPanel IsItemsHost="True"
-                                                    KeyboardNavigation.DirectionalNavigation="Contained"
-                                                    Background="{StaticResource ComboBoxPopupBackgroundColor}" />
-                                    </ScrollViewer>
-                                </Grid>
-                            </Popup>
-                        </Grid>
-                    </ControlTemplate>
-                </Setter.Value>
-            </Setter>
         </Style>
 
         <Style x:Key="ButtonStyle" TargetType="Button">
-            <Setter Property="Width" Value="100"/>
+            <Setter Property="Width" Value="30"/>
             <Setter Property="Height" Value="30"/>
-            <Setter Property="Margin" Value="5"/>
+            <Setter Property="Margin" Value="2"/>
             <Setter Property="Background" Value="{StaticResource CardColor}"/>
             <Setter Property="Foreground" Value="{StaticResource TextColor}"/>
             <Setter Property="BorderBrush" Value="{StaticResource BorderColor}"/>
@@ -179,7 +139,7 @@
                     <DataGrid x:Name="groupsDataGrid" AutoGenerateColumns="False" Background="{StaticResource BackgroundColor}"
                               GridLinesVisibility="None" HorizontalAlignment="Stretch" VerticalAlignment="Stretch"
                               CanUserAddRows="False" CanUserDeleteRows="False" SelectionMode="Single" Margin="10"
-                              CellStyle="{StaticResource DataGridCellStyle}" ColumnHeaderStyle="{StaticResource DataGridColumnHeaderStyle}">
+                              CellStyle="{StaticResource DataGridCellStyle}" ColumnHeaderStyle="{StaticResource DataGridColumnHeaderStyle}" SelectionChanged="groupsDataGrid_SelectionChanged_1">
                         <DataGrid.Columns>
                             <DataGridTextColumn Header="Nazwa" Binding="{Binding Name}" Width="*" ElementStyle="{StaticResource LabelStyle}"/>
                             <DataGridTextColumn Header="Opis" Binding="{Binding Description}" Width="*" ElementStyle="{StaticResource LabelStyle}"/>
@@ -194,8 +154,8 @@
                                 <DataGridTemplateColumn.CellTemplate>
                                     <DataTemplate>
                                         <StackPanel Orientation="Horizontal">
-                                            <Button Content="Usuń" Style="{StaticResource ButtonStyle}" Click="RemoveFromBlacklist_Click"/>
-                                            <Button Content="Edytuj" Style="{StaticResource ButtonStyle}" Click="EditGroupName_Click"/>
+                                            <Button Content="📝" Width="30" Click="EditGroupDescription_Click" Style="{StaticResource ButtonStyle}"/>
+                                            <Button Content="❌" Width="30" Click="RemoveFromBlacklist_Click" Style="{StaticResource ButtonStyle}"/>
                                             <Button Content="{Binding Enabled, Converter={StaticResource StatusToTextConverter}}" Style="{StaticResource ButtonStyle}" Background="{Binding Enabled, Converter={StaticResource StatusToColorConverter}}" Click="ToggleGroupStatus_Click"/>
                                         </StackPanel>
                                     </DataTemplate>
