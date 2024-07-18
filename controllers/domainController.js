@@ -140,6 +140,17 @@ const editDomainName = async (req, res) => {
     }
 };
 
+const editDomainComment = async (req, res) => {
+    const { domain, comment } = req.body;
+    try {
+        const result = await domainService.editDomainComment(domain, comment);
+        await auditService.logAction('editDomainComment', `Changed comment for domain ${domain}`);
+        res.json(result);
+    } catch (error) {
+        res.status(500).json({ error: error.message });
+    }
+};
+
 module.exports = {
     addToBlacklist,
     addToWhitelist,
@@ -153,5 +164,6 @@ module.exports = {
     removeDomainFromGroup,
     removeFromDomainList,
     changeDomainListType,
-    editDomainName
+    editDomainName,
+    editDomainComment
 };

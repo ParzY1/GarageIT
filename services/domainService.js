@@ -221,6 +221,26 @@ const editDomainName = (oldDomain, newDomain) => {
     });
 };
 
+const editDomainComment = (domain, comment) => {
+    return new Promise((resolve, reject) => {
+        let db = new sqlite3.Database(process.env.BAZA, sqlite3.OPEN_READWRITE, (err) => {
+            if (err) {
+                return reject(err);
+            }
+        });
+
+        const query = `UPDATE domainlist SET comment = ? WHERE domain = ?`;
+        db.run(query, [comment, domain], function (err) {
+            db.close();
+            if (err) {
+                return reject(err);
+            }
+            resolve({ success: true, message: `Comment for domain "${domain}" changed successfully` });
+        });
+    });
+};
+
+
 module.exports = {
     addToBlacklist,
     addToWhitelist,
@@ -234,5 +254,6 @@ module.exports = {
     removeDomainFromGroup,
     removeFromDomainList,
     changeDomainListType,
-    editDomainName
+    editDomainName,
+    editDomainComment
 };

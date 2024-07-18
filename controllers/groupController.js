@@ -65,11 +65,23 @@ const editGroupName = async (req, res) => {
     }
 };
 
+const editGroupDescription = async (req, res) => {
+    const { name, description } = req.body;
+    try {
+        const result = await groupService.editGroupDescription(name, description);
+        await auditService.logAction('editGroupDescription', `Updated description for group ${name}`);
+        res.json(result);
+    } catch (error) {
+        res.status(500).json({ error: error.message });
+    }
+};
+
 module.exports = {
     addGroup,
     deleteGroup,
     getGroups,
     enableGroup,
     disableGroup,
-    editGroupName
+    editGroupName,
+    editGroupDescription
 }

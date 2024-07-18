@@ -126,11 +126,31 @@ const editClientIp = (oldIp, newIp) => {
     });
 };
 
+const editClientComment = (ip, comment) => {
+    return new Promise((resolve, reject) => {
+        let db = new sqlite3.Database(process.env.BAZA, sqlite3.OPEN_READWRITE, (err) => {
+            if (err) {
+                return reject(err);
+            }
+        });
+
+        const query = `UPDATE client SET comment = ?, date_modified = strftime('%s','now') WHERE ip = ?`;
+        db.run(query, [comment, ip], function (err) {
+            db.close();
+            if (err) {
+                return reject(err);
+            }
+            resolve({ success: true, message: `Comment for client with IP "${ip}" updated successfully` });
+        });
+    });
+};
+
 module.exports = {
     addClient,
     removeClient,
     addClientToGroup,
     removeClientFromGroup,
     getClients,
-    editClientIp
+    editClientIp,
+    editClientComment
 };

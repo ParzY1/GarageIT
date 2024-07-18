@@ -115,11 +115,32 @@ const editGroupName = (oldName, newName) => {
     });
 };
 
+const editGroupDescription = (name, description) => {
+    return new Promise((resolve, reject) => {
+        let db = new sqlite3.Database(process.env.BAZA, sqlite3.OPEN_READWRITE, (err) => {
+            if (err) {
+                return reject(err);
+            }
+        });
+
+        const query = `UPDATE "group" SET description = ?, date_modified = strftime('%s', 'now') WHERE name = ?`;
+        db.run(query, [description, name], function (err) {
+            if (err) {
+                db.close();
+                return reject(err);
+            }
+            db.close();
+            resolve({ success: true, message: `Group description for "${name}" updated successfully` });
+        });
+    });
+};
+
 module.exports = {
     addGroup,
     deleteGroup,
     getGroups,
     enableGroup,
     disableGroup,
-    editGroupName
+    editGroupName,
+    editGroupDescription
 };

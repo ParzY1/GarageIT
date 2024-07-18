@@ -65,11 +65,23 @@ const editClientIp = async (req, res) => {
     }
 };
 
+const editClientComment = async (req, res) => {
+    const { ip, comment } = req.body;
+    try {
+        const result = await clientService.editClientComment(ip, comment);
+        await auditService.logAction('editClientComment', `Changed comment for client ${ip}`);
+        res.json(result);
+    } catch (error) {
+        res.status(500).json({ error: error.message });
+    }
+};
+
 module.exports = {
     addClient,
     removeClient,
     addClientToGroup,
     removeClientFromGroup,
     getClients,
-    editClientIp
+    editClientIp,
+    editClientComment
 };
