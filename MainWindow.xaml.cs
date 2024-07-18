@@ -2,6 +2,7 @@ using System.Windows;
 using Newtonsoft.Json;
 using Garage.Services;
 
+
 namespace Garage
 {
     public partial class MainWindow : Window
@@ -44,7 +45,7 @@ namespace Garage
 
         private void QueryLog_Click(object sender, RoutedEventArgs e)
         {
-            ShowBlacklistPage();
+            ShowWhitelistPage();
         }
 
         private void Groups_Click(object sender, RoutedEventArgs e)
@@ -76,6 +77,10 @@ namespace Garage
         private void ShowBlacklistPage()
         {
             MainContent.Content = new BlacklistPage(_apiService);
+        }
+        private void ShowWhitelistPage()
+        {
+            MainContent.Content = new WhitelistPage(_apiService);
         }
 
         private void ShowManageAccountPage()

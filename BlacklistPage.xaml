@@ -4,6 +4,7 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              mc:Ignorable="d"
+             xmlns:local="clr-namespace:Garage.Converters"
              d:DesignHeight="800" d:DesignWidth="1200"
              Loaded="BlacklistPage_Loaded">
     <UserControl.Resources>
@@ -11,6 +12,14 @@
         <SolidColorBrush x:Key="TextColor" Color="#FFFFFF"/>
         <SolidColorBrush x:Key="CardColor" Color="#2B2B2B"/>
         <SolidColorBrush x:Key="BorderColor" Color="#CCCCCC"/>
+        <SolidColorBrush x:Key="TextBoxBackgroundColor" Color="#2B2B2B"/>
+        <SolidColorBrush x:Key="ComboBoxBackgroundColor" Color="#2B2B2B"/>
+        <SolidColorBrush x:Key="ComboBoxPopupBackgroundColor" Color="#1E1E1E"/>
+        <SolidColorBrush x:Key="EnabledColor" Color="Green"/>
+        <SolidColorBrush x:Key="DisabledColor" Color="Red"/>
+
+        <local:StatusToTextConverter x:Key="StatusToTextConverter"/>
+        <local:StatusToColorConverter x:Key="StatusToColorConverter"/>
 
         <Style x:Key="HeaderStyle" TargetType="TextBlock">
             <Setter Property="FontSize" Value="20"/>
@@ -28,18 +37,73 @@
             <Setter Property="Width" Value="200"/>
             <Setter Property="Height" Value="30"/>
             <Setter Property="Margin" Value="5"/>
+            <Setter Property="Background" Value="{StaticResource TextBoxBackgroundColor}"/>
+            <Setter Property="Foreground" Value="{StaticResource TextColor}"/>
+            <Setter Property="BorderBrush" Value="{StaticResource BorderColor}"/>
+        </Style>
+
+        <Style x:Key="ComboBoxItemStyle" TargetType="ComboBoxItem">
+            <Setter Property="Background" Value="{StaticResource ComboBoxBackgroundColor}"/>
+            <Setter Property="Foreground" Value="{StaticResource TextColor}"/>
         </Style>
 
         <Style x:Key="ComboBoxStyle" TargetType="ComboBox">
             <Setter Property="Width" Value="200"/>
             <Setter Property="Height" Value="30"/>
             <Setter Property="Margin" Value="5"/>
+            <Setter Property="Background" Value="{StaticResource ComboBoxBackgroundColor}"/>
+            <Setter Property="Foreground" Value="{StaticResource TextColor}"/>
+            <Setter Property="BorderBrush" Value="{StaticResource BorderColor}"/>
+            <Setter Property="ItemContainerStyle" Value="{StaticResource ComboBoxItemStyle}"/>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="ComboBox">
+                        <Grid>
+                            <ToggleButton x:Name="ToggleButton"
+                                          Background="{TemplateBinding Background}"
+                                          Foreground="{TemplateBinding Foreground}"
+                                          BorderBrush="{TemplateBinding BorderBrush}"
+                                          BorderThickness="{TemplateBinding BorderThickness}"
+                                          ClickMode="Press"
+                                          IsChecked="{Binding Path=IsDropDownOpen, RelativeSource={RelativeSource TemplatedParent}, Mode=TwoWay}">
+                                <ContentPresenter />
+                            </ToggleButton>
+                            <Popup x:Name="Popup"
+                                   IsOpen="{TemplateBinding IsDropDownOpen}"
+                                   Placement="Bottom"
+                                   Focusable="False"
+                                   AllowsTransparency="True"
+                                   PopupAnimation="Slide">
+                                <Grid x:Name="DropDown"
+                                      SnapsToDevicePixels="True"
+                                      MinWidth="{TemplateBinding ActualWidth}"
+                                      MaxHeight="{TemplateBinding MaxDropDownHeight}"
+                                      Background="{StaticResource ComboBoxPopupBackgroundColor}">
+                                    <Border x:Name="DropDownBorder"
+                                            Background="{StaticResource ComboBoxPopupBackgroundColor}"
+                                            BorderBrush="{TemplateBinding BorderBrush}"
+                                            BorderThickness="1" />
+                                    <ScrollViewer Margin="4,6,4,6"
+                                                  SnapsToDevicePixels="True">
+                                        <StackPanel IsItemsHost="True"
+                                                    KeyboardNavigation.DirectionalNavigation="Contained"
+                                                    Background="{StaticResource ComboBoxPopupBackgroundColor}" />
+                                    </ScrollViewer>
+                                </Grid>
+                            </Popup>
+                        </Grid>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
         </Style>
 
         <Style x:Key="ButtonStyle" TargetType="Button">
             <Setter Property="Width" Value="100"/>
             <Setter Property="Height" Value="30"/>
             <Setter Property="Margin" Value="5"/>
+            <Setter Property="Background" Value="{StaticResource CardColor}"/>
+            <Setter Property="Foreground" Value="{StaticResource TextColor}"/>
+            <Setter Property="BorderBrush" Value="{StaticResource BorderColor}"/>
         </Style>
 
         <Style x:Key="DataGridCellStyle" TargetType="DataGridCell">
@@ -87,12 +151,11 @@
 
             <Border Grid.Row="0" Style="{StaticResource GroupBoxStyle}">
                 <StackPanel>
-                    <TextBlock Text="Dodaj nową grupę" Style="{StaticResource HeaderStyle}" Margin="10"/>
-                    <StackPanel Orientation="Horizontal" Margin="0,10,0,10">
+                    <StackPanel Orientation="Horizontal" VerticalAlignment="Center">
                         <TextBlock Text="Nazwa:" Style="{StaticResource LabelStyle}" VerticalAlignment="Center"/>
-                        <TextBox x:Name="domainTextBox" Width="300" Style="{StaticResource TextBoxStyle}"/>
+                        <TextBox x:Name="domainTextBox" Width="231" Style="{StaticResource TextBoxStyle}"/>
                         <TextBlock Text="Opis:" Style="{StaticResource LabelStyle}" Margin="10,0,0,0" VerticalAlignment="Center"/>
-                        <TextBox x:Name="groupDescriptionTextBox" Width="300" Style="{StaticResource TextBoxStyle}"/>
+                        <TextBox x:Name="groupDescriptionTextBox" Width="238" Style="{StaticResource TextBoxStyle}"/>
                         <Button Content="Dodaj" Style="{StaticResource ButtonStyle}" Margin="10,0,0,0" Click="AddToBlacklist_Click"/>
                     </StackPanel>
                     <TextBlock Text="Wskazówki:" Style="{StaticResource LabelStyle}" FontWeight="Bold" Margin="10,0,0,0"/>
@@ -107,26 +170,33 @@
                     <StackPanel Orientation="Horizontal" VerticalAlignment="Center" Margin="10,0,10,0">
                         <TextBlock Text="Pokaż" Style="{StaticResource LabelStyle}" VerticalAlignment="Center"/>
                         <ComboBox Width="60" Style="{StaticResource ComboBoxStyle}" SelectedIndex="0">
-                            <ComboBoxItem Content="10"/>
-                            <ComboBoxItem Content="25"/>
-                            <ComboBoxItem Content="50"/>
+                            <ComboBoxItem Content="10" Background="{StaticResource ComboBoxPopupBackgroundColor}" Foreground="{StaticResource TextColor}"/>
+                            <ComboBoxItem Content="25" Background="{StaticResource ComboBoxPopupBackgroundColor}" Foreground="{StaticResource TextColor}"/>
+                            <ComboBoxItem Content="50" Background="{StaticResource ComboBoxPopupBackgroundColor}" Foreground="{StaticResource TextColor}"/>
                         </ComboBox>
                         <TextBlock Text="wpisów" Style="{StaticResource LabelStyle}" VerticalAlignment="Center" Margin="10,0,0,0"/>
                     </StackPanel>
-                    <TextBox x:Name="searchTextBox" Width="200" HorizontalAlignment="Right" Style="{StaticResource TextBoxStyle}" Margin="0,10,20,10" VerticalAlignment="Center"/>
-                    <DataGrid x:Name="domainsDataGrid" AutoGenerateColumns="False" ItemsSource="{Binding BlacklistDomains}" Background="{StaticResource BackgroundColor}"
+                    <DataGrid x:Name="groupsDataGrid" AutoGenerateColumns="False" Background="{StaticResource BackgroundColor}"
                               GridLinesVisibility="None" HorizontalAlignment="Stretch" VerticalAlignment="Stretch"
                               CanUserAddRows="False" CanUserDeleteRows="False" SelectionMode="Single" Margin="10"
                               CellStyle="{StaticResource DataGridCellStyle}" ColumnHeaderStyle="{StaticResource DataGridColumnHeaderStyle}">
                         <DataGrid.Columns>
-                            <DataGridTextColumn Header="Nazwa" Binding="{Binding Domain}" Width="*" ElementStyle="{StaticResource LabelStyle}"/>
-                            <DataGridTextColumn Header="Status" Binding="{Binding Status}" Width="*" ElementStyle="{StaticResource LabelStyle}"/>
-                            <DataGridTextColumn Header="Komentarz" Binding="{Binding Comment}" Width="*" ElementStyle="{StaticResource LabelStyle}"/>
+                            <DataGridTextColumn Header="Nazwa" Binding="{Binding Name}" Width="*" ElementStyle="{StaticResource LabelStyle}"/>
+                            <DataGridTextColumn Header="Opis" Binding="{Binding Description}" Width="*" ElementStyle="{StaticResource LabelStyle}"/>
+                            <DataGridTemplateColumn Header="Status" Width="*">
+                                <DataGridTemplateColumn.CellTemplate>
+                                    <DataTemplate>
+                                        <TextBlock Text="{Binding Enabled, Converter={StaticResource StatusToTextConverter}}" Foreground="{Binding Enabled, Converter={StaticResource StatusToColorConverter}}" Style="{StaticResource LabelStyle}"/>
+                                    </DataTemplate>
+                                </DataGridTemplateColumn.CellTemplate>
+                            </DataGridTemplateColumn>
                             <DataGridTemplateColumn Header="Akcje" Width="Auto">
                                 <DataGridTemplateColumn.CellTemplate>
                                     <DataTemplate>
                                         <StackPanel Orientation="Horizontal">
                                             <Button Content="Usuń" Style="{StaticResource ButtonStyle}" Click="RemoveFromBlacklist_Click"/>
+                                            <Button Content="Edytuj" Style="{StaticResource ButtonStyle}" Click="EditGroupName_Click"/>
+                                            <Button Content="{Binding Enabled, Converter={StaticResource StatusToTextConverter}}" Style="{StaticResource ButtonStyle}" Background="{Binding Enabled, Converter={StaticResource StatusToColorConverter}}" Click="ToggleGroupStatus_Click"/>
                                         </StackPanel>
                                     </DataTemplate>
                                 </DataGridTemplateColumn.CellTemplate>

@@ -84,7 +84,7 @@ namespace Garage {
                 return;
             }
             _contentLoaded = true;
-            System.Uri resourceLocater = new System.Uri("/Garage;V1.0.0.0;component/domainspage.xaml", System.UriKind.Relative);
+            System.Uri resourceLocater = new System.Uri("/Garage;component/domainspage.xaml", System.UriKind.Relative);
             
             #line 1 "..\..\..\DomainsPage.xaml"
             System.Windows.Application.LoadComponent(this, resourceLocater);

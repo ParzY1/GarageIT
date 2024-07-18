@@ -1,5 +1,0 @@
-Exception: Response status code does not indicate success: 401 (Unauthorized).
-   at System.Net.Http.HttpResponseMessage.EnsureSuccessStatusCode()
-   at Garage.Services.ApiService.PostAsync[T](String uri, T data) in C:\Users\marce\Desktop\GarageIT\GarageIT\Services\ApiService.cs:line 37
-   at Garage.Services.ApiService.LoginUser(String baseUrl, String username, String password) in C:\Users\marce\Desktop\GarageIT\GarageIT\Services\ApiService.cs:line 60
-   at Garage.LoginWindow.LoginButton_Click(Object sender, RoutedEventArgs e) in C:\Users\marce\Desktop\GarageIT\GarageIT\LoginWindow.xaml.cs:line 25

@@ -5,6 +5,7 @@ using System.Net.Http.Headers;
 using System.Text;
 using System.Threading.Tasks;
 using Newtonsoft.Json;
+using Garage.Models;
 
 namespace Garage.Services
 {
@@ -57,6 +58,56 @@ namespace Garage.Services
             }
             throw new Exception("Failed to fetch data");
         }
+
+        public async Task<ApiResponse<List<Group>>> GetGroupsAsync(string baseUrl)
+        {
+            AddAuthorizationHeader();
+            var response = await _httpClient.GetAsync($"{baseUrl}/groups/getGroups");
+            if (response.IsSuccessStatusCode)
+            {
+                var content = await response.Content.ReadAsStringAsync();
+                return JsonConvert.DeserializeObject<ApiResponse<List<Group>>>(content);
+            }
+            throw new Exception("Failed to fetch groups data");
+        }
+
+        public async Task AddGroupAsync(string baseUrl, string name, string description)
+        {
+            var groupData = new { name, description };
+            var response = await PostAsync($"{baseUrl}/groups/addGroup", groupData);
+            Console.WriteLine("AddGroupAsync response: " + response);
+        }
+
+        public async Task DeleteGroupAsync(string baseUrl, string name)
+        {
+            var groupData = new { name };
+            var response = await PostAsync($"{baseUrl}/groups/deleteGroup", groupData);
+            Console.WriteLine("DeleteGroupAsync response: " + response);
+        }
+
+        public async Task EnableGroupAsync(string baseUrl, string name)
+        {
+            var groupData = new { name };
+            var response = await PostAsync($"{baseUrl}/groups/enableGroup", groupData);
+            Console.WriteLine("EnableGroupAsync response: " + response);
+        }
+
+        public async Task DisableGroupAsync(string baseUrl, string name)
+        {
+            var groupData = new { name };
+            var response = await PostAsync($"{baseUrl}/groups/disableGroup", groupData);
+            Console.WriteLine("DisableGroupAsync response: " + response);
+        }
+
+        public async Task EditGroupNameAsync(string baseUrl, string oldName, string newName)
+        {
+            var groupData = new { oldName, newName };
+            var response = await PostAsync($"{baseUrl}/groups/editGroupName", groupData);
+            Console.WriteLine("EditGroupNameAsync response: " + response);
+        }
+
+
+
 
         public async Task<string> RegisterUser(string baseUrl, string username, string password)
         {
@@ -162,5 +213,11 @@ namespace Garage.Services
             var clientData = new { ip = clientIp };
             return await PostAsync($"{baseUrl}/Clients/removeClient", clientData);
         }
+    }
+
+    public class ApiResponse<T>
+    {
+        public bool Success { get; set; }
+        public T Data { get; set; }
     }
 }

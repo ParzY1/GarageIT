@@ -60,7 +60,7 @@ namespace Garage {
                 return;
             }
             _contentLoaded = true;
-            System.Uri resourceLocater = new System.Uri("/Garage;V1.0.0.0;component/whitelistpage.xaml", System.UriKind.Relative);
+            System.Uri resourceLocater = new System.Uri("/Garage;component/whitelistpage.xaml", System.UriKind.Relative);
             
             #line 1 "..\..\..\WhitelistPage.xaml"
             System.Windows.Application.LoadComponent(this, resourceLocater);
