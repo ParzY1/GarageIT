@@ -1,5 +1,9 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Windows;
 using System.Windows.Controls;
+using System.Threading.Tasks;
 using Garage.Services;
 
 namespace Garage
@@ -7,30 +11,46 @@ namespace Garage
     public partial class WhitelistPage : UserControl
     {
         private readonly ApiService _apiService;
+        private string _baseUrl = "https://blockdns.garageit.pl";
 
         public WhitelistPage(ApiService apiService)
         {
             InitializeComponent();
             _apiService = apiService;
-            LoadSampleData();
         }
 
-        private void LoadSampleData()
+        private async void WhitelistPage_Loaded(object sender, RoutedEventArgs e)
         {
-            // Create sample data
-            var sampleData = new List<Query>
+            await LoadRecentQueries();
+        }
+
+        private async Task LoadRecentQueries()
+        {
+            try
             {
-                new Query { Time = "10:00", Type = "A", Domain = "example.com", Client = "Client1", Status = "Allowed", Reply = "192.168.1.1", Action = "None" },
-                new Query { Time = "10:05", Type = "AAAA", Domain = "example.org", Client = "Client2", Status = "Blocked", Reply = "-", Action = "None" }
-            };
-
-            // Set the data context of the DataGrid to the sample data
-            RecentQueriesDataGrid.ItemsSource = sampleData;
+                var response = await _apiService.GetAsync<ApiResponse<List<List<string>>>>($"{_baseUrl}/pi-hole/queries");
+                var queryData = response.Data;
+                var queries = queryData.Select(data => new Query(data.ToArray())).ToList();
+                RecentQueriesDataGrid.ItemsSource = queries;
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Failed to load recent queries: {ex.Message}", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+            }
         }
 
-        private void RecentQueriesDataGrid_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        private async void RemoveQuery_Click(object sender, RoutedEventArgs e)
         {
-
+            try
+            {
+                var query = (Query)((Button)sender).DataContext;
+                await _apiService.RemoveQueryAsync(_baseUrl, query.Time);
+                await LoadRecentQueries();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Failed to remove query: {ex.Message}", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+            }
         }
     }
 
@@ -43,5 +63,16 @@ namespace Garage
         public string Status { get; set; }
         public string Reply { get; set; }
         public string Action { get; set; }
+
+        public Query(string[] data)
+        {
+            Time = data[0];
+            Type = data[1];
+            Domain = data[2];
+            Client = data[3];
+            Status = data[4];
+            Reply = data[5];
+            Action = data.Length > 6 ? data[6] : string.Empty; // Ensure the Action field is handled properly
+        }
     }
 }

@@ -106,8 +106,36 @@ namespace Garage.Services
             Console.WriteLine("EditGroupNameAsync response: " + response);
         }
 
+        public async Task<ApiResponse<List<Query>>> GetQueriesAsync(string baseUrl)
+        {
+            AddAuthorizationHeader();
+            var response = await _httpClient.GetAsync($"{baseUrl}/pi-hole/queries");
+            if (response.IsSuccessStatusCode)
+            {
+                var content = await response.Content.ReadAsStringAsync();
+                return JsonConvert.DeserializeObject<ApiResponse<List<Query>>>(content);
+            }
+            throw new Exception("Failed to fetch queries data");
+        }
 
+        public async Task<ApiResponse<List<Query>>> GetQueriesLast24HoursAsync(string baseUrl)
+        {
+            AddAuthorizationHeader();
+            var response = await _httpClient.GetAsync($"{baseUrl}/pi-hole/queries-last-24-hours");
+            if (response.IsSuccessStatusCode)
+            {
+                var content = await response.Content.ReadAsStringAsync();
+                return JsonConvert.DeserializeObject<ApiResponse<List<Query>>>(content);
+            }
+            throw new Exception("Failed to fetch queries data");
+        }
 
+        public async Task RemoveQueryAsync(string baseUrl, string time)
+        {
+            var queryData = new { time };
+            var response = await PostAsync($"{baseUrl}/pi-hole/removeQuery", queryData);
+            Console.WriteLine("RemoveQueryAsync response: " + response);
+        }
 
         public async Task<string> RegisterUser(string baseUrl, string username, string password)
         {
