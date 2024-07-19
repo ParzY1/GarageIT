@@ -7,6 +7,7 @@
              d:DesignHeight="800" d:DesignWidth="1200"
              Loaded="DomainsPage_Loaded">
     <UserControl.Resources>
+        <!-- Kolory -->
         <SolidColorBrush x:Key="PrimaryColor" Color="#4CAF50"/>
         <SolidColorBrush x:Key="SecondaryColor" Color="#2196F3"/>
         <SolidColorBrush x:Key="TextColor" Color="#FFFFFF"/>
@@ -16,6 +17,7 @@
         <SolidColorBrush x:Key="PanelBackgroundColor" Color="#2E3338"/>
         <SolidColorBrush x:Key="BorderColor" Color="#CCCCCC"/>
 
+        <!-- Style -->
         <Style x:Key="HeaderStyle" TargetType="TextBlock">
             <Setter Property="FontSize" Value="20"/>
             <Setter Property="Foreground" Value="{StaticResource TextColor}"/>
@@ -87,38 +89,35 @@
             <Grid.RowDefinitions>
                 <RowDefinition Height="Auto"/>
                 <RowDefinition Height="*"/>
+                <RowDefinition Height="*"/>
             </Grid.RowDefinitions>
 
-            <Border Grid.Row="0" Style="{StaticResource GroupBoxStyle}">
+            <!-- Sekcja dodawania domen -->
+            <Border Grid.Row="0" Style="{StaticResource GroupBoxStyle}" Margin="0,0,0,20">
                 <StackPanel>
                     <TextBlock Text="Dodaj nową domenę" Style="{StaticResource HeaderStyle}" Margin="10"/>
                     <StackPanel Orientation="Horizontal" Margin="0,10,0,10">
                         <TextBlock Text="Domena:" Style="{StaticResource LabelStyle}" VerticalAlignment="Center"/>
-                        <TextBox x:Name="domainTextBox" Width="300" Style="{StaticResource TextBoxStyle}"/>
+                        <TextBox x:Name="domainTextBox" Style="{StaticResource TextBoxStyle}"/>
                         <TextBlock Text="Komentarz:" Style="{StaticResource LabelStyle}" Margin="10,0,0,0" VerticalAlignment="Center"/>
-                        <TextBox x:Name="commentTextBox" Width="300" Style="{StaticResource TextBoxStyle}"/>
+                        <TextBox x:Name="commentTextBox" Style="{StaticResource TextBoxStyle}"/>
+                        <ComboBox x:Name="listComboBox" Style="{StaticResource ComboBoxStyle}">
+                            <ComboBoxItem Content="Dozwolone" />
+                            <ComboBoxItem Content="Zablokowane" />
+                        </ComboBox>
                         <Button Content="Dodaj" Style="{StaticResource ButtonStyle}" Margin="10,0,0,0" Click="AddToDomains_Click"/>
                     </StackPanel>
                     <TextBlock Text="Wskazówki:" Style="{StaticResource LabelStyle}" FontWeight="Bold" Margin="10,0,0,0"/>
                     <TextBlock Text="1. Można dodać wiele domen, oddzielając każdą nazwę domeny spacją." Style="{StaticResource LabelStyle}" Margin="10,0,0,0"/>
-                    <TextBlock Text='2. Nazwy domen mogą zawierać spacje, jeśli są wprowadzone w cudzysłowiu. Na przykład "example.com".' Style="{StaticResource LabelStyle}" Margin="10,0,0,0"/>
+                    <TextBlock Text='2. Nazwy domen mogą zawierać spacje, jeśli są wprowadzone w cudzysłowiu. Na przykład "example.com".' Style="{StaticResource LabelStyle}" Margin="10,0,0,0" Height="42"/>
                 </StackPanel>
             </Border>
 
-            <Border Grid.Row="1" Style="{StaticResource GroupBoxStyle}">
+            <!-- Sekcja domen dozwolonych -->
+            <Border Grid.Row="1" Style="{StaticResource GroupBoxStyle}" Margin="0,17,0,0" Height="Auto">
                 <StackPanel>
-                    <TextBlock Text="Lista domen" Style="{StaticResource HeaderStyle}" Margin="10"/>
-                    <StackPanel Orientation="Horizontal" VerticalAlignment="Center" Margin="10,0,10,0">
-                        <TextBlock Text="Pokaż" Style="{StaticResource LabelStyle}" VerticalAlignment="Center"/>
-                        <ComboBox Width="60" Style="{StaticResource ComboBoxStyle}" SelectedIndex="0">
-                            <ComboBoxItem Content="10"/>
-                            <ComboBoxItem Content="25"/>
-                            <ComboBoxItem Content="50"/>
-                        </ComboBox>
-                        <TextBlock Text="wpisów" Style="{StaticResource LabelStyle}" VerticalAlignment="Center" Margin="10,0,0,0"/>
-                    </StackPanel>
-                    <TextBox x:Name="searchTextBox" Width="200" HorizontalAlignment="Right" Style="{StaticResource TextBoxStyle}" Margin="0,10,20,10" VerticalAlignment="Center"/>
-                    <DataGrid x:Name="domainsDataGrid" AutoGenerateColumns="False" ItemsSource="{Binding Domains}" Background="{StaticResource BackgroundColor}"
+                    <TextBlock Text="Domeny Dozwolone" Style="{StaticResource HeaderStyle}" Margin="10"/>
+                    <DataGrid x:Name="whitelistDataGrid" AutoGenerateColumns="False" ItemsSource="{Binding WhitelistDomains}" Background="{StaticResource BackgroundColor}"
                               GridLinesVisibility="None" HorizontalAlignment="Stretch" VerticalAlignment="Stretch"
                               CanUserAddRows="False" CanUserDeleteRows="False" SelectionMode="Single" Margin="10"
                               CellStyle="{StaticResource DataGridCellStyle}" ColumnHeaderStyle="{StaticResource DataGridColumnHeaderStyle}">
@@ -129,7 +128,34 @@
                                 <DataGridTemplateColumn.CellTemplate>
                                     <DataTemplate>
                                         <StackPanel Orientation="Horizontal">
-                                            <Button Content="Usuń" Style="{StaticResource ButtonStyle}" Click="RemoveFromDomains_Click"/>
+                                            <Button Content="❌" Width="30" Click="RemoveFromWhitelist_Click" Style="{StaticResource ButtonStyle}"/>
+                                            <Button Content="🚫" Width="30" Click="AddToBlacklist_Click" Style="{StaticResource ButtonStyle}"/>
+                                        </StackPanel>
+                                    </DataTemplate>
+                                </DataGridTemplateColumn.CellTemplate>
+                            </DataGridTemplateColumn>
+                        </DataGrid.Columns>
+                    </DataGrid>
+                </StackPanel>
+            </Border>
+
+            <!-- Sekcja domen zablokowanych -->
+            <Border Grid.Row="2" Style="{StaticResource GroupBoxStyle}" Margin="0,17,0,0" Height="Auto">
+                <StackPanel>
+                    <TextBlock Text="Domeny Zablokowane" Style="{StaticResource HeaderStyle}" Margin="10"/>
+                    <DataGrid x:Name="blacklistDataGrid" AutoGenerateColumns="False" ItemsSource="{Binding BlacklistDomains}" Background="{StaticResource BackgroundColor}"
+                              GridLinesVisibility="None" HorizontalAlignment="Stretch" VerticalAlignment="Stretch"
+                              CanUserAddRows="False" CanUserDeleteRows="False" SelectionMode="Single" Margin="10"
+                              CellStyle="{StaticResource DataGridCellStyle}" ColumnHeaderStyle="{StaticResource DataGridColumnHeaderStyle}">
+                        <DataGrid.Columns>
+                            <DataGridTextColumn Header="Domena" Binding="{Binding DomainName}" Width="*" ElementStyle="{StaticResource LabelStyle}"/>
+                            <DataGridTextColumn Header="Komentarz" Binding="{Binding Comment}" Width="*" ElementStyle="{StaticResource LabelStyle}"/>
+                            <DataGridTemplateColumn Header="Akcje" Width="Auto">
+                                <DataGridTemplateColumn.CellTemplate>
+                                    <DataTemplate>
+                                        <StackPanel Orientation="Horizontal">
+                                            <Button Content="❌" Width="30" Click="RemoveFromBlacklist_Click" Style="{StaticResource ButtonStyle}"/>
+                                            <Button Content="✔️" Width="30" Click="AddToWhitelist_Click" Style="{StaticResource ButtonStyle}"/>
                                         </StackPanel>
                                     </DataTemplate>
                                 </DataGridTemplateColumn.CellTemplate>

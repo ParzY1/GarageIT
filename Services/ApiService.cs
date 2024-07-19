@@ -6,6 +6,7 @@ using System.Text;
 using System.Threading.Tasks;
 using Newtonsoft.Json;
 using Garage.Models;
+using DirectoryDomain = System.DirectoryServices.ActiveDirectory.Domain; // Aliasowanie innej klasy Domain
 
 namespace Garage.Services
 {
@@ -173,37 +174,37 @@ namespace Garage.Services
         public async Task<string> AddToBlacklist(string baseUrl, string domain)
         {
             var domainData = new { domain };
-            return await PostAsync($"{baseUrl}/blacklist", domainData);
+            return await PostAsync($"{baseUrl}/domains/addToBlacklist", domainData);
         }
 
         public async Task<string> AddToWhitelist(string baseUrl, string domain)
         {
             var domainData = new { domain };
-            return await PostAsync($"{baseUrl}/whitelist", domainData);
+            return await PostAsync($"{baseUrl}/domains/addToWhitelist", domainData);
         }
 
         public async Task<string> RemoveFromBlacklist(string baseUrl, string domain)
         {
             var domainData = new { domain };
-            return await PostAsync($"{baseUrl}/blacklist/remove", domainData);
+            return await PostAsync($"{baseUrl}/domains/removeFromBlacklist", domainData);
         }
 
         public async Task<string> RemoveFromWhitelist(string baseUrl, string domain)
         {
             var domainData = new { domain };
-            return await PostAsync($"{baseUrl}/whitelist/remove", domainData);
+            return await PostAsync($"{baseUrl}/domains/removeFromWhitelist", domainData);
         }
 
         public async Task<string> EnableDomain(string baseUrl, string domain)
         {
             var domainData = new { domain };
-            return await PostAsync($"{baseUrl}/domain/enable", domainData);
+            return await PostAsync($"{baseUrl}/domains/enableDomain", domainData);
         }
 
         public async Task<string> DisableDomain(string baseUrl, string domain)
         {
             var domainData = new { domain };
-            return await PostAsync($"{baseUrl}/domain/disable", domainData);
+            return await PostAsync($"{baseUrl}/domains/disableDomain", domainData);
         }
 
         public async Task<string> EnablePiHole(string baseUrl)
@@ -256,6 +257,41 @@ namespace Garage.Services
             Console.WriteLine("EditClientCommentAsync response: " + response);
         }
 
+        public async Task<List<Garage.Models.Domain>> GetDomainsAsync(string baseUrl)
+        {
+            AddAuthorizationHeader();
+            var response = await _httpClient.GetAsync($"{baseUrl}/domains/getDomains");
+            if (response.IsSuccessStatusCode)
+            {
+                var content = await response.Content.ReadAsStringAsync();
+                return JsonConvert.DeserializeObject<List<Garage.Models.Domain>>(content);
+            }
+            throw new Exception("Failed to fetch domains data");
+        }
+
+        public async Task<string> AddToDomainList(string baseUrl, string domain, string comment)
+        {
+            var domainData = new { domain, comment };
+            return await PostAsync($"{baseUrl}/domains/addToDomainList", domainData);
+        }
+
+        public async Task<string> RemoveFromDomainList(string baseUrl, string domain)
+        {
+            var domainData = new { domain };
+            return await PostAsync($"{baseUrl}/domains/removeFromDomainList", domainData);
+        }
+
+        public async Task<List<Domain>> GetBlacklistAsync(string baseUrl)
+        {
+            var response = await GetAsync<ApiResponse<List<Domain>>>($"{baseUrl}/domains/getBlacklist");
+            return response.Data;
+        }
+
+        public async Task<List<Domain>> GetWhitelistAsync(string baseUrl)
+        {
+            var response = await GetAsync<ApiResponse<List<Domain>>>($"{baseUrl}/domains/getWhitelist");
+            return response.Data;
+        }
     }
 
     public class ApiResponse<T>
