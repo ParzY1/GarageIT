@@ -1,28 +1,40 @@
 const axios = require('axios');
 const sqlite3 = require('sqlite3').verbose();
 
-const addToBlacklist = async (domain) => {
+const addToBlacklist = async (domain, comment) => {
     try {
         const response = await axios.get(`${process.env.SERWER}/admin/api.php?list=black&add=${domain}&auth=${process.env.KLUCZ}`);
-        if (response.data === 'OK') {
+        console.log('Response Data:', response.data); // Debugging line
+
+        if (response.data.success) {
+            if (comment) {
+                await editDomainComment(domain, comment);
+            }
             return `Domain "${domain}" added to blacklist successfully`;
         } else {
-            throw new Error('Failed to add domain to blacklist');
+            throw new Error(response.data.message || 'Failed to add domain to blacklist');
         }
     } catch (error) {
+        console.error('Error adding to blacklist:', error.message); // Debugging line
         throw new Error(`Error adding domain to blacklist: ${error.message}`);
     }
 };
 
-const addToWhitelist = async (domain) => {
+const addToWhitelist = async (domain, comment) => {
     try {
         const response = await axios.get(`${process.env.SERWER}/admin/api.php?list=white&add=${domain}&auth=${process.env.KLUCZ}`);
-        if (response.data === 'OK') {
+        console.log('Response Data:', response.data); // Debugging line
+
+        if (response.data.success) {
+            if (comment) {
+                await editDomainComment(domain, comment);
+            }
             return `Domain "${domain}" added to whitelist successfully`;
         } else {
-            throw new Error('Failed to add domain to whitelist');
+            throw new Error(response.data.message || 'Failed to add domain to whitelist');
         }
     } catch (error) {
+        console.error('Error adding to whitelist:', error.message); // Debugging line
         throw new Error(`Error adding domain to whitelist: ${error.message}`);
     }
 };

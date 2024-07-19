@@ -1,15 +1,17 @@
 const sqlite3 = require('sqlite3').verbose();
 
-const addClient = (ip) => {
+const addClient = (ip, comment = '') => {
     return new Promise((resolve, reject) => {
         let db = new sqlite3.Database(process.env.BAZA, sqlite3.OPEN_READWRITE, (err) => {
             if (err) {
                 return reject(err);
             }
         });
-  
-        const query = `INSERT INTO "client" (ip) VALUES (?)`;
-        db.run(query, [ip], function (err) {
+
+        console.log(`Adding client with IP: ${ip} and comment: ${comment || 'N/A'}`);
+
+        const query = `INSERT INTO "client" (ip, comment) VALUES (?, ?)`;
+        db.run(query, [ip, comment], function (err) {
             db.close();
             if (err) {
                 return reject(err);

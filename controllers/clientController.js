@@ -2,10 +2,10 @@ const clientService = require('../services/clientService');
 const auditService = require('../services/auditService');
 
 const addClient = async (req, res) => {
-    const { ip } = req.body;
+    const { ip, comment } = req.body;
     try {
-        const result = await clientService.addClient(ip);
-        await auditService.logAction('addClient', `Added client ${ip}`);
+        const result = await clientService.addClient(ip, comment);
+        await auditService.logAction('addClient', `Added client ${ip} with comment: ${comment || 'N/A'}`);
         res.json(result);
     } catch (error) {
         res.status(500).json({ error: error.message });

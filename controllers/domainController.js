@@ -2,22 +2,22 @@ const domainService = require('../services/domainService');
 const auditService = require('../services/auditService');
 
 const addToBlacklist = async (req, res) => {
-    const { domain } = req.body;
+    const { domain, comment } = req.body;
     try {
-        const result = await domainService.addToBlacklist(domain);
-        await auditService.logAction('addToBlacklist', `Added ${domain} to blacklist`);
-        res.json(result);
+        const result = await domainService.addToBlacklist(domain, comment);
+        await auditService.logAction('addToBlacklist', `Added ${domain} to blacklist with comment "${comment}"`);
+        res.json({ success: true, message: result });
     } catch (error) {
         res.status(500).json({ error: error.message });
     }
 };
 
 const addToWhitelist = async (req, res) => {
-    const { domain } = req.body;
+    const { domain, comment } = req.body;
     try {
-        const result = await domainService.addToWhitelist(domain);
-        await auditService.logAction('addToWhitelist', `Added ${domain} to whitelist`);
-        res.json(result);
+        const result = await domainService.addToWhitelist(domain, comment);
+        await auditService.logAction('addToWhitelist', `Added ${domain} to whitelist with comment "${comment}"`);
+        res.json({ success: true, message: result });
     } catch (error) {
         res.status(500).json({ error: error.message });
     }
