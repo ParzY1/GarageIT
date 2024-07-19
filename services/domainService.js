@@ -42,10 +42,10 @@ const addToWhitelist = async (domain, comment) => {
 const removeFromBlacklist = async (domain) => {
     try {
         const response = await axios.get(`${process.env.SERWER}/admin/api.php?list=black&sub=${domain}&auth=${process.env.KLUCZ}`);
-        if (response.data === 'OK') {
+        if (response.data.success) {
             return `Domain "${domain}" removed from blacklist successfully`;
         } else {
-            throw new Error('Failed to remove domain from blacklist');
+            throw new Error(response.data.message || 'Failed to remove domain from blacklist');
         }
     } catch (error) {
         throw new Error(`Error removing domain from blacklist: ${error.message}`);
@@ -55,10 +55,10 @@ const removeFromBlacklist = async (domain) => {
 const removeFromWhitelist = async (domain) => {
     try {
         const response = await axios.get(`${process.env.SERWER}/admin/api.php?list=white&sub=${domain}&auth=${process.env.KLUCZ}`);
-        if (response.data === 'OK') {
+        if (response.data.success) {
             return `Domain "${domain}" removed from whitelist successfully`;
         } else {
-            throw new Error('Failed to remove domain from whitelist');
+            throw new Error(response.data.message || 'Failed to remove domain from whitelist');
         }
     } catch (error) {
         throw new Error(`Error removing domain from whitelist: ${error.message}`);

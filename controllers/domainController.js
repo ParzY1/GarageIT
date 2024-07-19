@@ -28,7 +28,7 @@ const removeFromBlacklist = async (req, res) => {
     try {
         const result = await domainService.removeFromBlacklist(domain);
         await auditService.logAction('removeFromBlacklist', `Removed ${domain} from blacklist`);
-        res.json(result);
+        res.json({ success: true, message: result });
     } catch (error) {
         res.status(500).json({ error: error.message });
     }
@@ -57,7 +57,7 @@ const removeFromWhitelist = async (req, res) => {
     try {
         const result = await domainService.removeFromWhitelist(domain);
         await auditService.logAction('removeFromWhitelist', `Removed ${domain} from whitelist`);
-        res.json(result);
+        res.json({ success: true, message: result });
     } catch (error) {
         res.status(500).json({ error: error.message });
     }
