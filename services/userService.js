@@ -8,11 +8,11 @@ const registerUser = async (username, password) => {
     }
 
     const { tokenSecret, refreshTokenSecret } = generateSecrets();
-    const user = await User.create({ 
-        username, 
-        password, 
-        tokenSecret, 
-        refreshTokenSecret 
+    const user = await User.create({
+        username,
+        password,
+        tokenSecret,
+        refreshTokenSecret
     });
 
     const token = generateToken(user._id, user.tokenSecret);

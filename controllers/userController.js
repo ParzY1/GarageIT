@@ -1,7 +1,13 @@
+const { validationResult } = require('express-validator');
 const userService = require('../services/userService');
 const auditService = require('../services/auditService');
 
 const register = async (req, res) => {
+    const errors = validationResult(req);
+    if (!errors.isEmpty()) {
+        return res.status(400).json({ errors: errors.array() });
+    }
+
     const { username, password } = req.body;
     try {
         const user = await userService.registerUser(username, password);
@@ -13,6 +19,11 @@ const register = async (req, res) => {
 };
 
 const login = async (req, res) => {
+    const errors = validationResult(req);
+    if (!errors.isEmpty()) {
+        return res.status(400).json({ errors: errors.array() });
+    }
+
     const { username, password } = req.body;
     try {
         const user = await userService.loginUser(username, password);
@@ -24,6 +35,11 @@ const login = async (req, res) => {
 };
 
 const refreshToken = async (req, res) => {
+    const errors = validationResult(req);
+    if (!errors.isEmpty()) {
+        return res.status(400).json({ errors: errors.array() });
+    }
+
     const { token } = req.body;
     try {
         const tokens = await userService.refreshUserToken(token);
