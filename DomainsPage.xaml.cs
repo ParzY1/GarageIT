@@ -67,12 +67,17 @@ namespace Garage
             {
                 if (listType == "Dozwolone")
                 {
-                    await _apiService.AddToWhitelist(baseUrl, domain);
+                    await _apiService.AddToWhitelist(baseUrl, domain, comment);
                 }
                 else if (listType == "Zablokowane")
                 {
-                    await _apiService.AddToBlacklist(baseUrl, domain);
+                    await _apiService.AddToBlacklist(baseUrl, domain, comment);
                 }
+
+                // Clear input fields after adding
+                domainTextBox.Text = string.Empty;
+                commentTextBox.Text = string.Empty;
+                listComboBox.SelectedIndex = -1;
 
                 await LoadDomains();
             }
@@ -144,6 +149,11 @@ namespace Garage
             {
                 MessageBox.Show($"Error adding domain to blacklist: {ex.Message}");
             }
+        }
+
+        private void listComboBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+
         }
     }
 }

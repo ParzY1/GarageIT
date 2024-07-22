@@ -7,7 +7,7 @@
              mc:Ignorable="d"
              d:DesignWidth="800" Height="669">
     <Grid Margin="20">
-        <Grid VerticalAlignment="Top" Margin="0,27,0,0">
+        <Grid VerticalAlignment="Top" Margin="-3,4,0,0" Height="174">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="*" />
                 <ColumnDefinition Width="*" />
@@ -15,8 +15,8 @@
                 <ColumnDefinition Width="*" />
             </Grid.ColumnDefinitions>
 
-            <Border Grid.Column="0" Background="#2196F3" Padding="20" CornerRadius="10" Margin="10">
-                <StackPanel>
+            <Border Grid.Column="0" Background="#2196F3" Padding="10" CornerRadius="10" Margin="10">
+                <StackPanel Margin="15,36,0,0">
                     <TextBlock Text="Total Queries" Foreground="White" FontWeight="Bold" FontSize="16"/>
                     <TextBlock x:Name="TextBlockTotalQueries" Text="0" Foreground="White" FontSize="24" FontWeight="Bold"/>
                     <TextBlock Text="0 active clients" Foreground="White" FontSize="12"/>
@@ -24,23 +24,23 @@
             </Border>
 
             <Border Grid.Column="1" Background="#FF5722" Padding="20" CornerRadius="10" Margin="10">
-                <StackPanel>
+                <StackPanel Margin="0,20,0,0">
                     <TextBlock Text="Queries Blocked" Foreground="White" FontWeight="Bold" FontSize="16"/>
                     <TextBlock x:Name="TextBlockBlockedQueries" Text="0" Foreground="White" FontSize="24" FontWeight="Bold"/>
                     <TextBlock Text="List blocked queries" Foreground="White" FontSize="12"/>
                 </StackPanel>
             </Border>
 
-            <Border Grid.Column="2" Background="#FFC107" Padding="20" CornerRadius="10" Margin="10">
-                <StackPanel>
-                    <TextBlock Text="Percentage Blocked" Foreground="White" FontWeight="Bold" FontSize="16"/>
-                    <TextBlock x:Name="TextBlockPercentageBlocked" Text="0%" Foreground="White" FontSize="24" FontWeight="Bold"/>
+            <Border Grid.Column="2" Background="#FFC107" Padding="20" CornerRadius="10" Margin="10,9,8,11">
+                <StackPanel Margin="-10,23,-5,3">
+                    <TextBlock Text="Percentage Blocked" Foreground="White" FontWeight="Bold" FontSize="16" Height="21" Width="156"/>
+                    <TextBlock x:Name="TextBlockPercentageBlocked" Text="0%" Foreground="White" FontSize="24" FontWeight="Bold" Height="26" Width="155"/>
                     <TextBlock Text="List all queries" Foreground="White" FontSize="12"/>
                 </StackPanel>
             </Border>
 
             <Border Grid.Column="3" Background="#4CAF50" Padding="20" CornerRadius="10" Margin="10">
-                <StackPanel>
+                <StackPanel Margin="-9,28,-10,0">
                     <TextBlock Text="Domains on Adlists" Foreground="White" FontWeight="Bold" FontSize="16"/>
                     <TextBlock x:Name="TextBlockDomainsOnAdlists" Text="0" Foreground="White" FontSize="24" FontWeight="Bold"/>
                     <TextBlock Text="Manage adlists" Foreground="White" FontSize="12"/>
@@ -48,11 +48,11 @@
             </Border>
         </Grid>
 
-        <Border Background="#2D2D2D" Padding="20" CornerRadius="10" Margin="10,205,10,96">
+        <Border Background="#2D2D2D" Padding="20" CornerRadius="10" Margin="10,205,10,5">
             <StackPanel>
                 <TextBlock Text="Total queries over last 24 hours" Foreground="White" FontWeight="Bold" FontSize="18" Margin="0,0,0,10"/>
-                <Border Background="#1D1D1D" Padding="10" CornerRadius="5" Height="231">
-                    <lvc:CartesianChart x:Name="Chart" Loaded="Chart_Loaded" LegendLocation="Right" Foreground="White" Margin="0,10,0,-10">
+                <Border Background="#1D1D1D" Padding="10" CornerRadius="5" Height="340">
+                    <lvc:CartesianChart x:Name="QueriesChart" Loaded="Chart_Loaded" LegendLocation="Right" Foreground="White" Margin="0,10,0,-3">
                         <lvc:CartesianChart.Series>
                             <lvc:ColumnSeries Title="Total Queries" Values="{Binding TotalQueries}" Fill="#2196F3"/>
                             <lvc:ColumnSeries Title="Queries Blocked" Values="{Binding BlockedQueries}" Fill="#FF5722"/>

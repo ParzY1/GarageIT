@@ -115,7 +115,7 @@
                         <TextBlock Text="Nazwa:" Style="{StaticResource LabelStyle}" VerticalAlignment="Center"/>
                         <TextBox x:Name="domainTextBox" Width="231" Style="{StaticResource TextBoxStyle}"/>
                         <TextBlock Text="Opis:" Style="{StaticResource LabelStyle}" Margin="10,0,0,0" VerticalAlignment="Center"/>
-                        <TextBox x:Name="groupDescriptionTextBox" Width="238" Style="{StaticResource TextBoxStyle}"/>
+                        <TextBox x:Name="groupDescriptionTextBox" Width="238" Style="{StaticResource TextBoxStyle}" SelectionBrush="#FFD76200"/>
                         <Button Content="Dodaj" Style="{StaticResource ButtonStyle}" Margin="10,0,0,0" Click="AddToBlacklist_Click" Width="49"/>
                     </StackPanel>
                     <TextBlock Text="Wskazówki:" Style="{StaticResource LabelStyle}" FontWeight="Bold" Margin="10,0,0,0"/>
@@ -129,7 +129,7 @@
                     <TextBlock Text="Lista grup" Style="{StaticResource HeaderStyle}" Margin="10"/>
                     <StackPanel Orientation="Horizontal" VerticalAlignment="Center" Margin="10,0,10,0">
                         <TextBlock Text="Pokaż" Style="{StaticResource LabelStyle}" VerticalAlignment="Center"/>
-                        <ComboBox Width="60" Style="{StaticResource ComboBoxStyle}" SelectedIndex="0">
+                        <ComboBox Width="60" Style="{StaticResource ComboBoxStyle}" SelectedIndex="0" Background="Black">
                             <ComboBoxItem Content="10" Background="{StaticResource ComboBoxPopupBackgroundColor}" Foreground="{StaticResource TextColor}"/>
                             <ComboBoxItem Content="25" Background="{StaticResource ComboBoxPopupBackgroundColor}" Foreground="{StaticResource TextColor}"/>
                             <ComboBoxItem Content="50" Background="{StaticResource ComboBoxPopupBackgroundColor}" Foreground="{StaticResource TextColor}"/>

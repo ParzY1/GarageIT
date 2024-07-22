@@ -183,6 +183,18 @@ namespace Garage.Services
             return await PostAsync($"{baseUrl}/domains/addToWhitelist", domainData);
         }
 
+        public async Task<string> AddToBlacklist(string baseUrl, string domain, string comment)
+        {
+            var domainData = new { domain, comment };
+            return await PostAsync($"{baseUrl}/domains/addToBlacklist", domainData);
+        }
+
+        public async Task<string> AddToWhitelist(string baseUrl, string domain, string comment)
+        {
+            var domainData = new { domain, comment };
+            return await PostAsync($"{baseUrl}/domains/addToWhitelist", domainData);
+        }
+
         public async Task<string> RemoveFromBlacklist(string baseUrl, string domain)
         {
             var domainData = new { domain };
@@ -267,18 +279,6 @@ namespace Garage.Services
                 return JsonConvert.DeserializeObject<List<Garage.Models.Domain>>(content);
             }
             throw new Exception("Failed to fetch domains data");
-        }
-
-        public async Task<string> AddToDomainList(string baseUrl, string domain, string comment)
-        {
-            var domainData = new { domain, comment };
-            return await PostAsync($"{baseUrl}/domains/addToDomainList", domainData);
-        }
-
-        public async Task<string> RemoveFromDomainList(string baseUrl, string domain)
-        {
-            var domainData = new { domain };
-            return await PostAsync($"{baseUrl}/domains/removeFromDomainList", domainData);
         }
 
         public async Task<List<Domain>> GetBlacklistAsync(string baseUrl)

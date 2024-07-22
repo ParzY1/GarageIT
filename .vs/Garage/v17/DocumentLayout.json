@@ -1,160 +1,160 @@
 {
   "Version": 1,
-  "WorkspaceRootPath": "C:\\Users\\ADMIN\\Desktop\\GarageIT\\GarageIT\\",
+  "WorkspaceRootPath": "C:\\Users\\marce\\Desktop\\GarageIT\\GarageIT\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{BF9A7863-3E92-4F40-AC63-FEFD7AEA5206}|Garage.csproj|c:\\users\\admin\\desktop\\garageit\\garageit\\domainspage.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}",
-      "RelativeMoniker": "D:0:0:{BF9A7863-3E92-4F40-AC63-FEFD7AEA5206}|Garage.csproj|solutionrelative:domainspage.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{BF9A7863-3E92-4F40-AC63-FEFD7AEA5206}|Garage.csproj|c:\\users\\admin\\desktop\\garageit\\garageit\\domainspage.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{BF9A7863-3E92-4F40-AC63-FEFD7AEA5206}|Garage.csproj|solutionrelative:domainspage.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{BF9A7863-3E92-4F40-AC63-FEFD7AEA5206}|Garage.csproj|c:\\users\\admin\\desktop\\garageit\\garageit\\booleantovisibilityconverter.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{BF9A7863-3E92-4F40-AC63-FEFD7AEA5206}|Garage.csproj|solutionrelative:booleantovisibilityconverter.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{BF9A7863-3E92-4F40-AC63-FEFD7AEA5206}|Garage.csproj|c:\\users\\admin\\desktop\\garageit\\garageit\\loginwindow.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}",
-      "RelativeMoniker": "D:0:0:{BF9A7863-3E92-4F40-AC63-FEFD7AEA5206}|Garage.csproj|solutionrelative:loginwindow.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{BF9A7863-3E92-4F40-AC63-FEFD7AEA5206}|Garage.csproj|c:\\users\\admin\\desktop\\garageit\\garageit\\converters\\statustocolorconverter.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{BF9A7863-3E92-4F40-AC63-FEFD7AEA5206}|Garage.csproj|solutionrelative:converters\\statustocolorconverter.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{BF9A7863-3E92-4F40-AC63-FEFD7AEA5206}|Garage.csproj|c:\\users\\admin\\desktop\\garageit\\garageit\\converters\\statustotextconverter.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{BF9A7863-3E92-4F40-AC63-FEFD7AEA5206}|Garage.csproj|solutionrelative:converters\\statustotextconverter.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{BF9A7863-3E92-4F40-AC63-FEFD7AEA5206}|Garage.csproj|c:\\users\\admin\\desktop\\garageit\\garageit\\blacklistpage.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}",
+      "AbsoluteMoniker": "D:0:0:{BF9A7863-3E92-4F40-AC63-FEFD7AEA5206}|Garage.csproj|c:\\users\\marce\\desktop\\garageit\\garageit\\blacklistpage.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}",
       "RelativeMoniker": "D:0:0:{BF9A7863-3E92-4F40-AC63-FEFD7AEA5206}|Garage.csproj|solutionrelative:blacklistpage.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{BF9A7863-3E92-4F40-AC63-FEFD7AEA5206}|Garage.csproj|c:\\users\\admin\\desktop\\garageit\\garageit\\assemblyinfo.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{BF9A7863-3E92-4F40-AC63-FEFD7AEA5206}|Garage.csproj|solutionrelative:assemblyinfo.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{BF9A7863-3E92-4F40-AC63-FEFD7AEA5206}|Garage.csproj|c:\\users\\marce\\desktop\\garageit\\garageit\\domainspage.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{BF9A7863-3E92-4F40-AC63-FEFD7AEA5206}|Garage.csproj|solutionrelative:domainspage.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{BF9A7863-3E92-4F40-AC63-FEFD7AEA5206}|Garage.csproj|c:\\users\\admin\\desktop\\garageit\\garageit\\blacklistpage.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{BF9A7863-3E92-4F40-AC63-FEFD7AEA5206}|Garage.csproj|solutionrelative:blacklistpage.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{BF9A7863-3E92-4F40-AC63-FEFD7AEA5206}|Garage.csproj|c:\\users\\marce\\desktop\\garageit\\garageit\\domainspage.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}",
+      "RelativeMoniker": "D:0:0:{BF9A7863-3E92-4F40-AC63-FEFD7AEA5206}|Garage.csproj|solutionrelative:domainspage.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{BF9A7863-3E92-4F40-AC63-FEFD7AEA5206}|Garage.csproj|c:\\users\\admin\\desktop\\garageit\\garageit\\app.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{BF9A7863-3E92-4F40-AC63-FEFD7AEA5206}|Garage.csproj|solutionrelative:app.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{BF9A7863-3E92-4F40-AC63-FEFD7AEA5206}|Garage.csproj|c:\\users\\admin\\desktop\\garageit\\garageit\\app.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}",
-      "RelativeMoniker": "D:0:0:{BF9A7863-3E92-4F40-AC63-FEFD7AEA5206}|Garage.csproj|solutionrelative:app.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{BF9A7863-3E92-4F40-AC63-FEFD7AEA5206}|Garage.csproj|c:\\users\\admin\\desktop\\garageit\\garageit\\mainwindow.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}",
-      "RelativeMoniker": "D:0:0:{BF9A7863-3E92-4F40-AC63-FEFD7AEA5206}|Garage.csproj|solutionrelative:mainwindow.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{BF9A7863-3E92-4F40-AC63-FEFD7AEA5206}|Garage.csproj|c:\\users\\admin\\desktop\\garageit\\garageit\\manageaccountpage.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}",
-      "RelativeMoniker": "D:0:0:{BF9A7863-3E92-4F40-AC63-FEFD7AEA5206}|Garage.csproj|solutionrelative:manageaccountpage.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{BF9A7863-3E92-4F40-AC63-FEFD7AEA5206}|Garage.csproj|c:\\users\\admin\\desktop\\garageit\\garageit\\manageaccountwindow.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}",
-      "RelativeMoniker": "D:0:0:{BF9A7863-3E92-4F40-AC63-FEFD7AEA5206}|Garage.csproj|solutionrelative:manageaccountwindow.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{BF9A7863-3E92-4F40-AC63-FEFD7AEA5206}|Garage.csproj|c:\\users\\admin\\desktop\\garageit\\garageit\\manageclientspage.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}",
-      "RelativeMoniker": "D:0:0:{BF9A7863-3E92-4F40-AC63-FEFD7AEA5206}|Garage.csproj|solutionrelative:manageclientspage.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{BF9A7863-3E92-4F40-AC63-FEFD7AEA5206}|Garage.csproj|c:\\users\\admin\\desktop\\garageit\\garageit\\whitelistpage.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}",
-      "RelativeMoniker": "D:0:0:{BF9A7863-3E92-4F40-AC63-FEFD7AEA5206}|Garage.csproj|solutionrelative:whitelistpage.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{BF9A7863-3E92-4F40-AC63-FEFD7AEA5206}|Garage.csproj|c:\\users\\admin\\desktop\\garageit\\garageit\\statustocolorconverter.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{BF9A7863-3E92-4F40-AC63-FEFD7AEA5206}|Garage.csproj|solutionrelative:statustocolorconverter.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{BF9A7863-3E92-4F40-AC63-FEFD7AEA5206}|Garage.csproj|c:\\users\\admin\\desktop\\garageit\\garageit\\settingspage.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}",
-      "RelativeMoniker": "D:0:0:{BF9A7863-3E92-4F40-AC63-FEFD7AEA5206}|Garage.csproj|solutionrelative:settingspage.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{BF9A7863-3E92-4F40-AC63-FEFD7AEA5206}|Garage.csproj|c:\\users\\admin\\desktop\\garageit\\garageit\\models\\client.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{BF9A7863-3E92-4F40-AC63-FEFD7AEA5206}|Garage.csproj|solutionrelative:models\\client.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{BF9A7863-3E92-4F40-AC63-FEFD7AEA5206}|Garage.csproj|c:\\users\\admin\\desktop\\garageit\\garageit\\statisticspage.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}",
-      "RelativeMoniker": "D:0:0:{BF9A7863-3E92-4F40-AC63-FEFD7AEA5206}|Garage.csproj|solutionrelative:statisticspage.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{BF9A7863-3E92-4F40-AC63-FEFD7AEA5206}|Garage.csproj|c:\\users\\admin\\desktop\\garageit\\garageit\\whitelistpage.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{BF9A7863-3E92-4F40-AC63-FEFD7AEA5206}|Garage.csproj|solutionrelative:whitelistpage.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{BF9A7863-3E92-4F40-AC63-FEFD7AEA5206}|Garage.csproj|c:\\users\\admin\\desktop\\garageit\\garageit\\services\\apiservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{BF9A7863-3E92-4F40-AC63-FEFD7AEA5206}|Garage.csproj|solutionrelative:services\\apiservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{BF9A7863-3E92-4F40-AC63-FEFD7AEA5206}|Garage.csproj|c:\\users\\admin\\desktop\\garageit\\garageit\\models\\domain.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{BF9A7863-3E92-4F40-AC63-FEFD7AEA5206}|Garage.csproj|solutionrelative:models\\domain.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{BF9A7863-3E92-4F40-AC63-FEFD7AEA5206}|Garage.csproj|c:\\users\\admin\\desktop\\garageit\\garageit\\models\\group.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{BF9A7863-3E92-4F40-AC63-FEFD7AEA5206}|Garage.csproj|solutionrelative:models\\group.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{BF9A7863-3E92-4F40-AC63-FEFD7AEA5206}|Garage.csproj|c:\\users\\admin\\desktop\\garageit\\garageit\\manageaccountpage.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{BF9A7863-3E92-4F40-AC63-FEFD7AEA5206}|Garage.csproj|solutionrelative:manageaccountpage.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{BF9A7863-3E92-4F40-AC63-FEFD7AEA5206}|Garage.csproj|c:\\users\\admin\\desktop\\garageit\\garageit\\services\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "AbsoluteMoniker": "D:0:0:{BF9A7863-3E92-4F40-AC63-FEFD7AEA5206}|Garage.csproj|c:\\users\\marce\\desktop\\garageit\\garageit\\services\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{BF9A7863-3E92-4F40-AC63-FEFD7AEA5206}|Garage.csproj|solutionrelative:services\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{BF9A7863-3E92-4F40-AC63-FEFD7AEA5206}|Garage.csproj|c:\\users\\admin\\desktop\\garageit\\garageit\\mainwindow.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "AbsoluteMoniker": "D:0:0:{BF9A7863-3E92-4F40-AC63-FEFD7AEA5206}|Garage.csproj|c:\\users\\marce\\desktop\\garageit\\garageit\\services\\apiservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{BF9A7863-3E92-4F40-AC63-FEFD7AEA5206}|Garage.csproj|solutionrelative:services\\apiservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{BF9A7863-3E92-4F40-AC63-FEFD7AEA5206}|Garage.csproj|c:\\users\\marce\\desktop\\garageit\\garageit\\booleantovisibilityconverter.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{BF9A7863-3E92-4F40-AC63-FEFD7AEA5206}|Garage.csproj|solutionrelative:booleantovisibilityconverter.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{BF9A7863-3E92-4F40-AC63-FEFD7AEA5206}|Garage.csproj|c:\\users\\marce\\desktop\\garageit\\garageit\\statisticspage.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}",
+      "RelativeMoniker": "D:0:0:{BF9A7863-3E92-4F40-AC63-FEFD7AEA5206}|Garage.csproj|solutionrelative:statisticspage.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{BF9A7863-3E92-4F40-AC63-FEFD7AEA5206}|Garage.csproj|c:\\users\\marce\\desktop\\garageit\\garageit\\converters\\statustocolorconverter.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{BF9A7863-3E92-4F40-AC63-FEFD7AEA5206}|Garage.csproj|solutionrelative:converters\\statustocolorconverter.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{BF9A7863-3E92-4F40-AC63-FEFD7AEA5206}|Garage.csproj|c:\\users\\marce\\desktop\\garageit\\garageit\\manageaccountpage.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}",
+      "RelativeMoniker": "D:0:0:{BF9A7863-3E92-4F40-AC63-FEFD7AEA5206}|Garage.csproj|solutionrelative:manageaccountpage.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{BF9A7863-3E92-4F40-AC63-FEFD7AEA5206}|Garage.csproj|c:\\users\\marce\\desktop\\garageit\\garageit\\loginwindow.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}",
+      "RelativeMoniker": "D:0:0:{BF9A7863-3E92-4F40-AC63-FEFD7AEA5206}|Garage.csproj|solutionrelative:loginwindow.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{BF9A7863-3E92-4F40-AC63-FEFD7AEA5206}|Garage.csproj|c:\\users\\marce\\desktop\\garageit\\garageit\\converters\\statustotextconverter.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{BF9A7863-3E92-4F40-AC63-FEFD7AEA5206}|Garage.csproj|solutionrelative:converters\\statustotextconverter.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{BF9A7863-3E92-4F40-AC63-FEFD7AEA5206}|Garage.csproj|c:\\users\\marce\\desktop\\garageit\\garageit\\assemblyinfo.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{BF9A7863-3E92-4F40-AC63-FEFD7AEA5206}|Garage.csproj|solutionrelative:assemblyinfo.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{BF9A7863-3E92-4F40-AC63-FEFD7AEA5206}|Garage.csproj|c:\\users\\marce\\desktop\\garageit\\garageit\\blacklistpage.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{BF9A7863-3E92-4F40-AC63-FEFD7AEA5206}|Garage.csproj|solutionrelative:blacklistpage.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{BF9A7863-3E92-4F40-AC63-FEFD7AEA5206}|Garage.csproj|c:\\users\\marce\\desktop\\garageit\\garageit\\app.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{BF9A7863-3E92-4F40-AC63-FEFD7AEA5206}|Garage.csproj|solutionrelative:app.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{BF9A7863-3E92-4F40-AC63-FEFD7AEA5206}|Garage.csproj|c:\\users\\marce\\desktop\\garageit\\garageit\\app.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}",
+      "RelativeMoniker": "D:0:0:{BF9A7863-3E92-4F40-AC63-FEFD7AEA5206}|Garage.csproj|solutionrelative:app.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{BF9A7863-3E92-4F40-AC63-FEFD7AEA5206}|Garage.csproj|c:\\users\\marce\\desktop\\garageit\\garageit\\mainwindow.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}",
+      "RelativeMoniker": "D:0:0:{BF9A7863-3E92-4F40-AC63-FEFD7AEA5206}|Garage.csproj|solutionrelative:mainwindow.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{BF9A7863-3E92-4F40-AC63-FEFD7AEA5206}|Garage.csproj|c:\\users\\marce\\desktop\\garageit\\garageit\\manageaccountwindow.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}",
+      "RelativeMoniker": "D:0:0:{BF9A7863-3E92-4F40-AC63-FEFD7AEA5206}|Garage.csproj|solutionrelative:manageaccountwindow.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{BF9A7863-3E92-4F40-AC63-FEFD7AEA5206}|Garage.csproj|c:\\users\\marce\\desktop\\garageit\\garageit\\manageclientspage.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}",
+      "RelativeMoniker": "D:0:0:{BF9A7863-3E92-4F40-AC63-FEFD7AEA5206}|Garage.csproj|solutionrelative:manageclientspage.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{BF9A7863-3E92-4F40-AC63-FEFD7AEA5206}|Garage.csproj|c:\\users\\marce\\desktop\\garageit\\garageit\\whitelistpage.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}",
+      "RelativeMoniker": "D:0:0:{BF9A7863-3E92-4F40-AC63-FEFD7AEA5206}|Garage.csproj|solutionrelative:whitelistpage.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{BF9A7863-3E92-4F40-AC63-FEFD7AEA5206}|Garage.csproj|c:\\users\\marce\\desktop\\garageit\\garageit\\statustocolorconverter.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{BF9A7863-3E92-4F40-AC63-FEFD7AEA5206}|Garage.csproj|solutionrelative:statustocolorconverter.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{BF9A7863-3E92-4F40-AC63-FEFD7AEA5206}|Garage.csproj|c:\\users\\marce\\desktop\\garageit\\garageit\\settingspage.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}",
+      "RelativeMoniker": "D:0:0:{BF9A7863-3E92-4F40-AC63-FEFD7AEA5206}|Garage.csproj|solutionrelative:settingspage.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{BF9A7863-3E92-4F40-AC63-FEFD7AEA5206}|Garage.csproj|c:\\users\\marce\\desktop\\garageit\\garageit\\models\\client.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{BF9A7863-3E92-4F40-AC63-FEFD7AEA5206}|Garage.csproj|solutionrelative:models\\client.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{BF9A7863-3E92-4F40-AC63-FEFD7AEA5206}|Garage.csproj|c:\\users\\marce\\desktop\\garageit\\garageit\\whitelistpage.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{BF9A7863-3E92-4F40-AC63-FEFD7AEA5206}|Garage.csproj|solutionrelative:whitelistpage.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{BF9A7863-3E92-4F40-AC63-FEFD7AEA5206}|Garage.csproj|c:\\users\\marce\\desktop\\garageit\\garageit\\models\\domain.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{BF9A7863-3E92-4F40-AC63-FEFD7AEA5206}|Garage.csproj|solutionrelative:models\\domain.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{BF9A7863-3E92-4F40-AC63-FEFD7AEA5206}|Garage.csproj|c:\\users\\marce\\desktop\\garageit\\garageit\\models\\group.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{BF9A7863-3E92-4F40-AC63-FEFD7AEA5206}|Garage.csproj|solutionrelative:models\\group.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{BF9A7863-3E92-4F40-AC63-FEFD7AEA5206}|Garage.csproj|c:\\users\\marce\\desktop\\garageit\\garageit\\manageaccountpage.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{BF9A7863-3E92-4F40-AC63-FEFD7AEA5206}|Garage.csproj|solutionrelative:manageaccountpage.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{BF9A7863-3E92-4F40-AC63-FEFD7AEA5206}|Garage.csproj|c:\\users\\marce\\desktop\\garageit\\garageit\\mainwindow.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{BF9A7863-3E92-4F40-AC63-FEFD7AEA5206}|Garage.csproj|solutionrelative:mainwindow.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{BF9A7863-3E92-4F40-AC63-FEFD7AEA5206}|Garage.csproj|c:\\users\\admin\\desktop\\garageit\\garageit\\loginwindow.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "AbsoluteMoniker": "D:0:0:{BF9A7863-3E92-4F40-AC63-FEFD7AEA5206}|Garage.csproj|c:\\users\\marce\\desktop\\garageit\\garageit\\loginwindow.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{BF9A7863-3E92-4F40-AC63-FEFD7AEA5206}|Garage.csproj|solutionrelative:loginwindow.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{BF9A7863-3E92-4F40-AC63-FEFD7AEA5206}|Garage.csproj|c:\\users\\admin\\desktop\\garageit\\garageit\\models\\query.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "AbsoluteMoniker": "D:0:0:{BF9A7863-3E92-4F40-AC63-FEFD7AEA5206}|Garage.csproj|c:\\users\\marce\\desktop\\garageit\\garageit\\models\\query.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{BF9A7863-3E92-4F40-AC63-FEFD7AEA5206}|Garage.csproj|solutionrelative:models\\query.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{BF9A7863-3E92-4F40-AC63-FEFD7AEA5206}|Garage.csproj|c:\\users\\admin\\desktop\\garageit\\garageit\\manageaccountwindow.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "AbsoluteMoniker": "D:0:0:{BF9A7863-3E92-4F40-AC63-FEFD7AEA5206}|Garage.csproj|c:\\users\\marce\\desktop\\garageit\\garageit\\manageaccountwindow.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{BF9A7863-3E92-4F40-AC63-FEFD7AEA5206}|Garage.csproj|solutionrelative:manageaccountwindow.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{BF9A7863-3E92-4F40-AC63-FEFD7AEA5206}|Garage.csproj|c:\\users\\admin\\desktop\\garageit\\garageit\\statisticspage.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "AbsoluteMoniker": "D:0:0:{BF9A7863-3E92-4F40-AC63-FEFD7AEA5206}|Garage.csproj|c:\\users\\marce\\desktop\\garageit\\garageit\\statisticspage.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{BF9A7863-3E92-4F40-AC63-FEFD7AEA5206}|Garage.csproj|solutionrelative:statisticspage.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{BF9A7863-3E92-4F40-AC63-FEFD7AEA5206}|Garage.csproj|c:\\users\\admin\\desktop\\garageit\\garageit\\models\\statistics.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "AbsoluteMoniker": "D:0:0:{BF9A7863-3E92-4F40-AC63-FEFD7AEA5206}|Garage.csproj|c:\\users\\marce\\desktop\\garageit\\garageit\\models\\statistics.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{BF9A7863-3E92-4F40-AC63-FEFD7AEA5206}|Garage.csproj|solutionrelative:models\\statistics.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{BF9A7863-3E92-4F40-AC63-FEFD7AEA5206}|Garage.csproj|c:\\users\\admin\\desktop\\garageit\\garageit\\settingspage.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "AbsoluteMoniker": "D:0:0:{BF9A7863-3E92-4F40-AC63-FEFD7AEA5206}|Garage.csproj|c:\\users\\marce\\desktop\\garageit\\garageit\\settingspage.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{BF9A7863-3E92-4F40-AC63-FEFD7AEA5206}|Garage.csproj|solutionrelative:settingspage.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{BF9A7863-3E92-4F40-AC63-FEFD7AEA5206}|Garage.csproj|c:\\users\\admin\\desktop\\garageit\\garageit\\services\\statistics.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "AbsoluteMoniker": "D:0:0:{BF9A7863-3E92-4F40-AC63-FEFD7AEA5206}|Garage.csproj|c:\\users\\marce\\desktop\\garageit\\garageit\\services\\statistics.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{BF9A7863-3E92-4F40-AC63-FEFD7AEA5206}|Garage.csproj|solutionrelative:services\\statistics.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\marce\\AppData\\Local\\Temp\\.vsdbgsrc\\42457897f1285ffc7ed978cbfb3f7b5933f5cb5427295abb3c44871bab3de3a0\\Application.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{BF9A7863-3E92-4F40-AC63-FEFD7AEA5206}|Garage.csproj|c:\\users\\admin\\desktop\\garageit\\garageit\\manageclientspage.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "AbsoluteMoniker": "D:0:0:{BF9A7863-3E92-4F40-AC63-FEFD7AEA5206}|Garage.csproj|c:\\users\\marce\\desktop\\garageit\\garageit\\manageclientspage.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{BF9A7863-3E92-4F40-AC63-FEFD7AEA5206}|Garage.csproj|solutionrelative:manageclientspage.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\ADMIN\\Desktop\\GarageIT\\GarageIT\\obj\\Release\\net8.0-windows\\ManageClientsPage.g.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\marce\\Desktop\\GarageIT\\GarageIT\\obj\\Release\\net8.0-windows\\ManageClientsPage.g.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:obj\\Release\\net8.0-windows\\ManageClientsPage.g.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\ADMIN\\Desktop\\GarageIT\\GarageIT\\obj\\Release\\net8.0-windows\\StatisticsPage.g.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\marce\\Desktop\\GarageIT\\GarageIT\\obj\\Release\\net8.0-windows\\StatisticsPage.g.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:obj\\Release\\net8.0-windows\\StatisticsPage.g.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{BF9A7863-3E92-4F40-AC63-FEFD7AEA5206}|Garage.csproj|c:\\users\\admin\\desktop\\garageit\\garageit\\garage.csproj||{04B8AB82-A572-4FEF-95CE-5222444B6B64}|",
+      "AbsoluteMoniker": "D:0:0:{BF9A7863-3E92-4F40-AC63-FEFD7AEA5206}|Garage.csproj|c:\\users\\marce\\desktop\\garageit\\garageit\\garage.csproj||{04B8AB82-A572-4FEF-95CE-5222444B6B64}|",
       "RelativeMoniker": "D:0:0:{BF9A7863-3E92-4F40-AC63-FEFD7AEA5206}|Garage.csproj|solutionrelative:garage.csproj||{04B8AB82-A572-4FEF-95CE-5222444B6B64}|"
     }
   ],
@@ -165,7 +165,7 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 1,
+          "SelectedChildIndex": 7,
           "Children": [
             {
               "$type": "Bookmark",
@@ -173,11 +173,11 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 0,
+              "DocumentIndex": 2,
               "Title": "DomainsPage.xaml",
-              "DocumentMoniker": "C:\\Users\\ADMIN\\Desktop\\GarageIT\\GarageIT\\DomainsPage.xaml",
+              "DocumentMoniker": "C:\\Users\\marce\\Desktop\\GarageIT\\GarageIT\\DomainsPage.xaml",
               "RelativeDocumentMoniker": "DomainsPage.xaml",
-              "ToolTip": "C:\\Users\\ADMIN\\Desktop\\GarageIT\\GarageIT\\DomainsPage.xaml",
+              "ToolTip": "C:\\Users\\marce\\Desktop\\GarageIT\\GarageIT\\DomainsPage.xaml",
               "RelativeToolTip": "DomainsPage.xaml",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003549|",
               "WhenOpened": "2024-07-10T09:16:29.816Z",
@@ -185,36 +185,49 @@
             },
             {
               "$type": "Document",
+              "DocumentIndex": 6,
+              "Title": "StatisticsPage.xaml",
+              "DocumentMoniker": "C:\\Users\\marce\\Desktop\\GarageIT\\GarageIT\\StatisticsPage.xaml",
+              "RelativeDocumentMoniker": "StatisticsPage.xaml",
+              "ToolTip": "C:\\Users\\marce\\Desktop\\GarageIT\\GarageIT\\StatisticsPage.xaml",
+              "RelativeToolTip": "StatisticsPage.xaml",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003549|",
+              "WhenOpened": "2024-07-10T10:14:54.897Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
               "DocumentIndex": 1,
               "Title": "DomainsPage.xaml.cs",
-              "DocumentMoniker": "C:\\Users\\ADMIN\\Desktop\\GarageIT\\GarageIT\\DomainsPage.xaml.cs",
+              "DocumentMoniker": "C:\\Users\\marce\\Desktop\\GarageIT\\GarageIT\\DomainsPage.xaml.cs",
               "RelativeDocumentMoniker": "DomainsPage.xaml.cs",
-              "ToolTip": "C:\\Users\\ADMIN\\Desktop\\GarageIT\\GarageIT\\DomainsPage.xaml.cs",
+              "ToolTip": "C:\\Users\\marce\\Desktop\\GarageIT\\GarageIT\\DomainsPage.xaml.cs",
               "RelativeToolTip": "DomainsPage.xaml.cs",
-              "ViewState": "AQIAAGMAAAAAAAAAAAAmwJUAAAAAAAAA",
+              "ViewState": "AQIAAIUAAAAAAAAAAADwv5sAAAAAAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2024-07-12T13:23:14.783Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 3,
-              "Title": "LoginWindow.xaml",
-              "DocumentMoniker": "C:\\Users\\ADMIN\\Desktop\\GarageIT\\GarageIT\\LoginWindow.xaml",
-              "RelativeDocumentMoniker": "LoginWindow.xaml",
-              "ToolTip": "C:\\Users\\ADMIN\\Desktop\\GarageIT\\GarageIT\\LoginWindow.xaml",
-              "RelativeToolTip": "LoginWindow.xaml",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003549|",
-              "WhenOpened": "2024-07-12T11:28:50.441Z",
+              "DocumentIndex": 4,
+              "Title": "ApiService.cs",
+              "DocumentMoniker": "C:\\Users\\marce\\Desktop\\GarageIT\\GarageIT\\Services\\ApiService.cs",
+              "RelativeDocumentMoniker": "Services\\ApiService.cs",
+              "ToolTip": "C:\\Users\\marce\\Desktop\\GarageIT\\GarageIT\\Services\\ApiService.cs",
+              "RelativeToolTip": "Services\\ApiService.cs",
+              "ViewState": "AQIAAA0BAAAAAAAAAAAmwC4BAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-07-10T09:16:13.326Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 2,
+              "DocumentIndex": 5,
               "Title": "BooleanToVisibilityConverter.cs",
-              "DocumentMoniker": "C:\\Users\\ADMIN\\Desktop\\GarageIT\\GarageIT\\BooleanToVisibilityConverter.cs",
+              "DocumentMoniker": "C:\\Users\\marce\\Desktop\\GarageIT\\GarageIT\\BooleanToVisibilityConverter.cs",
               "RelativeDocumentMoniker": "BooleanToVisibilityConverter.cs",
-              "ToolTip": "C:\\Users\\ADMIN\\Desktop\\GarageIT\\GarageIT\\BooleanToVisibilityConverter.cs",
+              "ToolTip": "C:\\Users\\marce\\Desktop\\GarageIT\\GarageIT\\BooleanToVisibilityConverter.cs",
               "RelativeToolTip": "BooleanToVisibilityConverter.cs",
               "ViewState": "AQIAAAAAAAAAAAAAAAAAABcAAAAAAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
@@ -223,53 +236,24 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 4,
-              "Title": "StatusToColorConverter.cs",
-              "DocumentMoniker": "C:\\Users\\ADMIN\\Desktop\\GarageIT\\GarageIT\\Converters\\StatusToColorConverter.cs",
-              "RelativeDocumentMoniker": "Converters\\StatusToColorConverter.cs",
-              "ToolTip": "C:\\Users\\ADMIN\\Desktop\\GarageIT\\GarageIT\\Converters\\StatusToColorConverter.cs",
-              "RelativeToolTip": "Converters\\StatusToColorConverter.cs",
-              "ViewState": "AQIAAAAAAAAAAAAAAAAAABgAAAAAAAAA",
+              "DocumentIndex": 3,
+              "Title": "Program.cs",
+              "DocumentMoniker": "C:\\Users\\marce\\Desktop\\GarageIT\\GarageIT\\Services\\Program.cs",
+              "RelativeDocumentMoniker": "Services\\Program.cs",
+              "ToolTip": "C:\\Users\\marce\\Desktop\\GarageIT\\GarageIT\\Services\\Program.cs",
+              "RelativeToolTip": "Services\\Program.cs",
+              "ViewState": "AQIAABcAAAAAAAAAAAAswCoAAABCAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-07-18T09:15:42.282Z",
+              "WhenOpened": "2024-07-15T10:33:08.441Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 10,
-              "Title": "App.xaml",
-              "DocumentMoniker": "C:\\Users\\ADMIN\\Desktop\\GarageIT\\GarageIT\\App.xaml",
-              "RelativeDocumentMoniker": "App.xaml",
-              "ToolTip": "C:\\Users\\ADMIN\\Desktop\\GarageIT\\GarageIT\\App.xaml",
-              "RelativeToolTip": "App.xaml",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003549|",
-              "WhenOpened": "2024-07-10T09:53:36.678Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Bookmark",
-              "Name": "ST:0:0:{1c64b9c2-e352-428e-a56d-0ace190b99a6}"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 5,
-              "Title": "StatusToTextConverter.cs",
-              "DocumentMoniker": "C:\\Users\\ADMIN\\Desktop\\GarageIT\\GarageIT\\Converters\\StatusToTextConverter.cs",
-              "RelativeDocumentMoniker": "Converters\\StatusToTextConverter.cs",
-              "ToolTip": "C:\\Users\\ADMIN\\Desktop\\GarageIT\\GarageIT\\Converters\\StatusToTextConverter.cs",
-              "RelativeToolTip": "Converters\\StatusToTextConverter.cs",
-              "ViewState": "AQIAAAAAAAAAAAAAAAAAABcAAAAAAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-07-18T09:15:28.971Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 6,
+              "DocumentIndex": 0,
               "Title": "BlacklistPage.xaml",
-              "DocumentMoniker": "C:\\Users\\ADMIN\\Desktop\\GarageIT\\GarageIT\\BlacklistPage.xaml",
+              "DocumentMoniker": "C:\\Users\\marce\\Desktop\\GarageIT\\GarageIT\\BlacklistPage.xaml",
               "RelativeDocumentMoniker": "BlacklistPage.xaml",
-              "ToolTip": "C:\\Users\\ADMIN\\Desktop\\GarageIT\\GarageIT\\BlacklistPage.xaml",
+              "ToolTip": "C:\\Users\\marce\\Desktop\\GarageIT\\GarageIT\\BlacklistPage.xaml",
               "RelativeToolTip": "BlacklistPage.xaml",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003549|",
               "WhenOpened": "2024-07-10T09:16:21.144Z",
@@ -278,61 +262,10 @@
             {
               "$type": "Document",
               "DocumentIndex": 8,
-              "Title": "BlacklistPage.xaml.cs",
-              "DocumentMoniker": "C:\\Users\\ADMIN\\Desktop\\GarageIT\\GarageIT\\BlacklistPage.xaml.cs",
-              "RelativeDocumentMoniker": "BlacklistPage.xaml.cs",
-              "ToolTip": "C:\\Users\\ADMIN\\Desktop\\GarageIT\\GarageIT\\BlacklistPage.xaml.cs",
-              "RelativeToolTip": "BlacklistPage.xaml.cs",
-              "ViewState": "AQIAAGAAAAAAAAAAAAAkwIkAAAAAAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-07-10T09:16:26.455Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 7,
-              "Title": "AssemblyInfo.cs",
-              "DocumentMoniker": "C:\\Users\\ADMIN\\Desktop\\GarageIT\\GarageIT\\AssemblyInfo.cs",
-              "RelativeDocumentMoniker": "AssemblyInfo.cs",
-              "ToolTip": "C:\\Users\\ADMIN\\Desktop\\GarageIT\\GarageIT\\AssemblyInfo.cs",
-              "RelativeToolTip": "AssemblyInfo.cs",
-              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-07-10T09:05:48.321Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 9,
-              "Title": "App.xaml.cs",
-              "DocumentMoniker": "C:\\Users\\ADMIN\\Desktop\\GarageIT\\GarageIT\\App.xaml.cs",
-              "RelativeDocumentMoniker": "App.xaml.cs",
-              "ToolTip": "C:\\Users\\ADMIN\\Desktop\\GarageIT\\GarageIT\\App.xaml.cs",
-              "RelativeToolTip": "App.xaml.cs",
-              "ViewState": "AQIAAAAAAAAAAAAAAAAAABkAAAAFAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-07-10T09:16:16.509Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 11,
-              "Title": "MainWindow.xaml",
-              "DocumentMoniker": "C:\\Users\\ADMIN\\Desktop\\GarageIT\\GarageIT\\MainWindow.xaml",
-              "RelativeDocumentMoniker": "MainWindow.xaml",
-              "ToolTip": "C:\\Users\\ADMIN\\Desktop\\GarageIT\\GarageIT\\MainWindow.xaml",
-              "RelativeToolTip": "MainWindow.xaml",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003549|",
-              "WhenOpened": "2024-07-10T09:16:31.36Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 12,
               "Title": "ManageAccountPage.xaml",
-              "DocumentMoniker": "C:\\Users\\ADMIN\\Desktop\\GarageIT\\GarageIT\\ManageAccountPage.xaml",
+              "DocumentMoniker": "C:\\Users\\marce\\Desktop\\GarageIT\\GarageIT\\ManageAccountPage.xaml",
               "RelativeDocumentMoniker": "ManageAccountPage.xaml",
-              "ToolTip": "C:\\Users\\ADMIN\\Desktop\\GarageIT\\GarageIT\\ManageAccountPage.xaml",
+              "ToolTip": "C:\\Users\\marce\\Desktop\\GarageIT\\GarageIT\\ManageAccountPage.xaml",
               "RelativeToolTip": "ManageAccountPage.xaml",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003549|",
               "WhenOpened": "2024-07-10T09:16:33.008Z",
@@ -340,123 +273,186 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 13,
-              "Title": "ManageAccountWindow.xaml",
-              "DocumentMoniker": "C:\\Users\\ADMIN\\Desktop\\GarageIT\\GarageIT\\ManageAccountWindow.xaml",
-              "RelativeDocumentMoniker": "ManageAccountWindow.xaml",
-              "ToolTip": "C:\\Users\\ADMIN\\Desktop\\GarageIT\\GarageIT\\ManageAccountWindow.xaml",
-              "RelativeToolTip": "ManageAccountWindow.xaml",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003549|",
-              "WhenOpened": "2024-07-12T11:16:59.844Z",
-              "EditorCaption": ""
+              "DocumentIndex": 10,
+              "Title": "StatusToTextConverter.cs",
+              "DocumentMoniker": "C:\\Users\\marce\\Desktop\\GarageIT\\GarageIT\\Converters\\StatusToTextConverter.cs",
+              "RelativeDocumentMoniker": "Converters\\StatusToTextConverter.cs",
+              "ToolTip": "C:\\Users\\marce\\Desktop\\GarageIT\\GarageIT\\Converters\\StatusToTextConverter.cs",
+              "RelativeToolTip": "Converters\\StatusToTextConverter.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAABcAAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-07-18T09:15:28.971Z"
             },
             {
               "$type": "Document",
               "DocumentIndex": 14,
-              "Title": "ManageClientsPage.xaml",
-              "DocumentMoniker": "C:\\Users\\ADMIN\\Desktop\\GarageIT\\GarageIT\\ManageClientsPage.xaml",
-              "RelativeDocumentMoniker": "ManageClientsPage.xaml",
-              "ToolTip": "C:\\Users\\ADMIN\\Desktop\\GarageIT\\GarageIT\\ManageClientsPage.xaml",
-              "RelativeToolTip": "ManageClientsPage.xaml",
+              "Title": "App.xaml",
+              "DocumentMoniker": "C:\\Users\\marce\\Desktop\\GarageIT\\GarageIT\\App.xaml",
+              "RelativeDocumentMoniker": "App.xaml",
+              "ToolTip": "C:\\Users\\marce\\Desktop\\GarageIT\\GarageIT\\App.xaml",
+              "RelativeToolTip": "App.xaml",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003549|",
-              "WhenOpened": "2024-07-12T11:37:25.63Z",
+              "WhenOpened": "2024-07-10T09:53:36.678Z",
               "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 7,
+              "Title": "StatusToColorConverter.cs",
+              "DocumentMoniker": "C:\\Users\\marce\\Desktop\\GarageIT\\GarageIT\\Converters\\StatusToColorConverter.cs",
+              "RelativeDocumentMoniker": "Converters\\StatusToColorConverter.cs",
+              "ToolTip": "C:\\Users\\marce\\Desktop\\GarageIT\\GarageIT\\Converters\\StatusToColorConverter.cs",
+              "RelativeToolTip": "Converters\\StatusToColorConverter.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAABgAAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-07-18T09:15:42.282Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 9,
+              "Title": "LoginWindow.xaml",
+              "DocumentMoniker": "C:\\Users\\marce\\Desktop\\GarageIT\\GarageIT\\LoginWindow.xaml",
+              "RelativeDocumentMoniker": "LoginWindow.xaml",
+              "ToolTip": "C:\\Users\\marce\\Desktop\\GarageIT\\GarageIT\\LoginWindow.xaml",
+              "RelativeToolTip": "LoginWindow.xaml",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003549|",
+              "WhenOpened": "2024-07-12T11:28:50.441Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 12,
+              "Title": "BlacklistPage.xaml.cs",
+              "DocumentMoniker": "C:\\Users\\marce\\Desktop\\GarageIT\\GarageIT\\BlacklistPage.xaml.cs",
+              "RelativeDocumentMoniker": "BlacklistPage.xaml.cs",
+              "ToolTip": "C:\\Users\\marce\\Desktop\\GarageIT\\GarageIT\\BlacklistPage.xaml.cs",
+              "RelativeToolTip": "BlacklistPage.xaml.cs",
+              "ViewState": "AQIAAGAAAAAAAAAAAAAkwIkAAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-07-10T09:16:26.455Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 11,
+              "Title": "AssemblyInfo.cs",
+              "DocumentMoniker": "C:\\Users\\marce\\Desktop\\GarageIT\\GarageIT\\AssemblyInfo.cs",
+              "RelativeDocumentMoniker": "AssemblyInfo.cs",
+              "ToolTip": "C:\\Users\\marce\\Desktop\\GarageIT\\GarageIT\\AssemblyInfo.cs",
+              "RelativeToolTip": "AssemblyInfo.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-07-10T09:05:48.321Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 13,
+              "Title": "App.xaml.cs",
+              "DocumentMoniker": "C:\\Users\\marce\\Desktop\\GarageIT\\GarageIT\\App.xaml.cs",
+              "RelativeDocumentMoniker": "App.xaml.cs",
+              "ToolTip": "C:\\Users\\marce\\Desktop\\GarageIT\\GarageIT\\App.xaml.cs",
+              "RelativeToolTip": "App.xaml.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAABkAAAAFAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-07-10T09:16:16.509Z"
             },
             {
               "$type": "Document",
               "DocumentIndex": 15,
-              "Title": "WhitelistPage.xaml",
-              "DocumentMoniker": "C:\\Users\\ADMIN\\Desktop\\GarageIT\\GarageIT\\WhitelistPage.xaml",
-              "RelativeDocumentMoniker": "WhitelistPage.xaml",
-              "ToolTip": "C:\\Users\\ADMIN\\Desktop\\GarageIT\\GarageIT\\WhitelistPage.xaml",
-              "RelativeToolTip": "WhitelistPage.xaml",
+              "Title": "MainWindow.xaml",
+              "DocumentMoniker": "C:\\Users\\marce\\Desktop\\GarageIT\\GarageIT\\MainWindow.xaml",
+              "RelativeDocumentMoniker": "MainWindow.xaml",
+              "ToolTip": "C:\\Users\\marce\\Desktop\\GarageIT\\GarageIT\\MainWindow.xaml",
+              "RelativeToolTip": "MainWindow.xaml",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003549|",
-              "WhenOpened": "2024-07-10T09:34:01.343Z",
-              "EditorCaption": ""
+              "WhenOpened": "2024-07-10T09:16:31.36Z"
             },
             {
               "$type": "Document",
               "DocumentIndex": 16,
-              "Title": "StatusToColorConverter.cs",
-              "DocumentMoniker": "C:\\Users\\ADMIN\\Desktop\\GarageIT\\GarageIT\\StatusToColorConverter.cs",
-              "RelativeDocumentMoniker": "StatusToColorConverter.cs",
-              "ToolTip": "C:\\Users\\ADMIN\\Desktop\\GarageIT\\GarageIT\\StatusToColorConverter.cs",
-              "RelativeToolTip": "StatusToColorConverter.cs",
-              "ViewState": "AQIAAAAAAAAAAAAAAAAAAB8AAAAAAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-07-10T14:37:38.998Z",
-              "EditorCaption": ""
+              "Title": "ManageAccountWindow.xaml",
+              "DocumentMoniker": "C:\\Users\\marce\\Desktop\\GarageIT\\GarageIT\\ManageAccountWindow.xaml",
+              "RelativeDocumentMoniker": "ManageAccountWindow.xaml",
+              "ToolTip": "C:\\Users\\marce\\Desktop\\GarageIT\\GarageIT\\ManageAccountWindow.xaml",
+              "RelativeToolTip": "ManageAccountWindow.xaml",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003549|",
+              "WhenOpened": "2024-07-12T11:16:59.844Z"
             },
             {
               "$type": "Document",
               "DocumentIndex": 17,
-              "Title": "SettingsPage.xaml",
-              "DocumentMoniker": "C:\\Users\\ADMIN\\Desktop\\GarageIT\\GarageIT\\SettingsPage.xaml",
-              "RelativeDocumentMoniker": "SettingsPage.xaml",
-              "ToolTip": "C:\\Users\\ADMIN\\Desktop\\GarageIT\\GarageIT\\SettingsPage.xaml",
-              "RelativeToolTip": "SettingsPage.xaml",
+              "Title": "ManageClientsPage.xaml",
+              "DocumentMoniker": "C:\\Users\\marce\\Desktop\\GarageIT\\GarageIT\\ManageClientsPage.xaml",
+              "RelativeDocumentMoniker": "ManageClientsPage.xaml",
+              "ToolTip": "C:\\Users\\marce\\Desktop\\GarageIT\\GarageIT\\ManageClientsPage.xaml",
+              "RelativeToolTip": "ManageClientsPage.xaml",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003549|",
-              "WhenOpened": "2024-07-12T11:17:08.501Z",
-              "EditorCaption": ""
+              "WhenOpened": "2024-07-12T11:37:25.63Z"
             },
             {
               "$type": "Document",
               "DocumentIndex": 18,
-              "Title": "Client.cs",
-              "DocumentMoniker": "C:\\Users\\ADMIN\\Desktop\\GarageIT\\GarageIT\\Models\\Client.cs",
-              "RelativeDocumentMoniker": "Models\\Client.cs",
-              "ToolTip": "C:\\Users\\ADMIN\\Desktop\\GarageIT\\GarageIT\\Models\\Client.cs",
-              "RelativeToolTip": "Models\\Client.cs",
-              "ViewState": "AQIAAAAAAAAAAAAAAAAAABQAAAAAAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-07-17T13:40:34.612Z",
-              "EditorCaption": ""
+              "Title": "WhitelistPage.xaml",
+              "DocumentMoniker": "C:\\Users\\marce\\Desktop\\GarageIT\\GarageIT\\WhitelistPage.xaml",
+              "RelativeDocumentMoniker": "WhitelistPage.xaml",
+              "ToolTip": "C:\\Users\\marce\\Desktop\\GarageIT\\GarageIT\\WhitelistPage.xaml",
+              "RelativeToolTip": "WhitelistPage.xaml",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003549|",
+              "WhenOpened": "2024-07-10T09:34:01.343Z"
             },
             {
               "$type": "Document",
               "DocumentIndex": 19,
-              "Title": "StatisticsPage.xaml",
-              "DocumentMoniker": "C:\\Users\\ADMIN\\Desktop\\GarageIT\\GarageIT\\StatisticsPage.xaml",
-              "RelativeDocumentMoniker": "StatisticsPage.xaml",
-              "ToolTip": "C:\\Users\\ADMIN\\Desktop\\GarageIT\\GarageIT\\StatisticsPage.xaml",
-              "RelativeToolTip": "StatisticsPage.xaml",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003549|",
-              "WhenOpened": "2024-07-10T10:14:54.897Z",
-              "EditorCaption": ""
+              "Title": "StatusToColorConverter.cs",
+              "DocumentMoniker": "C:\\Users\\marce\\Desktop\\GarageIT\\GarageIT\\StatusToColorConverter.cs",
+              "RelativeDocumentMoniker": "StatusToColorConverter.cs",
+              "ToolTip": "C:\\Users\\marce\\Desktop\\GarageIT\\GarageIT\\StatusToColorConverter.cs",
+              "RelativeToolTip": "StatusToColorConverter.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAB8AAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-07-10T14:37:38.998Z"
             },
             {
               "$type": "Document",
               "DocumentIndex": 20,
-              "Title": "WhitelistPage.xaml.cs",
-              "DocumentMoniker": "C:\\Users\\ADMIN\\Desktop\\GarageIT\\GarageIT\\WhitelistPage.xaml.cs",
-              "RelativeDocumentMoniker": "WhitelistPage.xaml.cs",
-              "ToolTip": "C:\\Users\\ADMIN\\Desktop\\GarageIT\\GarageIT\\WhitelistPage.xaml.cs",
-              "RelativeToolTip": "WhitelistPage.xaml.cs",
-              "ViewState": "AQIAAAYAAAAAAAAAAAAAAC4AAAAyAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-07-10T09:34:00.338Z",
-              "EditorCaption": ""
+              "Title": "SettingsPage.xaml",
+              "DocumentMoniker": "C:\\Users\\marce\\Desktop\\GarageIT\\GarageIT\\SettingsPage.xaml",
+              "RelativeDocumentMoniker": "SettingsPage.xaml",
+              "ToolTip": "C:\\Users\\marce\\Desktop\\GarageIT\\GarageIT\\SettingsPage.xaml",
+              "RelativeToolTip": "SettingsPage.xaml",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003549|",
+              "WhenOpened": "2024-07-12T11:17:08.501Z"
             },
             {
               "$type": "Document",
               "DocumentIndex": 21,
-              "Title": "ApiService.cs",
-              "DocumentMoniker": "C:\\Users\\ADMIN\\Desktop\\GarageIT\\GarageIT\\Services\\ApiService.cs",
-              "RelativeDocumentMoniker": "Services\\ApiService.cs",
-              "ToolTip": "C:\\Users\\ADMIN\\Desktop\\GarageIT\\GarageIT\\Services\\ApiService.cs",
-              "RelativeToolTip": "Services\\ApiService.cs",
-              "ViewState": "AQIAAPYAAAAAAAAAAAAwwC4BAAAAAAAA",
+              "Title": "Client.cs",
+              "DocumentMoniker": "C:\\Users\\marce\\Desktop\\GarageIT\\GarageIT\\Models\\Client.cs",
+              "RelativeDocumentMoniker": "Models\\Client.cs",
+              "ToolTip": "C:\\Users\\marce\\Desktop\\GarageIT\\GarageIT\\Models\\Client.cs",
+              "RelativeToolTip": "Models\\Client.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAABQAAAAAAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-07-10T09:16:13.326Z",
-              "EditorCaption": ""
+              "WhenOpened": "2024-07-17T13:40:34.612Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 23,
+              "DocumentIndex": 22,
+              "Title": "WhitelistPage.xaml.cs",
+              "DocumentMoniker": "C:\\Users\\marce\\Desktop\\GarageIT\\GarageIT\\WhitelistPage.xaml.cs",
+              "RelativeDocumentMoniker": "WhitelistPage.xaml.cs",
+              "ToolTip": "C:\\Users\\marce\\Desktop\\GarageIT\\GarageIT\\WhitelistPage.xaml.cs",
+              "RelativeToolTip": "WhitelistPage.xaml.cs",
+              "ViewState": "AQIAAAYAAAAAAAAAAAAAAC4AAAAyAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-07-10T09:34:00.338Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 24,
               "Title": "Group.cs",
-              "DocumentMoniker": "C:\\Users\\ADMIN\\Desktop\\GarageIT\\GarageIT\\Models\\Group.cs",
+              "DocumentMoniker": "C:\\Users\\marce\\Desktop\\GarageIT\\GarageIT\\Models\\Group.cs",
               "RelativeDocumentMoniker": "Models\\Group.cs",
-              "ToolTip": "C:\\Users\\ADMIN\\Desktop\\GarageIT\\GarageIT\\Models\\Group.cs",
+              "ToolTip": "C:\\Users\\marce\\Desktop\\GarageIT\\GarageIT\\Models\\Group.cs",
               "RelativeToolTip": "Models\\Group.cs",
               "ViewState": "AQIAAAAAAAAAAAAAAAAAABEAAAAFAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
@@ -464,11 +460,11 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 22,
+              "DocumentIndex": 23,
               "Title": "Domain.cs",
-              "DocumentMoniker": "C:\\Users\\ADMIN\\Desktop\\GarageIT\\GarageIT\\Models\\Domain.cs",
+              "DocumentMoniker": "C:\\Users\\marce\\Desktop\\GarageIT\\GarageIT\\Models\\Domain.cs",
               "RelativeDocumentMoniker": "Models\\Domain.cs",
-              "ToolTip": "C:\\Users\\ADMIN\\Desktop\\GarageIT\\GarageIT\\Models\\Domain.cs",
+              "ToolTip": "C:\\Users\\marce\\Desktop\\GarageIT\\GarageIT\\Models\\Domain.cs",
               "RelativeToolTip": "Models\\Domain.cs",
               "ViewState": "AQIAAAAAAAAAAAAAAAAAAA0AAAAYAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
@@ -478,9 +474,9 @@
               "$type": "Document",
               "DocumentIndex": 27,
               "Title": "LoginWindow.xaml.cs",
-              "DocumentMoniker": "C:\\Users\\ADMIN\\Desktop\\GarageIT\\GarageIT\\LoginWindow.xaml.cs",
+              "DocumentMoniker": "C:\\Users\\marce\\Desktop\\GarageIT\\GarageIT\\LoginWindow.xaml.cs",
               "RelativeDocumentMoniker": "LoginWindow.xaml.cs",
-              "ToolTip": "C:\\Users\\ADMIN\\Desktop\\GarageIT\\GarageIT\\LoginWindow.xaml.cs",
+              "ToolTip": "C:\\Users\\marce\\Desktop\\GarageIT\\GarageIT\\LoginWindow.xaml.cs",
               "RelativeToolTip": "LoginWindow.xaml.cs",
               "ViewState": "AQIAAAkAAAAAAAAAAAAAACoAAAANAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
@@ -488,11 +484,11 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 24,
+              "DocumentIndex": 25,
               "Title": "ManageAccountPage.xaml.cs",
-              "DocumentMoniker": "C:\\Users\\ADMIN\\Desktop\\GarageIT\\GarageIT\\ManageAccountPage.xaml.cs",
+              "DocumentMoniker": "C:\\Users\\marce\\Desktop\\GarageIT\\GarageIT\\ManageAccountPage.xaml.cs",
               "RelativeDocumentMoniker": "ManageAccountPage.xaml.cs",
-              "ToolTip": "C:\\Users\\ADMIN\\Desktop\\GarageIT\\GarageIT\\ManageAccountPage.xaml.cs",
+              "ToolTip": "C:\\Users\\marce\\Desktop\\GarageIT\\GarageIT\\ManageAccountPage.xaml.cs",
               "RelativeToolTip": "ManageAccountPage.xaml.cs",
               "ViewState": "AQIAAEEAAAAAAAAAAAAswGgAAAAAAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
@@ -502,9 +498,9 @@
               "$type": "Document",
               "DocumentIndex": 26,
               "Title": "MainWindow.xaml.cs",
-              "DocumentMoniker": "C:\\Users\\ADMIN\\Desktop\\GarageIT\\GarageIT\\MainWindow.xaml.cs",
+              "DocumentMoniker": "C:\\Users\\marce\\Desktop\\GarageIT\\GarageIT\\MainWindow.xaml.cs",
               "RelativeDocumentMoniker": "MainWindow.xaml.cs",
-              "ToolTip": "C:\\Users\\ADMIN\\Desktop\\GarageIT\\GarageIT\\MainWindow.xaml.cs",
+              "ToolTip": "C:\\Users\\marce\\Desktop\\GarageIT\\GarageIT\\MainWindow.xaml.cs",
               "RelativeToolTip": "MainWindow.xaml.cs",
               "ViewState": "AQIAAE8AAAAAAAAAAAAowGoAAAAAAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
@@ -512,23 +508,11 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 25,
-              "Title": "Program.cs",
-              "DocumentMoniker": "C:\\Users\\ADMIN\\Desktop\\GarageIT\\GarageIT\\Services\\Program.cs",
-              "RelativeDocumentMoniker": "Services\\Program.cs",
-              "ToolTip": "C:\\Users\\ADMIN\\Desktop\\GarageIT\\GarageIT\\Services\\Program.cs",
-              "RelativeToolTip": "Services\\Program.cs",
-              "ViewState": "AQIAACQAAAAAAAAAAAAowEgAAAAAAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-07-15T10:33:08.441Z"
-            },
-            {
-              "$type": "Document",
               "DocumentIndex": 28,
               "Title": "Query.cs",
-              "DocumentMoniker": "C:\\Users\\ADMIN\\Desktop\\GarageIT\\GarageIT\\Models\\Query.cs",
+              "DocumentMoniker": "C:\\Users\\marce\\Desktop\\GarageIT\\GarageIT\\Models\\Query.cs",
               "RelativeDocumentMoniker": "Models\\Query.cs",
-              "ToolTip": "C:\\Users\\ADMIN\\Desktop\\GarageIT\\GarageIT\\Models\\Query.cs",
+              "ToolTip": "C:\\Users\\marce\\Desktop\\GarageIT\\GarageIT\\Models\\Query.cs",
               "RelativeToolTip": "Models\\Query.cs",
               "ViewState": "AQIAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
@@ -538,9 +522,9 @@
               "$type": "Document",
               "DocumentIndex": 30,
               "Title": "StatisticsPage.xaml.cs",
-              "DocumentMoniker": "C:\\Users\\ADMIN\\Desktop\\GarageIT\\GarageIT\\StatisticsPage.xaml.cs",
+              "DocumentMoniker": "C:\\Users\\marce\\Desktop\\GarageIT\\GarageIT\\StatisticsPage.xaml.cs",
               "RelativeDocumentMoniker": "StatisticsPage.xaml.cs",
-              "ToolTip": "C:\\Users\\ADMIN\\Desktop\\GarageIT\\GarageIT\\StatisticsPage.xaml.cs",
+              "ToolTip": "C:\\Users\\marce\\Desktop\\GarageIT\\GarageIT\\StatisticsPage.xaml.cs",
               "RelativeToolTip": "StatisticsPage.xaml.cs",
               "ViewState": "AQIAAGwAAAAAAAAAAAAowJAAAAAAAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
@@ -550,9 +534,9 @@
               "$type": "Document",
               "DocumentIndex": 29,
               "Title": "ManageAccountWindow.xaml.cs",
-              "DocumentMoniker": "C:\\Users\\ADMIN\\Desktop\\GarageIT\\GarageIT\\ManageAccountWindow.xaml.cs",
+              "DocumentMoniker": "C:\\Users\\marce\\Desktop\\GarageIT\\GarageIT\\ManageAccountWindow.xaml.cs",
               "RelativeDocumentMoniker": "ManageAccountWindow.xaml.cs",
-              "ToolTip": "C:\\Users\\ADMIN\\Desktop\\GarageIT\\GarageIT\\ManageAccountWindow.xaml.cs",
+              "ToolTip": "C:\\Users\\marce\\Desktop\\GarageIT\\GarageIT\\ManageAccountWindow.xaml.cs",
               "RelativeToolTip": "ManageAccountWindow.xaml.cs",
               "ViewState": "AQIAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
@@ -562,9 +546,9 @@
               "$type": "Document",
               "DocumentIndex": 32,
               "Title": "SettingsPage.xaml.cs",
-              "DocumentMoniker": "C:\\Users\\ADMIN\\Desktop\\GarageIT\\GarageIT\\SettingsPage.xaml.cs",
+              "DocumentMoniker": "C:\\Users\\marce\\Desktop\\GarageIT\\GarageIT\\SettingsPage.xaml.cs",
               "RelativeDocumentMoniker": "SettingsPage.xaml.cs",
-              "ToolTip": "C:\\Users\\ADMIN\\Desktop\\GarageIT\\GarageIT\\SettingsPage.xaml.cs",
+              "ToolTip": "C:\\Users\\marce\\Desktop\\GarageIT\\GarageIT\\SettingsPage.xaml.cs",
               "RelativeToolTip": "SettingsPage.xaml.cs",
               "ViewState": "AQIAAAAAAAAAAAAAAAAAABAAAAAAAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
@@ -574,9 +558,9 @@
               "$type": "Document",
               "DocumentIndex": 31,
               "Title": "Statistics.cs",
-              "DocumentMoniker": "C:\\Users\\ADMIN\\Desktop\\GarageIT\\GarageIT\\Models\\Statistics.cs",
+              "DocumentMoniker": "C:\\Users\\marce\\Desktop\\GarageIT\\GarageIT\\Models\\Statistics.cs",
               "RelativeDocumentMoniker": "Models\\Statistics.cs",
-              "ToolTip": "C:\\Users\\ADMIN\\Desktop\\GarageIT\\GarageIT\\Models\\Statistics.cs",
+              "ToolTip": "C:\\Users\\marce\\Desktop\\GarageIT\\GarageIT\\Models\\Statistics.cs",
               "RelativeToolTip": "Models\\Statistics.cs",
               "ViewState": "AQIAAAAAAAAAAAAAAAAAAA8AAAAAAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
@@ -586,9 +570,9 @@
               "$type": "Document",
               "DocumentIndex": 33,
               "Title": "Statistics.cs",
-              "DocumentMoniker": "C:\\Users\\ADMIN\\Desktop\\GarageIT\\GarageIT\\Services\\Statistics.cs",
+              "DocumentMoniker": "C:\\Users\\marce\\Desktop\\GarageIT\\GarageIT\\Services\\Statistics.cs",
               "RelativeDocumentMoniker": "Services\\Statistics.cs",
-              "ToolTip": "C:\\Users\\ADMIN\\Desktop\\GarageIT\\GarageIT\\Services\\Statistics.cs",
+              "ToolTip": "C:\\Users\\marce\\Desktop\\GarageIT\\GarageIT\\Services\\Statistics.cs",
               "RelativeToolTip": "Services\\Statistics.cs",
               "ViewState": "AQIAAAAAAAAAAAAAAAAAAAoAAAAAAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
@@ -599,9 +583,9 @@
               "DocumentIndex": 34,
               "Title": "Application.cs",
               "DocumentMoniker": "C:\\Users\\marce\\AppData\\Local\\Temp\\.vsdbgsrc\\42457897f1285ffc7ed978cbfb3f7b5933f5cb5427295abb3c44871bab3de3a0\\Application.cs",
-              "RelativeDocumentMoniker": "..\\..\\..\\..\\marce\\AppData\\Local\\Temp\\.vsdbgsrc\\42457897f1285ffc7ed978cbfb3f7b5933f5cb5427295abb3c44871bab3de3a0\\Application.cs",
+              "RelativeDocumentMoniker": "..\\..\\..\\AppData\\Local\\Temp\\.vsdbgsrc\\42457897f1285ffc7ed978cbfb3f7b5933f5cb5427295abb3c44871bab3de3a0\\Application.cs",
               "ToolTip": "C:\\Users\\marce\\AppData\\Local\\Temp\\.vsdbgsrc\\42457897f1285ffc7ed978cbfb3f7b5933f5cb5427295abb3c44871bab3de3a0\\Application.cs[Tylko do odczytu]",
-              "RelativeToolTip": "..\\..\\..\\..\\marce\\AppData\\Local\\Temp\\.vsdbgsrc\\42457897f1285ffc7ed978cbfb3f7b5933f5cb5427295abb3c44871bab3de3a0\\Application.cs[Tylko do odczytu]",
+              "RelativeToolTip": "..\\..\\..\\AppData\\Local\\Temp\\.vsdbgsrc\\42457897f1285ffc7ed978cbfb3f7b5933f5cb5427295abb3c44871bab3de3a0\\Application.cs[Tylko do odczytu]",
               "ViewState": "AQIAAAcFAAAAAAAAAAAqwBsFAAADAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2024-07-15T12:43:12.152Z",
@@ -611,9 +595,9 @@
               "$type": "Document",
               "DocumentIndex": 35,
               "Title": "ManageClientsPage.xaml.cs",
-              "DocumentMoniker": "C:\\Users\\ADMIN\\Desktop\\GarageIT\\GarageIT\\ManageClientsPage.xaml.cs",
+              "DocumentMoniker": "C:\\Users\\marce\\Desktop\\GarageIT\\GarageIT\\ManageClientsPage.xaml.cs",
               "RelativeDocumentMoniker": "ManageClientsPage.xaml.cs",
-              "ToolTip": "C:\\Users\\ADMIN\\Desktop\\GarageIT\\GarageIT\\ManageClientsPage.xaml.cs",
+              "ToolTip": "C:\\Users\\marce\\Desktop\\GarageIT\\GarageIT\\ManageClientsPage.xaml.cs",
               "RelativeToolTip": "ManageClientsPage.xaml.cs",
               "ViewState": "AQIAAAAAAAAAAAAAAAAiwBgAAAAMAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
@@ -623,9 +607,9 @@
               "$type": "Document",
               "DocumentIndex": 38,
               "Title": "Garage",
-              "DocumentMoniker": "C:\\Users\\ADMIN\\Desktop\\GarageIT\\GarageIT\\Garage.csproj",
+              "DocumentMoniker": "C:\\Users\\marce\\Desktop\\GarageIT\\GarageIT\\Garage.csproj",
               "RelativeDocumentMoniker": "Garage.csproj",
-              "ToolTip": "C:\\Users\\ADMIN\\Desktop\\GarageIT\\GarageIT\\Garage.csproj",
+              "ToolTip": "C:\\Users\\marce\\Desktop\\GarageIT\\GarageIT\\Garage.csproj",
               "RelativeToolTip": "Garage.csproj",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000758|",
               "WhenOpened": "2024-07-12T09:22:54.238Z"
@@ -634,9 +618,9 @@
               "$type": "Document",
               "DocumentIndex": 36,
               "Title": "ManageClientsPage.g.cs",
-              "DocumentMoniker": "C:\\Users\\ADMIN\\Desktop\\GarageIT\\GarageIT\\obj\\Release\\net8.0-windows\\ManageClientsPage.g.cs",
+              "DocumentMoniker": "C:\\Users\\marce\\Desktop\\GarageIT\\GarageIT\\obj\\Release\\net8.0-windows\\ManageClientsPage.g.cs",
               "RelativeDocumentMoniker": "obj\\Release\\net8.0-windows\\ManageClientsPage.g.cs",
-              "ToolTip": "C:\\Users\\ADMIN\\Desktop\\GarageIT\\GarageIT\\obj\\Release\\net8.0-windows\\ManageClientsPage.g.cs",
+              "ToolTip": "C:\\Users\\marce\\Desktop\\GarageIT\\GarageIT\\obj\\Release\\net8.0-windows\\ManageClientsPage.g.cs",
               "RelativeToolTip": "obj\\Release\\net8.0-windows\\ManageClientsPage.g.cs",
               "ViewState": "AQIAABEAAAAAAAAAAAAAACoAAAAVAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
@@ -646,9 +630,9 @@
               "$type": "Document",
               "DocumentIndex": 37,
               "Title": "StatisticsPage.g.cs",
-              "DocumentMoniker": "C:\\Users\\ADMIN\\Desktop\\GarageIT\\GarageIT\\obj\\Release\\net8.0-windows\\StatisticsPage.g.cs",
+              "DocumentMoniker": "C:\\Users\\marce\\Desktop\\GarageIT\\GarageIT\\obj\\Release\\net8.0-windows\\StatisticsPage.g.cs",
               "RelativeDocumentMoniker": "obj\\Release\\net8.0-windows\\StatisticsPage.g.cs",
-              "ToolTip": "C:\\Users\\ADMIN\\Desktop\\GarageIT\\GarageIT\\obj\\Release\\net8.0-windows\\StatisticsPage.g.cs",
+              "ToolTip": "C:\\Users\\marce\\Desktop\\GarageIT\\GarageIT\\obj\\Release\\net8.0-windows\\StatisticsPage.g.cs",
               "RelativeToolTip": "obj\\Release\\net8.0-windows\\StatisticsPage.g.cs",
               "ViewState": "AQIAAAMAAAAAAAAAAAAAAAsAAAAGAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",

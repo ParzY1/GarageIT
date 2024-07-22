@@ -17,7 +17,150 @@
         <SolidColorBrush x:Key="PanelBackgroundColor" Color="#2E3338"/>
         <SolidColorBrush x:Key="BorderColor" Color="#CCCCCC"/>
 
-        <!-- Styles -->
+        <!-- ComboBox ToggleButton Template -->
+        <ControlTemplate x:Key="ComboBoxToggleButton" TargetType="ToggleButton">
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition />
+                    <ColumnDefinition Width="20" />
+                </Grid.ColumnDefinitions>
+                <Border x:Name="Border" 
+                        Grid.ColumnSpan="2" 
+                        CornerRadius="2" 
+                        Background="{TemplateBinding Background}" 
+                        BorderBrush="{TemplateBinding BorderBrush}" 
+                        BorderThickness="{TemplateBinding BorderThickness}" />
+                <Path x:Name="Arrow" 
+                      Grid.Column="1" 
+                      HorizontalAlignment="Center" 
+                      VerticalAlignment="Center" 
+                      Data="M 0 0 L 4 4 L 8 0 Z" 
+                      Fill="{StaticResource TextColor}" />
+            </Grid>
+            <ControlTemplate.Triggers>
+                <Trigger Property="IsMouseOver" Value="True">
+                    <Setter TargetName="Border" Property="Background" Value="{StaticResource HighlightColor}" />
+                    <Setter TargetName="Arrow" Property="Fill" Value="{StaticResource TextColor}" />
+                </Trigger>
+                <Trigger Property="IsChecked" Value="True">
+                    <Setter TargetName="Border" Property="Background" Value="{StaticResource HighlightColor}" />
+                    <Setter TargetName="Arrow" Property="Fill" Value="{StaticResource TextColor}" />
+                </Trigger>
+                <Trigger Property="IsEnabled" Value="False">
+                    <Setter TargetName="Arrow" Property="Fill" Value="{StaticResource BorderColor}" />
+                </Trigger>
+            </ControlTemplate.Triggers>
+        </ControlTemplate>
+
+        <!-- ComboBox TextBox Template -->
+        <ControlTemplate x:Key="ComboBoxTextBox" TargetType="TextBox">
+            <Border x:Name="PART_ContentHost" 
+                    Focusable="False" 
+                    Background="{TemplateBinding Background}" 
+                    BorderBrush="{TemplateBinding BorderBrush}" 
+                    BorderThickness="{TemplateBinding BorderThickness}" />
+        </ControlTemplate>
+
+        <!-- Custom ComboBox Style -->
+        <Style x:Key="ComboBoxStyle" TargetType="ComboBox">
+            <Setter Property="Width" Value="200"/>
+            <Setter Property="Height" Value="30"/>
+            <Setter Property="Margin" Value="5"/>
+            <Setter Property="Foreground" Value="White"/>
+            <Setter Property="Background" Value="Black"/>
+            <Setter Property="BorderBrush" Value="{StaticResource BorderColor}"/>
+            <Setter Property="BorderThickness" Value="1"/>
+            <Setter Property="Padding" Value="5"/>
+            <Setter Property="VerticalContentAlignment" Value="Center"/>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="ComboBox">
+                        <Grid>
+                            <ToggleButton Name="ToggleButton"
+                                          Template="{StaticResource ComboBoxToggleButton}"
+                                          Grid.Column="2"
+                                          Focusable="false"
+                                          IsChecked="{Binding Path=IsDropDownOpen, Mode=TwoWay, RelativeSource={RelativeSource TemplatedParent}}"
+                                          ClickMode="Press" Foreground="White" Background="Black">
+                            </ToggleButton>
+                            <ContentPresenter Name="ContentSite"
+                                              IsHitTestVisible="False"
+                                              Content="{TemplateBinding SelectionBoxItem}"
+                                              ContentTemplate="{TemplateBinding SelectionBoxItemTemplate}"
+                                              ContentTemplateSelector="{TemplateBinding ItemTemplateSelector}"
+                                              Margin="3,3,23,3"
+                                              VerticalAlignment="Center"
+                                              HorizontalAlignment="Left">
+                            </ContentPresenter>
+                            <TextBox x:Name="PART_EditableTextBox"
+                                     Style="{x:Null}"
+                                     Template="{StaticResource ComboBoxTextBox}"
+                                     HorizontalAlignment="Left"
+                                     VerticalAlignment="Center"
+                                     Margin="3,3,23,3"
+                                     Focusable="True"
+                                     Background="Black"
+                                     Foreground="White"
+                                     Visibility="Hidden"
+                                     IsReadOnly="{TemplateBinding IsReadOnly}"/>
+                            <Popup Name="Popup"
+                                   Placement="Bottom"
+                                   IsOpen="{TemplateBinding IsDropDownOpen}"
+                                   AllowsTransparency="True"
+                                   Focusable="False"
+                                   PopupAnimation="Slide">
+                                <Grid Name="DropDown"
+                                      SnapsToDevicePixels="True"
+                                      MinWidth="{TemplateBinding ActualWidth}"
+                                      MaxHeight="{TemplateBinding MaxDropDownHeight}">
+                                    <Border x:Name="DropDownBorder"
+                                            Background="Black"
+                                            BorderBrush="{StaticResource BorderColor}"
+                                            BorderThickness="1"/>
+                                    <ScrollViewer Margin="4,6,4,6"
+                                                  SnapsToDevicePixels="True">
+                                        <StackPanel IsItemsHost="True"
+                                                    KeyboardNavigation.DirectionalNavigation="Contained"/>
+                                    </ScrollViewer>
+                                </Grid>
+                            </Popup>
+                        </Grid>
+                        <ControlTemplate.Triggers>
+                            <Trigger Property="HasItems" Value="False">
+                                <Setter TargetName="DropDownBorder" Property="MinHeight" Value="95"/>
+                            </Trigger>
+                            <Trigger Property="IsGrouping" Value="True">
+                                <Setter Property="ScrollViewer.CanContentScroll" Value="False"/>
+                            </Trigger>
+                            <Trigger SourceName="Popup" Property="Popup.AllowsTransparency" Value="True">
+                                <Setter Property="Opacity" TargetName="DropDownBorder" Value="0.95"/>
+                            </Trigger>
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+
+        <!-- Custom ComboBoxItem Style -->
+        <Style TargetType="ComboBoxItem">
+            <Setter Property="Foreground" Value="White"/>
+            <Setter Property="Background" Value="Black"/>
+            <Setter Property="Height" Value="30"/>
+            <Setter Property="VerticalContentAlignment" Value="Center"/>
+            <Setter Property="HorizontalContentAlignment" Value="Stretch"/>
+            <Setter Property="Padding" Value="10,0,10,0"/>
+            <Style.Triggers>
+                <Trigger Property="IsMouseOver" Value="True">
+                    <Setter Property="Background" Value="{StaticResource HighlightColor}"/>
+                    <Setter Property="Foreground" Value="White"/>
+                </Trigger>
+                <Trigger Property="IsSelected" Value="True">
+                    <Setter Property="Background" Value="{StaticResource HighlightColor}"/>
+                    <Setter Property="Foreground" Value="White"/>
+                </Trigger>
+            </Style.Triggers>
+        </Style>
+
         <Style x:Key="HeaderStyle" TargetType="TextBlock">
             <Setter Property="FontSize" Value="20"/>
             <Setter Property="Foreground" Value="{StaticResource TextColor}"/>
@@ -38,16 +181,8 @@
             <Setter Property="Background" Value="#000000"/>
         </Style>
 
-        <Style x:Key="ComboBoxStyle" TargetType="ComboBox">
-            <Setter Property="Width" Value="200"/>
-            <Setter Property="Height" Value="30"/>
-            <Setter Property="Margin" Value="5"/>
-            <Setter Property="Foreground" Value="{StaticResource TextColor}"/>
-            <Setter Property="Background" Value="#000000"/>
-        </Style>
-
         <Style x:Key="ButtonStyle" TargetType="Button">
-            <Setter Property="Width" Value="100"/>
+            <Setter Property="Width" Value="30"/>
             <Setter Property="Height" Value="30"/>
             <Setter Property="Margin" Value="5"/>
             <Setter Property="Foreground" Value="{StaticResource TextColor}"/>
@@ -109,11 +244,11 @@
                         <TextBox x:Name="domainTextBox" Style="{StaticResource TextBoxStyle}"/>
                         <TextBlock Text="Komentarz:" Style="{StaticResource LabelStyle}" Margin="10,0,0,0" VerticalAlignment="Center"/>
                         <TextBox x:Name="commentTextBox" Style="{StaticResource TextBoxStyle}"/>
-                        <ComboBox x:Name="listComboBox" Style="{StaticResource ComboBoxStyle}">
+                        <ComboBox x:Name="listComboBox" Style="{StaticResource ComboBoxStyle}" Background="Black" Foreground="White">
                             <ComboBoxItem Content="Dozwolone" />
                             <ComboBoxItem Content="Zablokowane" />
                         </ComboBox>
-                        <Button Content="Dodaj" Style="{StaticResource ButtonStyle}" Margin="10,0,0,0" Click="AddToDomains_Click"/>
+                        <Button Content="Dodaj" Style="{StaticResource ButtonStyle}" Margin="10,0,0,0" Click="AddToDomains_Click" Width="53"/>
                     </StackPanel>
                     <TextBlock Text="Wskazówki:" Style="{StaticResource LabelStyle}" FontWeight="Bold" Margin="10,0,0,0"/>
                     <TextBlock Text="1. Można dodać wiele domen, oddzielając każdą nazwę domeny spacją." Style="{StaticResource LabelStyle}" Margin="10,0,0,0"/>
@@ -128,11 +263,11 @@
                     <DataGrid x:Name="whitelistDataGrid" AutoGenerateColumns="False" ItemsSource="{Binding WhitelistDomains}" Background="{StaticResource BackgroundColor}"
                               GridLinesVisibility="None" HorizontalAlignment="Stretch" VerticalAlignment="Stretch"
                               CanUserAddRows="False" CanUserDeleteRows="False" SelectionMode="Single" Margin="10"
-                              CellStyle="{StaticResource DataGridCellStyle}" ColumnHeaderStyle="{StaticResource DataGridColumnHeaderStyle}">
+                              CellStyle="{StaticResource DataGridCellStyle}" ColumnHeaderStyle="{StaticResource DataGridColumnHeaderStyle}" BorderBrush="White">
                         <DataGrid.Columns>
                             <DataGridTextColumn Header="Domena" Binding="{Binding DomainName}" Width="*" ElementStyle="{StaticResource LabelStyle}"/>
                             <DataGridTextColumn Header="Komentarz" Binding="{Binding Comment}" Width="*" ElementStyle="{StaticResource LabelStyle}"/>
-                            <DataGridTemplateColumn Header="Akcje" Width="Auto">
+                            <DataGridTemplateColumn Header="Akcje" Width="100">
                                 <DataGridTemplateColumn.CellTemplate>
                                     <DataTemplate>
                                         <StackPanel Orientation="Horizontal">
@@ -151,14 +286,14 @@
             <Border Grid.Row="2" Style="{StaticResource GroupBoxStyle}" Margin="0,17,0,0" Height="Auto">
                 <StackPanel>
                     <TextBlock Text="Domeny Zablokowane" Style="{StaticResource HeaderStyle}" Margin="10"/>
-                    <DataGrid x:Name="blacklistDataGrid" AutoGenerateColumns="False" ItemsSource="{Binding BlacklistDomains}" Background="{StaticResource BackgroundColor}"
+                    <DataGrid x:Name="blacklistDataGrid" AutoGenerateColumns="False" ItemsSource="{Binding BlacklistDomains}" Background="{DynamicResource CardColor}"
                               GridLinesVisibility="None" HorizontalAlignment="Stretch" VerticalAlignment="Stretch"
                               CanUserAddRows="False" CanUserDeleteRows="False" SelectionMode="Single" Margin="10"
-                              CellStyle="{StaticResource DataGridCellStyle}" ColumnHeaderStyle="{StaticResource DataGridColumnHeaderStyle}">
+                              CellStyle="{StaticResource DataGridCellStyle}" ColumnHeaderStyle="{StaticResource DataGridColumnHeaderStyle}" BorderBrush="White">
                         <DataGrid.Columns>
                             <DataGridTextColumn Header="Domena" Binding="{Binding DomainName}" Width="*" ElementStyle="{StaticResource LabelStyle}"/>
                             <DataGridTextColumn Header="Komentarz" Binding="{Binding Comment}" Width="*" ElementStyle="{StaticResource LabelStyle}"/>
-                            <DataGridTemplateColumn Header="Akcje" Width="Auto">
+                            <DataGridTemplateColumn Header="Akcje" Width="100">
                                 <DataGridTemplateColumn.CellTemplate>
                                     <DataTemplate>
                                         <StackPanel Orientation="Horizontal">
