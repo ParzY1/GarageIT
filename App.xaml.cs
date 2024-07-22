@@ -15,6 +15,7 @@ namespace Garage
             {
                 // Pokaż MainWindow po pomyślnym zalogowaniu
                 MainWindow mainWindow = new MainWindow();
+                mainWindow.WindowState = WindowState.Maximized;
                 mainWindow.Show();
 
                 // Zamknij LoginWindow

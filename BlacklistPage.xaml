@@ -116,7 +116,7 @@
                         <TextBox x:Name="domainTextBox" Width="231" Style="{StaticResource TextBoxStyle}"/>
                         <TextBlock Text="Opis:" Style="{StaticResource LabelStyle}" Margin="10,0,0,0" VerticalAlignment="Center"/>
                         <TextBox x:Name="groupDescriptionTextBox" Width="238" Style="{StaticResource TextBoxStyle}"/>
-                        <Button Content="Dodaj" Style="{StaticResource ButtonStyle}" Margin="10,0,0,0" Click="AddToBlacklist_Click"/>
+                        <Button Content="Dodaj" Style="{StaticResource ButtonStyle}" Margin="10,0,0,0" Click="AddToBlacklist_Click" Width="49"/>
                     </StackPanel>
                     <TextBlock Text="Wskazówki:" Style="{StaticResource LabelStyle}" FontWeight="Bold" Margin="10,0,0,0"/>
                     <TextBlock Text="1. Można dodać wiele grup, oddzielając każdą nazwę grupy spacją." Style="{StaticResource LabelStyle}" Margin="10,0,0,0"/>
@@ -139,24 +139,23 @@
                     <DataGrid x:Name="groupsDataGrid" AutoGenerateColumns="False" Background="{StaticResource BackgroundColor}"
                               GridLinesVisibility="None" HorizontalAlignment="Stretch" VerticalAlignment="Stretch"
                               CanUserAddRows="False" CanUserDeleteRows="False" SelectionMode="Single" Margin="10"
-                              CellStyle="{StaticResource DataGridCellStyle}" ColumnHeaderStyle="{StaticResource DataGridColumnHeaderStyle}" SelectionChanged="groupsDataGrid_SelectionChanged_1">
+                              CellStyle="{StaticResource DataGridCellStyle}" ColumnHeaderStyle="{StaticResource DataGridColumnHeaderStyle}" SelectionChanged="groupsDataGrid_SelectionChanged_1" BorderBrush="White">
                         <DataGrid.Columns>
                             <DataGridTextColumn Header="Nazwa" Binding="{Binding Name}" Width="*" ElementStyle="{StaticResource LabelStyle}"/>
                             <DataGridTextColumn Header="Opis" Binding="{Binding Description}" Width="*" ElementStyle="{StaticResource LabelStyle}"/>
                             <DataGridTemplateColumn Header="Status" Width="*">
                                 <DataGridTemplateColumn.CellTemplate>
                                     <DataTemplate>
-                                        <TextBlock Text="{Binding Enabled, Converter={StaticResource StatusToTextConverter}}" Foreground="{Binding Enabled, Converter={StaticResource StatusToColorConverter}}" Style="{StaticResource LabelStyle}"/>
+                                        <TextBlock Text="{Binding Enabled, Converter={StaticResource StatusToTextConverter}}" Foreground="{Binding Enabled, Converter={StaticResource StatusToColorConverter}}" Style="{StaticResource LabelStyle}" MouseLeftButtonUp="ToggleGroupStatus_Click"/>
                                     </DataTemplate>
                                 </DataGridTemplateColumn.CellTemplate>
                             </DataGridTemplateColumn>
                             <DataGridTemplateColumn Header="Akcje" Width="Auto">
                                 <DataGridTemplateColumn.CellTemplate>
                                     <DataTemplate>
-                                        <StackPanel Orientation="Horizontal">
-                                            <Button Content="📝" Width="30" Click="EditGroupDescription_Click" Style="{StaticResource ButtonStyle}"/>
-                                            <Button Content="❌" Width="30" Click="RemoveFromBlacklist_Click" Style="{StaticResource ButtonStyle}"/>
-                                            <Button Content="{Binding Enabled, Converter={StaticResource StatusToTextConverter}}" Style="{StaticResource ButtonStyle}" Background="{Binding Enabled, Converter={StaticResource StatusToColorConverter}}" Click="ToggleGroupStatus_Click"/>
+                                        <StackPanel Orientation="Horizontal" Margin="5,0,5,0">
+                                            <Button Content="📝" Width="30" Click="EditGroupDescription_Click" Style="{StaticResource ButtonStyle}" Margin="2,0,2,0"/>
+                                            <Button Content="❌" Width="30" Click="RemoveFromBlacklist_Click" Style="{StaticResource ButtonStyle}" Margin="2,0,2,0"/>
                                         </StackPanel>
                                     </DataTemplate>
                                 </DataGridTemplateColumn.CellTemplate>

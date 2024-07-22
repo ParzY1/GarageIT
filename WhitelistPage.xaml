@@ -146,29 +146,28 @@
                 <RowDefinition Height="*"/>
             </Grid.RowDefinitions>
 
-            <ScrollViewer VerticalScrollBarVisibility="Auto">
-                <DataGrid x:Name="RecentQueriesDataGrid" AutoGenerateColumns="False" Background="{StaticResource BackgroundColor}"
-                          GridLinesVisibility="None" HorizontalAlignment="Stretch" VerticalAlignment="Stretch"
-                          CanUserAddRows="False" CanUserDeleteRows="False" SelectionMode="Single" Margin="10"
-                          CellStyle="{StaticResource DataGridCellStyle}" ColumnHeaderStyle="{StaticResource DataGridColumnHeaderStyle}"
-                          AlternatingRowBackground="{StaticResource DataGridAlternatingRowBackgroundColor}">
-                    <DataGrid.Columns>
-                        <DataGridTextColumn Header="Czas" Binding="{Binding Time}" Width="*" ElementStyle="{StaticResource LabelStyle}"/>
-                        <DataGridTextColumn Header="Typ" Binding="{Binding Type}" Width="*" ElementStyle="{StaticResource LabelStyle}"/>
-                        <DataGridTextColumn Header="Domena" Binding="{Binding Domain}" Width="*" ElementStyle="{StaticResource LabelStyle}"/>
-                        <DataGridTextColumn Header="Klient" Binding="{Binding Client}" Width="*" ElementStyle="{StaticResource LabelStyle}"/>
-                        <DataGridTextColumn Header="Status" Binding="{Binding Status}" Width="*" ElementStyle="{StaticResource LabelStyle}"/>
-                        <DataGridTextColumn Header="Odpowiedź" Binding="{Binding Reply}" Width="*" ElementStyle="{StaticResource LabelStyle}"/>
-                        <DataGridTemplateColumn Header="Akcja" Width="Auto">
-                            <DataGridTemplateColumn.CellTemplate>
-                                <DataTemplate>
-                                    <Button Content="Usuń" Style="{StaticResource ButtonStyle}" Click="RemoveQuery_Click"/>
-                                </DataTemplate>
-                            </DataGridTemplateColumn.CellTemplate>
-                        </DataGridTemplateColumn>
-                    </DataGrid.Columns>
-                </DataGrid>
-            </ScrollViewer>
+            <DataGrid x:Name="RecentQueriesDataGrid" AutoGenerateColumns="False" Background="{StaticResource BackgroundColor}"
+                      GridLinesVisibility="None" HorizontalAlignment="Stretch" VerticalAlignment="Stretch"
+                      CanUserAddRows="False" CanUserDeleteRows="False" SelectionMode="Single" Margin="10"
+                      CellStyle="{StaticResource DataGridCellStyle}" ColumnHeaderStyle="{StaticResource DataGridColumnHeaderStyle}"
+                      AlternatingRowBackground="{StaticResource DataGridAlternatingRowBackgroundColor}"
+                      ScrollViewer.CanContentScroll="True" ScrollViewer.VerticalScrollBarVisibility="Auto" IsReadOnly="True">
+                <DataGrid.Columns>
+                    <DataGridTextColumn Header="Czas" Binding="{Binding Time}" Width="*" ElementStyle="{StaticResource LabelStyle}"/>
+                    <DataGridTextColumn Header="Typ" Binding="{Binding Type}" Width="*" ElementStyle="{StaticResource LabelStyle}"/>
+                    <DataGridTextColumn Header="Domena" Binding="{Binding Domain}" Width="*" ElementStyle="{StaticResource LabelStyle}"/>
+                    <DataGridTextColumn Header="Klient" Binding="{Binding Client}" Width="*" ElementStyle="{StaticResource LabelStyle}"/>
+                    <DataGridTextColumn Header="Status" Binding="{Binding Status}" Width="*" ElementStyle="{StaticResource LabelStyle}"/>
+                    <DataGridTextColumn Header="Odpowiedź" Binding="{Binding Reply}" Width="*" ElementStyle="{StaticResource LabelStyle}"/>
+                    <DataGridTemplateColumn Header="Akcja" Width="Auto">
+                        <DataGridTemplateColumn.CellTemplate>
+                            <DataTemplate>
+                                <Button Content="X" Style="{StaticResource ButtonStyle}" Click="RemoveQuery_Click"/>
+                            </DataTemplate>
+                        </DataGridTemplateColumn.CellTemplate>
+                    </DataGridTemplateColumn>
+                </DataGrid.Columns>
+            </DataGrid>
         </Grid>
     </Grid>
 </UserControl>

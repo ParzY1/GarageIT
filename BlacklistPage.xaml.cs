@@ -30,10 +30,6 @@ namespace Garage
             {
                 var response = await _apiService.GetGroupsAsync(_baseUrl);
                 var groups = response.Data;
-                foreach (var group in groups)
-                {
-                    group.Status = group.Enabled == 1 ? "Włączony" : "Wyłączony"; // Assuming group.Enabled is of type int
-                }
                 groupsDataGrid.ItemsSource = groups;
             }
             catch (Exception ex)
@@ -75,8 +71,8 @@ namespace Garage
         {
             try
             {
-                var group = (Group)((Button)sender).DataContext;
-                if (group.Status == "Włączony")
+                var group = (Group)((FrameworkElement)sender).DataContext;
+                if (group.Enabled == 1)
                 {
                     await _apiService.DisableGroupAsync(_baseUrl, group.Name);
                 }
@@ -132,12 +128,10 @@ namespace Garage
 
         private void groupsDataGrid_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-
         }
 
         private void groupsDataGrid_SelectionChanged_1(object sender, SelectionChangedEventArgs e)
         {
-
         }
     }
 }

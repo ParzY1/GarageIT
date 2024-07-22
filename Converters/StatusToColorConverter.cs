@@ -9,9 +9,9 @@ namespace Garage.Converters
     {
         public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
         {
-            if (value is string status)
+            if (value is int enabled)
             {
-                return status == "Włączony" ? Brushes.Green : Brushes.Red;
+                return enabled == 1 ? Brushes.Green : Brushes.Red;
             }
             return Brushes.Gray;
         }
