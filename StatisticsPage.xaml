@@ -34,7 +34,7 @@
             <Border Grid.Column="2" Background="#FFC107" Padding="20" CornerRadius="10" Margin="10,9,8,11">
                 <StackPanel Margin="-10,23,-5,3">
                     <TextBlock Text="Percentage Blocked" Foreground="White" FontWeight="Bold" FontSize="16" Height="21" Width="156"/>
-                    <TextBlock x:Name="TextBlockPercentageBlocked" Text="0%" Foreground="White" FontSize="24" FontWeight="Bold" Height="26" Width="155"/>
+                    <TextBlock x:Name="TextBlockPercentageBlocked" Text="0%" Foreground="White" FontSize="24" FontWeight="Bold" Height="26" Width="155" HorizontalAlignment="Center" VerticalAlignment="Top"/>
                     <TextBlock Text="List all queries" Foreground="White" FontSize="12"/>
                 </StackPanel>
             </Border>

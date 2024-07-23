@@ -18,6 +18,8 @@
         <SolidColorBrush x:Key="DataGridRowBackgroundColor" Color="#2B2B2B"/>
         <SolidColorBrush x:Key="DataGridAlternatingRowBackgroundColor" Color="#3B3B3B"/>
 
+        <local:SecondsToHoursConverter x:Key="SecondsToHoursConverter"/>
+
         <Style x:Key="HeaderStyle" TargetType="TextBlock">
             <Setter Property="FontSize" Value="20"/>
             <Setter Property="Foreground" Value="{StaticResource TextColor}"/>
@@ -153,7 +155,7 @@
                       AlternatingRowBackground="{StaticResource DataGridAlternatingRowBackgroundColor}"
                       ScrollViewer.CanContentScroll="True" ScrollViewer.VerticalScrollBarVisibility="Auto" IsReadOnly="True">
                 <DataGrid.Columns>
-                    <DataGridTextColumn Header="Czas" Binding="{Binding Time}" Width="*" ElementStyle="{StaticResource LabelStyle}"/>
+                    <DataGridTextColumn Header="Czas" Binding="{Binding Time, Converter={StaticResource SecondsToHoursConverter}}" Width="*" ElementStyle="{StaticResource LabelStyle}"/>
                     <DataGridTextColumn Header="Typ" Binding="{Binding Type}" Width="*" ElementStyle="{StaticResource LabelStyle}"/>
                     <DataGridTextColumn Header="Domena" Binding="{Binding Domain}" Width="*" ElementStyle="{StaticResource LabelStyle}"/>
                     <DataGridTextColumn Header="Klient" Binding="{Binding Client}" Width="*" ElementStyle="{StaticResource LabelStyle}"/>

@@ -292,6 +292,13 @@ namespace Garage.Services
             var response = await GetAsync<ApiResponse<List<Domain>>>($"{baseUrl}/domains/getWhitelist");
             return response.Data;
         }
+        public async Task<string> GetServerStatusAsync(string baseUrl)
+        {
+            AddAuthorizationHeader();
+            var response = await _httpClient.GetAsync($"{baseUrl}/server-status");
+            return await response.Content.ReadAsStringAsync();
+        }
+
     }
 
     public class ApiResponse<T>
