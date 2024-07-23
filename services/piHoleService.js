@@ -45,6 +45,19 @@ const fetchQuerySources = async () => {
     }
 };
 
+const fetchStatus = async () => {
+    try {
+        const response = await axios.get(`${process.env.SERWER}/admin/api.php?auth=${process.env.KLUCZ}&status`);
+        if (response.status === 200 && response.data) {
+            return response.data;
+        } else {
+            throw new Error('Failed to fetch status from Pi-hole API');
+        }
+    } catch (error) {
+        throw new Error(`Error fetching status: ${error.message}`);
+    }
+};
+
 const filterQueriesFromLast24Hours = (queries) => {
     const last24Hours = Date.now() / 1000 - 24 * 60 * 60;
     return queries.filter(query => query[0] >= last24Hours);
@@ -54,5 +67,6 @@ module.exports = {
     fetchSummaryStatistics,
     fetchTopItems,
     fetchQuerySources,
+    fetchStatus,
     filterQueriesFromLast24Hours,
 };

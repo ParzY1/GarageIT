@@ -11,5 +11,6 @@ router.get('/queries-last-24-hours', piHoleController.getQueriesLast24Hours);
 router.get('/top-clients', piHoleController.getTopClients);
 router.get('/top-items', piHoleController.getTopItems);
 router.get('/query-sources', piHoleController.getQuerySources);
+router.get('/status', piHoleController.getStatus);
 
 module.exports = router;

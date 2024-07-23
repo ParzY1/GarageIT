@@ -1,5 +1,5 @@
 const axios = require('axios');
-const { fetchSummaryStatistics, filterQueriesFromLast24Hours, fetchTopItems, fetchQuerySources } = require('../services/piHoleService');
+const { fetchSummaryStatistics, filterQueriesFromLast24Hours, fetchTopItems, fetchQuerySources, fetchStatus } = require('../services/piHoleService');
 
 const getSummaryStatistics = async (req, res) => {
     try {
@@ -61,11 +61,21 @@ const getQuerySources = async (req, res) => {
     }
 };
 
+const getStatus = async (req, res) => {
+    try {
+        const status = await fetchStatus();
+        res.json(status);
+    } catch (error) {
+        res.status(500).json({ success: false, message: error.message });
+    }
+};
+
 module.exports = {
     getSummaryStatistics,
     getAllQueries,
     getQueriesLast24Hours,
     getTopClients,
     getTopItems,
-    getQuerySources
+    getQuerySources,
+    getStatus
 };
