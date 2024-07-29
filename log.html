@@ -7,9 +7,17 @@
     <link rel="stylesheet" href="styles.css">
     <script src="https://www.google.com/recaptcha/api.js?render=6LfhoBoqAAAAABwtfKSkXsdfkamrwQepiuJvY80j"></script>
     <script>
-        function onSubmit(token) {
+        async function onSubmit(token) {
             document.getElementById("auth-form").submit();
         }
+
+        grecaptcha.ready(function() {
+            document.getElementById('auth-button').addEventListener('click', async function(e) {
+                e.preventDefault();
+                const token = await grecaptcha.execute('6LfhoBoqAAAAABwtfKSkXsdfkamrwQepiuJvY80j', { action: 'submit' });
+                onSubmit(token);
+            });
+        });
     </script>
 </head>
 <body>
@@ -18,6 +26,11 @@
             <img src="Images/Icons/logo.png" alt="Garage IT Mobile & Desktop Manager Logo">
             Garage IT Mobile & Desktop Manager
         </div>
+        <nav>
+            <ul id="nav-list">
+                <li><a href="index.html">Strona główna</a></li>
+            </ul>
+        </nav>
     </header>
     <section id="auth" class="auth">
         <h2 id="auth-title">Zaloguj się</h2>
@@ -37,7 +50,7 @@
             <button class="g-recaptcha" 
                     data-sitekey="6LfhoBoqAAAAABwtfKSkXsdfkamrwQepiuJvY80j" 
                     data-callback='onSubmit' 
-                    data-action='submit'>Zaloguj się</button>
+                    data-action='submit' id="auth-button">Zaloguj się</button>
         </form>
         <p id="auth-toggle">Nie masz jeszcze konta? <a href="#" id="toggle-link">Załóż teraz!</a></p>
         <div id="auth-message" style="display:none;">Zalogowano pomyślnie!</div>
@@ -48,6 +61,62 @@
         </div>
         <p>&copy; 2024 Garage IT Mobile & Desktop Manager. Wszelkie prawa zastrzeżone.</p>
     </footer>
-    <script src="log.js"></script>
+    <script>
+        document.addEventListener("DOMContentLoaded", function() {
+            const toggleLink = document.getElementById("toggle-link");
+            const authTitle = document.getElementById("auth-title");
+            const authButton = document.getElementById("auth-button");
+            const emailContainer = document.getElementById("email-container");
+            const confirmPasswordContainer = document.getElementById("confirm-password-container");
+            const authMessage = document.getElementById("auth-message");
+
+            const adminUsername = 'admin';
+            const adminPassword = 'password'; // Change this to a secure password
+
+            function toggleForm(isLogin) {
+                if (isLogin) {
+                    authTitle.textContent = "Zaloguj się";
+                    authButton.textContent = "Zaloguj się";
+                    toggleLink.textContent = "Załóż teraz!";
+                    emailContainer.style.display = "none";
+                    confirmPasswordContainer.style.display = "none";
+                } else {
+                    authTitle.textContent = "Załóż konto";
+                    authButton.textContent = "Załóż konto";
+                    toggleLink.textContent = "Zaloguj się!";
+                    emailContainer.style.display = "block";
+                    confirmPasswordContainer.style.display = "block";
+                }
+            }
+
+            toggleLink.addEventListener("click", function(e) {
+                e.preventDefault();
+                toggleForm(authTitle.textContent.includes("Zaloguj się"));
+            });
+
+            document.getElementById("auth-form").addEventListener("submit", function(e) {
+                e.preventDefault();
+                const username = document.getElementById("username").value;
+                const password = document.getElementById("password").value;
+
+                if (authTitle.textContent.includes("Zaloguj się")) {
+                    if (username === adminUsername && password === adminPassword) {
+                        sessionStorage.setItem('isLoggedIn', 'true');
+                        sessionStorage.setItem('username', username);
+                        authMessage.style.display = "block";
+                        setTimeout(() => {
+                            window.location.href = "index.html";
+                        }, 2000);
+                    } else {
+                        alert('Invalid credentials. Please try again.');
+                    }
+                } else {
+                    // Registration logic here
+                    alert('Account registered successfully. Please log in.');
+                    toggleForm(true);
+                }
+            });
+        });
+    </script>
 </body>
 </html>

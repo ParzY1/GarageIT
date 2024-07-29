@@ -15,6 +15,7 @@
         <nav>
             <ul id="nav-list">
                 <li><a href="index.html">Strona główna</a></li>
+                <li><a href="logblog.html">Ustawienia</a></li>
             </ul>
         </nav>
     </header>
@@ -25,27 +26,8 @@
         </div>
     </section>
 
-    <section class="blog-posts">
-        <div class="post">
-            <h2>Pi-hole Core v5.18 released to fix an Authenticated Arbitrary File Read with root privileges vulnerability</h2>
-            <p>A vulnerability was recently discovered in Pi-hole’s gravity script that would allow for any system file to be arbitrarily read and presented to an authenticated user on the web interface. This release mitigates the vulnerability by limiting gravity’s ability to read local file’s to only those that are explicitly readable by anyone on the system….</p>
-            <a href="#" class="cta secondary">Read More</a>
-        </div>
-        <div class="post">
-            <h2>Pi-hole FTL v5.24, and Core v5.17.3 released</h2>
-            <p>As always, please read through the changelog before updating with pihole -up. (A new tag for docker image will arrive in due course.) While the majority of our development effort is currently focused on the running v6.0 beta, we are absolutely dedicated to supporting and enhancing v5. We understand that many users continue to depend…</p>
-            <a href="#" class="cta secondary">Read More</a>
-        </div>
-        <div class="post">
-            <h2>DNSSEC fix generally released</h2>
-            <p>Please run `pihole -up` to update Pi-hole with the fixes noted in the previous post. Thanks!</p>
-            <a href="#" class="cta secondary">Read More</a>
-        </div>
-        <div class="post">
-            <h2>Fixing two new DNSSEC vulnerabilities</h2>
-            <p>Today, we have been informed about two DNSSEC vulnerabilities in dnsmasq, which Pi-hole FTL is forked from. Both vulnerabilities, via specially crafted DNSSEC answers, can lead DNSSEC validators down a very CPU intensive and time costly validation/NSEC3 hash calculation path. This results in degraded performance and denial of service in trivially orchestrated attacks.</p>
-            <a href="#" class="cta secondary">Read More</a>
-        </div>
+    <section class="blog-posts" id="blog-posts">
+        <!-- Blog posts will be loaded here -->
     </section>
 
     <footer>
@@ -55,11 +37,30 @@
         <nav class="footer-nav">
             <ul>
                 <li><a href="index.html">Strona główna</a></li>
+                <li><a href="logblog.html">Ustawienia</a></li>
             </ul>
         </nav>
         <p>&copy; 2024 Garage IT Mobile & Desktop Manager. Wszelkie prawa zastrzeżone.</p>
     </footer>
 
-    <script src="scripts.js"></script>
+    <script>
+        document.addEventListener("DOMContentLoaded", function() {
+            // Load posts from localStorage
+            let posts = JSON.parse(localStorage.getItem('posts')) || [];
+
+            const blogPostsContainer = document.getElementById("blog-posts");
+
+            posts.forEach(post => {
+                const postElement = document.createElement("div");
+                postElement.classList.add("post");
+                postElement.innerHTML = `
+                    <h2>${post.title}</h2>
+                    <p>${post.content}</p>
+                    <a href="#" class="cta secondary">Read More</a>
+                `;
+                blogPostsContainer.appendChild(postElement);
+            });
+        });
+    </script>
 </body>
 </html>

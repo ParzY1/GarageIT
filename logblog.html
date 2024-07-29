@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Logowanie - Garage IT Mobile & Desktop Manager</title>
+    <link rel="stylesheet" href="styles.css">
+    <script src="https://www.google.com/recaptcha/api.js?render=6LfhoBoqAAAAABwtfKSkXsdfkamrwQepiuJvY80j"></script>
+    <script>
+        async function onSubmit(token) {
+            document.getElementById("login-form").submit();
+        }
+
+        grecaptcha.ready(function() {
+            document.getElementById('login-button').addEventListener('click', async function(e) {
+                e.preventDefault();
+                const token = await grecaptcha.execute('6LfhoBoqAAAAABwtfKSkXsdfkamrwQepiuJvY80j', { action: 'submit' });
+                onSubmit(token);
+            });
+        });
+    </script>
+</head>
+<body>
+    <header>
+        <div class="logo">
+            <img src="Images/Icons/logo.png" alt="Garage IT Mobile & Desktop Manager Logo">
+            Garage IT Mobile & Desktop Manager
+        </div>
+        <nav>
+            <ul id="nav-list">
+                <li><a href="index.html">Strona główna</a></li>
+                <li><a href="blog.html">Blog</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <section class="auth" id="auth-section">
+        <h2>Zaloguj się</h2>
+        <form id="login-form" action="javascript:void(0);">
+            <label for="username">Nazwa użytkownika:</label>
+            <input type="text" id="username" name="username" required>
+            <label for="password">Hasło:</label>
+            <input type="password" id="password" name="password" required>
+            <button class="g-recaptcha" 
+                    data-sitekey="6LfhoBoqAAAAABwtfKSkXsdfkamrwQepiuJvY80j" 
+                    data-callback='onSubmit' 
+                    data-action='submit' id="login-button">Zaloguj się</button>
+        </form>
+        <div id="auth-message" style="display:none;">Zalogowano pomyślnie!</div>
+    </section>
+
+    <section id="new-post-section" style="display:none;">
+        <h2>Dodaj nowy wpis</h2>
+        <form id="new-post-form" action="javascript:void(0);">
+            <label for="post-title">Tytuł:</label>
+            <input type="text" id="post-title" name="post-title" required>
+            <label for="post-content">Treść:</label>
+            <textarea id="post-content" name="post-content" required></textarea>
+            <button type="submit">Dodaj wpis</button>
+        </form>
+    </section>
+
+    <script>
+        document.addEventListener("DOMContentLoaded", function() {
+            // Admin credentials
+            const adminUsername = 'admin';
+            const adminPassword = 'password'; // Change this to a secure password
+
+            // Handle login form submission
+            document.getElementById("login-form").addEventListener("submit", function(e) {
+                e.preventDefault();
+                const username = document.getElementById("username").value;
+                const password = document.getElementById("password").value;
+
+                if (username === adminUsername && password === adminPassword) {
+                    document.getElementById("auth-message").style.display = "block";
+                    document.getElementById("new-post-section").style.display = "block";
+                    document.getElementById("auth-section").style.display = "none";
+                    sessionStorage.setItem('isLoggedIn', 'true');
+                } else {
+                    alert('Invalid credentials. Please try again.');
+                }
+            });
+
+            // Handle new post form submission
+            document.getElementById("new-post-form").addEventListener("submit", function(e) {
+                e.preventDefault();
+                const postTitle = document.getElementById("post-title").value;
+                const postContent = document.getElementById("post-content").value;
+
+                const newPost = {
+                    title: postTitle,
+                    content: postContent
+                };
+
+                // Store the new post in localStorage
+                let posts = JSON.parse(localStorage.getItem('posts')) || [];
+                posts.push(newPost);
+                localStorage.setItem('posts', JSON.stringify(posts));
+
+                // Clear the form fields
+                document.getElementById("post-title").value = '';
+                document.getElementById("post-content").value = '';
+
+                alert('Post added successfully!');
+            });
+        });
+    </script>
+</body>
+</html>

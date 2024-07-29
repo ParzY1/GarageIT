@@ -7,16 +7,15 @@
     <link rel="stylesheet" href="styles.css">
     <script src="https://www.google.com/recaptcha/api.js?render=6LfhoBoqAAAAABwtfKSkXsdfkamrwQepiuJvY80j"></script>
     <script>
-        function onSubmit(token) {
+        async function onSubmit(token) {
             document.getElementById("auth-form").submit();
         }
 
         grecaptcha.ready(function() {
-            document.getElementById('auth-button').addEventListener('click', function(e) {
+            document.getElementById('auth-button').addEventListener('click', async function(e) {
                 e.preventDefault();
-                grecaptcha.execute('6LfhoBoqAAAAABwtfKSkXsdfkamrwQepiuJvY80j', {action: 'submit'}).then(function(token) {
-                    onSubmit(token);
-                });
+                const token = await grecaptcha.execute('6LfhoBoqAAAAABwtfKSkXsdfkamrwQepiuJvY80j', { action: 'submit' });
+                onSubmit(token);
             });
         });
     </script>
@@ -33,7 +32,8 @@
                 <li><a href="#technology">Technologie</a></li>
                 <li><a href="#plans">Oferta</a></li>
                 <li><a href="blog.html">Blog</a></li>
-                <li><a href="#login">Logowanie</a></li>
+                <li><a href="log.html" id="login-link">Logowanie</a></li>
+                <li style="display: none;" id="user-link"><a href="#">Nazwa użytkownika</a></li>
                 <li style="display: none;" id="logout-link"><a href="#" id="logout">Wyloguj</a></li>
                 <li id="contact-link" style="display: none;"><a href="#contact">Kontakt</a></li>
             </ul>
@@ -162,45 +162,6 @@
         </div>
     </section>
 
-    <section id="login" class="auth">
-        <h2 id="auth-title">Zaloguj się</h2>
-        <form id="auth-form" action="javascript:void(0);">
-            <label for="username">Nazwa użytkownika:</label>
-            <input type="text" id="username" name="username" required>
-            <div id="email-container" style="display: none;">
-                <label for="email">Adres e-mail:</label>
-                <input type="email" id="email" name="email">
-            </div>
-            <label for="password">Hasło:</label>
-            <input type="password" id="password" name="password" required>
-            <div id="confirm-password-container" style="display: none;">
-                <label for="confirm-password">Powtórz hasło:</label>
-                <input type="password" id="confirm-password" name="confirm-password">
-            </div>
-            <button class="g-recaptcha" 
-                    data-sitekey="6LfhoBoqAAAAABwtfKSkXsdfkamrwQepiuJvY80j" 
-                    data-callback='onSubmit' 
-                    data-action='submit' id="auth-button">Zaloguj się</button>
-        </form>
-        <p id="auth-toggle">Nie masz jeszcze konta? <a href="#" id="toggle-link">Załóż teraz!</a></p>
-        <div id="auth-message" style="display:none;">Zalogowano pomyślnie!</div>
-    </section>
-
-    <section id="contact" class="contact" style="display:none;">
-        <h2>Skontaktuj się z nami</h2>
-        <form>
-            <label for="name">Imię:</label>
-            <input type="text" id="name" name="name">
-            <label for="email">E-mail:</label>
-            <input type="email" id="email" name="email">
-            <label for="subject">Temat:</label>
-            <input type="text" id="subject" name="subject">
-            <label for="message">Wiadomość:</label>
-            <textarea id="message" name="message"></textarea>
-            <button type="submit">Wyślij</button>
-        </form>
-    </section>
-
     <footer>
         <div class="social-media">
             <a href="https://garageit.pl"><img src="Images/Icons/logo.png" alt="Garage IT"></a>
@@ -211,15 +172,34 @@
                 <li><a href="#technology">Technologie</a></li>
                 <li><a href="#plans">Oferta</a></li>
                 <li><a href="blog.html">Blog</a></li>
-                <li><a href="#login">Logowanie</a></li>
-                <li style="display: none;" id="logout-link-footer"><a href="#" id="logout-footer">Wyloguj</a></li>
-                <li id="contact-link-footer" style="display: none;"><a href="#contact">Kontakt</a></li>
+                <li><a href="log.html" id="login-link">Logowanie</a></li>
+                <li style="display: none;" id="user-link"><a href="#">Nazwa użytkownika</a></li>
+                <li style="display: none;" id="logout-link"><a href="#" id="logout">Wyloguj</a></li>
             </ul>
         </nav>
         <p>&copy; 2024 Garage IT Mobile & Desktop Manager. Wszelkie prawa zastrzeżone.</p>
     </footer>
 
     <script src="scripts.js"></script>
-    <script src="log.js"></script>
+    <script>
+        document.addEventListener("DOMContentLoaded", function() {
+            const isLoggedIn = sessionStorage.getItem('isLoggedIn');
+            const username = sessionStorage.getItem('username');
+
+            if (isLoggedIn === 'true' && username) {
+                document.getElementById('login-link').style.display = 'none';
+                document.getElementById('user-link').style.display = 'inline';
+                document.getElementById('user-link').innerText = username;
+                document.getElementById('logout-link').style.display = 'inline';
+            }
+
+            document.getElementById('logout').addEventListener('click', function(e) {
+                e.preventDefault();
+                sessionStorage.removeItem('isLoggedIn');
+                sessionStorage.removeItem('username');
+                window.location.href = 'index.html';
+            });
+        });
+    </script>
 </body>
 </html>
