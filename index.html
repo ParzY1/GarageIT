@@ -6,6 +6,20 @@
     <title>Garage IT Mobile & Desktop Manager</title>
     <link rel="stylesheet" href="styles.css">
     <script src="https://www.google.com/recaptcha/api.js?render=6LfhoBoqAAAAABwtfKSkXsdfkamrwQepiuJvY80j"></script>
+    <script>
+        function onSubmit(token) {
+            document.getElementById("auth-form").submit();
+        }
+
+        grecaptcha.ready(function() {
+            document.getElementById('auth-button').addEventListener('click', function(e) {
+                e.preventDefault();
+                grecaptcha.execute('6LfhoBoqAAAAABwtfKSkXsdfkamrwQepiuJvY80j', {action: 'submit'}).then(function(token) {
+                    onSubmit(token);
+                });
+            });
+        });
+    </script>
 </head>
 <body>
     <header>

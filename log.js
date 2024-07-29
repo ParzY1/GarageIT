@@ -30,14 +30,17 @@ document.addEventListener("DOMContentLoaded", function() {
 
     document.getElementById('auth-form').addEventListener('submit', function(e) {
         e.preventDefault();
-        grecaptcha.execute();
-        if (isLogin) {
-            // Logika logowania
-            authMessage.textContent = 'Zalogowano pomyślnie!';
-        } else {
-            // Logika rejestracji
-            authMessage.textContent = 'Zarejestrowano pomyślnie!';
-        }
-        authMessage.style.display = 'block';
+        grecaptcha.ready(function() {
+            grecaptcha.execute('6LfhoBoqAAAAABwtfKSkXsdfkamrwQepiuJvY80j', {action: 'submit'}).then(function(token) {
+                if (isLogin) {
+                    // Logika logowania
+                    authMessage.textContent = 'Zalogowano pomyślnie!';
+                } else {
+                    // Logika rejestracji
+                    authMessage.textContent = 'Zarejestrowano pomyślnie!';
+                }
+                authMessage.style.display = 'block';
+            });
+        });
     });
 });
