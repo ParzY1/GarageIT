@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Logowanie</title>
+    <link rel="stylesheet" href="styles.css">
+    <script src="https://www.google.com/recaptcha/api.js?render=6LfhoBoqAAAAABwtfKSkXsdfkamrwQepiuJvY80j"></script>
+    <script>
+        function onSubmit(token) {
+            document.getElementById("auth-form").submit();
+        }
+    </script>
+</head>
+<body>
+    <header>
+        <div class="logo">
+            <img src="Images/Icons/logo.png" alt="Garage IT Mobile & Desktop Manager Logo">
+            Garage IT Mobile & Desktop Manager
+        </div>
+    </header>
+    <section id="auth" class="auth">
+        <h2 id="auth-title">Zaloguj się</h2>
+        <form id="auth-form" action="javascript:void(0);">
+            <label for="username">Nazwa użytkownika:</label>
+            <input type="text" id="username" name="username" required>
+            <div id="email-container" style="display: none;">
+                <label for="email">Adres e-mail:</label>
+                <input type="email" id="email" name="email">
+            </div>
+            <label for="password">Hasło:</label>
+            <input type="password" id="password" name="password" required>
+            <div id="confirm-password-container" style="display: none;">
+                <label for="confirm-password">Powtórz hasło:</label>
+                <input type="password" id="confirm-password" name="confirm-password">
+            </div>
+            <button class="g-recaptcha" 
+                    data-sitekey="6LfhoBoqAAAAABwtfKSkXsdfkamrwQepiuJvY80j" 
+                    data-callback='onSubmit' 
+                    data-action='submit'>Zaloguj się</button>
+        </form>
+        <p id="auth-toggle">Nie masz jeszcze konta? <a href="#" id="toggle-link">Załóż teraz!</a></p>
+        <div id="auth-message" style="display:none;">Zalogowano pomyślnie!</div>
+    </section>
+    <footer>
+        <div class="social-media">
+            <a href="https://garageit.pl"><img src="Images/Icons/logo.png" alt="Garage IT"></a>
+        </div>
+        <p>&copy; 2024 Garage IT Mobile & Desktop Manager. Wszelkie prawa zastrzeżone.</p>
+    </footer>
+    <script src="log.js"></script>
+</body>
+</html>
