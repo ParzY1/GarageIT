@@ -1,5 +1,7 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.Linq;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
@@ -13,6 +15,7 @@ namespace Garage
         private readonly ApiService _apiService;
         public ObservableCollection<Domain> WhitelistDomains { get; set; }
         public ObservableCollection<Domain> BlacklistDomains { get; set; }
+        private Dictionary<int, string> _groupNames;
 
         public DomainsPage(ApiService apiService)
         {
@@ -25,7 +28,22 @@ namespace Garage
 
         private async void DomainsPage_Loaded(object sender, RoutedEventArgs e)
         {
+            await LoadGroups();
             await LoadDomains();
+        }
+
+        private async Task LoadGroups()
+        {
+            var baseUrl = "https://blockdns.garageit.pl";
+            try
+            {
+                var groupsResponse = await _apiService.GetGroupsAsync(baseUrl);
+                _groupNames = groupsResponse.Data.ToDictionary(g => g.Id, g => g.Name);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Error loading groups: {ex.Message}");
+            }
         }
 
         private async Task LoadDomains()
@@ -41,11 +59,13 @@ namespace Garage
 
                 foreach (var domain in whitelist)
                 {
+                    domain.GroupsString = string.Join(", ", domain.Groups.Select(g => _groupNames.ContainsKey(g) ? _groupNames[g] : g.ToString()));
                     WhitelistDomains.Add(domain);
                 }
 
                 foreach (var domain in blacklist)
                 {
+                    domain.GroupsString = string.Join(", ", domain.Groups.Select(g => _groupNames.ContainsKey(g) ? _groupNames[g] : g.ToString()));
                     BlacklistDomains.Add(domain);
                 }
             }
@@ -151,9 +171,51 @@ namespace Garage
             }
         }
 
+        private async void AddSelectedDomainsToGroup_Click(object sender, RoutedEventArgs e)
+        {
+            var group = groupTextBox.Text;
+            var baseUrl = "https://blockdns.garageit.pl";
+            var selectedDomains = WhitelistDomains.Where(d => d.IsSelected).Concat(BlacklistDomains.Where(d => d.IsSelected)).ToList();
+
+            try
+            {
+                foreach (var domain in selectedDomains)
+                {
+                    await _apiService.AddDomainToGroup(baseUrl, domain.DomainName, group);
+                }
+                MessageBox.Show("Selected domains added to group successfully", "Success", MessageBoxButton.OK, MessageBoxImage.Information);
+                await LoadDomains();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Error adding domains to group: {ex.Message}");
+            }
+        }
+
+        private async void RemoveSelectedDomainsFromGroup_Click(object sender, RoutedEventArgs e)
+        {
+            var group = groupTextBox.Text;
+            var baseUrl = "https://blockdns.garageit.pl";
+            var selectedDomains = WhitelistDomains.Where(d => d.IsSelected).Concat(BlacklistDomains.Where(d => d.IsSelected)).ToList();
+
+            try
+            {
+                foreach (var domain in selectedDomains)
+                {
+                    await _apiService.RemoveDomainFromGroup(baseUrl, domain.DomainName, group);
+                }
+                MessageBox.Show("Selected domains removed from group successfully", "Success", MessageBoxButton.OK, MessageBoxImage.Information);
+                await LoadDomains();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Error removing domains from group: {ex.Message}");
+            }
+        }
+
         private void listComboBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-
+            // Handle selection change if necessary
         }
     }
 }

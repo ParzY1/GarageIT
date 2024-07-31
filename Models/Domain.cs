@@ -18,8 +18,11 @@ namespace Garage.Models
         public long DateModified { get; set; }
         public string Comment { get; set; }
         public List<int> Groups { get; set; }
+
+        [JsonIgnore]
+        public bool IsSelected { get; set; }
+
+        [JsonIgnore]
+        public string GroupsString { get; set; }
     }
 }
-
-
-

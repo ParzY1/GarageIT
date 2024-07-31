@@ -112,6 +112,12 @@
                 <TextBlock Text="Możesz wybrać istniejącego klienta lub dodać nowego, wpisując powyżej i potwierdzając enterem." TextWrapping="Wrap" Margin="0,10,0,0" Style="{StaticResource LabelStyle}"/>
                 <TextBlock Text="Klienci mogą być opisani poprzez adresy IP (IPv4 i IPv6 są obsługiwane), podsieci IP (notacja CIDR, np. 192.168.2.0/24), adresy MAC (np. 12:34:56:78:9A:BC), nazwy hostów (np. localhost) lub interfejsy, do których są podłączone (poprzedzone dwukropkiem, np. :eth0)." TextWrapping="Wrap" Margin="0,10,0,0" Style="{StaticResource LabelStyle}"/>
                 <Button Content="Dodaj" HorizontalAlignment="Left" Width="100" Margin="0,10,0,0" Click="AddClient_Click" Style="{StaticResource ButtonStyle}"/>
+                <StackPanel Orientation="Horizontal" Margin="0,10,0,10">
+                    <TextBlock Text="Grupa:" Style="{StaticResource LabelStyle}" VerticalAlignment="Center"/>
+                    <TextBox x:Name="clientGroupTextBox" Style="{StaticResource TextBoxStyle}"/>
+                    <Button Content="Dodaj do grupy" Style="{StaticResource ButtonStyle}" Margin="10,0,0,0" Click="AddClientToGroup_Click" Width="100"/>
+                    <Button Content="Usuń z grupy" Style="{StaticResource ButtonStyle}" Margin="10,0,0,0" Click="RemoveClientFromGroup_Click" Width="100"/>
+                </StackPanel>
             </StackPanel>
         </GroupBox>
 

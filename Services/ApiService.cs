@@ -299,6 +299,30 @@ namespace Garage.Services
             return await response.Content.ReadAsStringAsync();
         }
 
+        // New Methods for Adding and Removing Domains and Clients to/from Groups
+        public async Task<string> AddDomainToGroup(string baseUrl, string domain, string group)
+        {
+            var domainData = new { domain, group };
+            return await PostAsync($"{baseUrl}/domains/addDomainToGroup", domainData);
+        }
+
+        public async Task<string> RemoveDomainFromGroup(string baseUrl, string domain, string group)
+        {
+            var domainData = new { domain, group };
+            return await PostAsync($"{baseUrl}/domains/removeDomainFromGroup", domainData);
+        }
+
+        public async Task<string> AddClientToGroup(string baseUrl, string clientIp, string group)
+        {
+            var clientData = new { ip = clientIp, group };
+            return await PostAsync($"{baseUrl}/Clients/addClientToGroup", clientData);
+        }
+
+        public async Task<string> RemoveClientFromGroup(string baseUrl, string clientIp, string group)
+        {
+            var clientData = new { ip = clientIp, group };
+            return await PostAsync($"{baseUrl}/Clients/removeClientFromGroup", clientData);
+        }
     }
 
     public class ApiResponse<T>

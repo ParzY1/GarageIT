@@ -91,6 +91,54 @@ namespace Garage
             }
         }
 
+        private async void AddClientToGroup_Click(object sender, RoutedEventArgs e)
+        {
+            if (configuredClientsDataGrid.SelectedItem is Client selectedClient)
+            {
+                var group = clientGroupTextBox.Text;
+                var baseUrl = "https://blockdns.garageit.pl";
+
+                try
+                {
+                    await _apiService.AddClientToGroup(baseUrl, selectedClient.Ip, group);
+                    MessageBox.Show("Client added to group successfully", "Success", MessageBoxButton.OK, MessageBoxImage.Information);
+                    LoadClients(); // Refresh the data grid after updating the group
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show($"Error adding client to group: {ex.Message}");
+                }
+            }
+            else
+            {
+                MessageBox.Show("Please select a client to add to a group", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+            }
+        }
+
+        private async void RemoveClientFromGroup_Click(object sender, RoutedEventArgs e)
+        {
+            if (configuredClientsDataGrid.SelectedItem is Client selectedClient)
+            {
+                var group = clientGroupTextBox.Text;
+                var baseUrl = "https://blockdns.garageit.pl";
+
+                try
+                {
+                    await _apiService.RemoveClientFromGroup(baseUrl, selectedClient.Ip, group);
+                    MessageBox.Show("Client removed from group successfully", "Success", MessageBoxButton.OK, MessageBoxImage.Information);
+                    LoadClients(); // Refresh the data grid after updating the group
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show($"Error removing client from group: {ex.Message}");
+                }
+            }
+            else
+            {
+                MessageBox.Show("Please select a client to remove from a group", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+            }
+        }
+
         private void configuredClientsDataGrid_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             // Logic to handle selection change in DataGrid

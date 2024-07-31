@@ -250,6 +250,12 @@
                         </ComboBox>
                         <Button Content="Dodaj" Style="{StaticResource ButtonStyle}" Margin="10,0,0,0" Click="AddToDomains_Click" Width="53"/>
                     </StackPanel>
+                    <StackPanel Orientation="Horizontal" Margin="0,10,0,10">
+                        <TextBlock Text="Grupa:" Style="{StaticResource LabelStyle}" VerticalAlignment="Center"/>
+                        <TextBox x:Name="groupTextBox" Style="{StaticResource TextBoxStyle}"/>
+                        <Button Content="Dodaj do grupy" Style="{StaticResource ButtonStyle}" Margin="10,0,0,0" Click="AddSelectedDomainsToGroup_Click" Width="100"/>
+                        <Button Content="Usuń z grupy" Style="{StaticResource ButtonStyle}" Margin="10,0,0,0" Click="RemoveSelectedDomainsFromGroup_Click" Width="100"/>
+                    </StackPanel>
                     <TextBlock Text="Wskazówki:" Style="{StaticResource LabelStyle}" FontWeight="Bold" Margin="10,0,0,0"/>
                     <TextBlock Text="1. Można dodać wiele domen, oddzielając każdą nazwę domeny spacją." Style="{StaticResource LabelStyle}" Margin="10,0,0,0"/>
                     <TextBlock Text='2. Nazwy domen mogą zawierać spacje, jeśli są wprowadzone w cudzysłowiu. Na przykład "example.com".' Style="{StaticResource LabelStyle}" Margin="10,0,0,0" Height="42"/>
@@ -265,8 +271,10 @@
                               CanUserAddRows="False" CanUserDeleteRows="False" SelectionMode="Single" Margin="10"
                               CellStyle="{StaticResource DataGridCellStyle}" ColumnHeaderStyle="{StaticResource DataGridColumnHeaderStyle}" BorderBrush="White">
                         <DataGrid.Columns>
+                            <DataGridCheckBoxColumn Binding="{Binding IsSelected, Mode=TwoWay}" Width="30"/>
                             <DataGridTextColumn Header="Domena" Binding="{Binding DomainName}" Width="*" ElementStyle="{StaticResource LabelStyle}"/>
                             <DataGridTextColumn Header="Komentarz" Binding="{Binding Comment}" Width="*" ElementStyle="{StaticResource LabelStyle}"/>
+                            <DataGridTextColumn Header="Grupy" Binding="{Binding GroupsString}" Width="*" ElementStyle="{StaticResource LabelStyle}"/>
                             <DataGridTemplateColumn Header="Akcje" Width="100">
                                 <DataGridTemplateColumn.CellTemplate>
                                     <DataTemplate>
@@ -291,8 +299,10 @@
                               CanUserAddRows="False" CanUserDeleteRows="False" SelectionMode="Single" Margin="10"
                               CellStyle="{StaticResource DataGridCellStyle}" ColumnHeaderStyle="{StaticResource DataGridColumnHeaderStyle}" BorderBrush="White">
                         <DataGrid.Columns>
+                            <DataGridCheckBoxColumn Binding="{Binding IsSelected, Mode=TwoWay}" Width="30"/>
                             <DataGridTextColumn Header="Domena" Binding="{Binding DomainName}" Width="*" ElementStyle="{StaticResource LabelStyle}"/>
                             <DataGridTextColumn Header="Komentarz" Binding="{Binding Comment}" Width="*" ElementStyle="{StaticResource LabelStyle}"/>
+                            <DataGridTextColumn Header="Grupy" Binding="{Binding GroupsString}" Width="*" ElementStyle="{StaticResource LabelStyle}"/>
                             <DataGridTemplateColumn Header="Akcje" Width="100">
                                 <DataGridTemplateColumn.CellTemplate>
                                     <DataTemplate>

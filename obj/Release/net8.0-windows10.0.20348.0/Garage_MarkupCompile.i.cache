@@ -4,17 +4,17 @@
 winexe
 C#
 .cs
-C:\Users\marce\Desktop\GarageIT\GarageIT\obj\Release\net8.0-windows10.0.20348.0\
+C:\Users\ADMIN\Desktop\GarageIT\GarageIT\obj\Release\net8.0-windows10.0.20348.0\
 Garage
 none
 false
 TRACE;RELEASE;NET;NET8_0;NETCOREAPP
-C:\Users\marce\Desktop\GarageIT\GarageIT\App.xaml
+C:\Users\ADMIN\Desktop\GarageIT\GarageIT\App.xaml
 10-1421397260
 1-446522147
 281978756825
-206-1256079640
+206410902674
 BlacklistPage.xaml;DomainsPage.xaml;LoginWindow.xaml;MainWindow.xaml;ManageAccountPage.xaml;ManageAccountWindow.xaml;ManageClientsPage.xaml;SettingsPage.xaml;StatisticsPage.xaml;WhitelistPage.xaml;
 
-False
+True
 
