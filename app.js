@@ -13,6 +13,7 @@ const groupRoutes = require('./routes/groupRoutes');
 const clientRoutes = require('./routes/clientRoutes');
 const auditRoutes = require('./routes/auditRoutes');
 const piHoleRoutes = require('./routes/piHoleRoutes');
+const settingsRoutes = require('./routes/settingsRoutes');
 
 connectDB();
 
@@ -31,6 +32,7 @@ app.use('/groups', groupRoutes);
 app.use('/clients', clientRoutes);
 app.use('/audit', auditRoutes);
 app.use('/pi-hole', piHoleRoutes);
+app.use('/settings', settingsRoutes);
 
 app.listen(process.env.PORT, () => {
     console.log(`Server is running properly.`);
