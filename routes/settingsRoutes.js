@@ -26,4 +26,7 @@ router.post('/privacy-level', settingsController.setPrivacyLevel);
 router.get('/rate-limit', settingsController.getRateLimit);
 router.post('/rate-limit', settingsController.setRateLimit);
 
+router.get('/query-logging', settingsController.getQueryLogging);
+router.post('/query-logging', settingsController.setQueryLogging);
+
 module.exports = router;

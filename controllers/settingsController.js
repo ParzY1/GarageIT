@@ -180,6 +180,29 @@ const setRateLimit = async (req, res) => {
     }
 };
 
+const getQueryLogging = async (req, res) => {
+    try {
+        const value = await settingsService.getSetting('QUERY_LOGGING');
+        res.json({ success: true, value });
+    } catch (error) {
+        res.status(500).json({ error: error.message });
+    }
+};
+
+const setQueryLogging = async (req, res) => {
+    const { value } = req.body;
+    if (!['true', 'false'].includes(value)) {
+        return res.status(400).json({ error: 'Invalid value for QUERY_LOGGING. Must be true or false.' });
+    }
+
+    try {
+        await settingsService.setSetting('QUERY_LOGGING', value);
+        res.json({ success: true, message: `QUERY_LOGGING set to ${value}` });
+    } catch (error) {
+        res.status(500).json({ error: error.message });
+    }
+};
+
 module.exports = {
     getDNSMasqListening,
     setDNSMasqListening,
@@ -194,5 +217,7 @@ module.exports = {
     getPrivacyLevel,
     setPrivacyLevel,
     getRateLimit,
-    setRateLimit
+    setRateLimit,
+    getQueryLogging,
+    setQueryLogging
 };

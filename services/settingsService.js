@@ -1,5 +1,5 @@
 const fs = require('fs');
-const path = process.env.FTL_CONFIG_PATH;
+const path = process.env.CONFIG_PATH;
 const ftlPath = process.env.FTL_CONFIG_PATH;
 
 const getSetting = (key) => {
