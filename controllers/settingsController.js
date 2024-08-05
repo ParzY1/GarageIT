@@ -133,6 +133,53 @@ const setDNSServers = async (req, res) => {
     }
 };
 
+const getPrivacyLevel = async (req, res) => {
+    try {
+        const value = await settingsService.getFTLSetting('PRIVACYLEVEL');
+        res.json({ success: true, value });
+    } catch (error) {
+        res.status(500).json({ error: error.message });
+    }
+};
+
+const setPrivacyLevel = async (req, res) => {
+    const { value } = req.body;
+    if (!['0', '1', '2', '3'].includes(value)) {
+        return res.status(400).json({ error: 'Invalid value for PRIVACYLEVEL' });
+    }
+
+    try {
+        await settingsService.setFTLSetting('PRIVACYLEVEL', value);
+        res.json({ success: true, message: `PRIVACYLEVEL set to ${value}` });
+    } catch (error) {
+        res.status(500).json({ error: error.message });
+    }
+};
+
+const getRateLimit = async (req, res) => {
+    try {
+        const value = await settingsService.getFTLSetting('RATE_LIMIT');
+        res.json({ success: true, value });
+    } catch (error) {
+        res.status(500).json({ error: error.message });
+    }
+};
+
+const setRateLimit = async (req, res) => {
+    const { value } = req.body;
+    const regex = /^[0-9]+\/[0-9]+$/;
+    if (!regex.test(value)) {
+        return res.status(400).json({ error: 'Invalid value for RATE_LIMIT. Format should be {query_count}/{seconds}' });
+    }
+
+    try {
+        await settingsService.setFTLSetting('RATE_LIMIT', value);
+        res.json({ success: true, message: `RATE_LIMIT set to ${value}` });
+    } catch (error) {
+        res.status(500).json({ error: error.message });
+    }
+};
+
 module.exports = {
     getDNSMasqListening,
     setDNSMasqListening,
@@ -143,5 +190,9 @@ module.exports = {
     getDNSSEC,
     setDNSSEC,
     getDNSServers,
-    setDNSServers
+    setDNSServers,
+    getPrivacyLevel,
+    setPrivacyLevel,
+    getRateLimit,
+    setRateLimit
 };
