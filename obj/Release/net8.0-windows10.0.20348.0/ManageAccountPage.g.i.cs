@@ -84,7 +84,7 @@ namespace Garage {
                 return;
             }
             _contentLoaded = true;
-            System.Uri resourceLocater = new System.Uri("/Garage;component/manageaccountpage.xaml", System.UriKind.Relative);
+            System.Uri resourceLocater = new System.Uri("/Garage;V1.0.0.0;component/manageaccountpage.xaml", System.UriKind.Relative);
             
             #line 1 "..\..\..\ManageAccountPage.xaml"
             System.Windows.Application.LoadComponent(this, resourceLocater);

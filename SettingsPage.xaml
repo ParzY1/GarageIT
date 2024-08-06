@@ -4,8 +4,364 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              mc:Ignorable="d"
-             d:DesignHeight="450" d:DesignWidth="800">
-    <Grid>
-        <TextBlock Text="Settings Page Content" FontSize="24" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+             d:DesignHeight="900" d:DesignWidth="800">
+    <UserControl.Resources>
+        <!-- Colors -->
+        <SolidColorBrush x:Key="PrimaryColor" Color="#4CAF50"/>
+        <SolidColorBrush x:Key="SecondaryColor" Color="#2196F3"/>
+        <SolidColorBrush x:Key="TextColor" Color="#FFFFFF"/>
+        <SolidColorBrush x:Key="BackgroundColor" Color="#1E1E1E"/>
+        <SolidColorBrush x:Key="CardColor" Color="#2B2B2B"/>
+        <SolidColorBrush x:Key="HighlightColor" Color="#FF5722"/>
+        <SolidColorBrush x:Key="PanelBackgroundColor" Color="#2E3338"/>
+        <SolidColorBrush x:Key="BorderColor" Color="#CCCCCC"/>
+
+        <!-- Styles -->
+        <Style x:Key="HeaderStyle" TargetType="TextBlock">
+            <Setter Property="FontSize" Value="20"/>
+            <Setter Property="Foreground" Value="{StaticResource TextColor}"/>
+            <Setter Property="Margin" Value="10"/>
+        </Style>
+
+        <Style x:Key="LabelStyle" TargetType="TextBlock">
+            <Setter Property="FontSize" Value="16"/>
+            <Setter Property="Foreground" Value="{StaticResource TextColor}"/>
+            <Setter Property="Margin" Value="5"/>
+        </Style>
+
+        <Style x:Key="TextBoxStyle" TargetType="TextBox">
+            <Setter Property="Width" Value="200"/>
+            <Setter Property="Height" Value="30"/>
+            <Setter Property="Margin" Value="5"/>
+            <Setter Property="Foreground" Value="{StaticResource TextColor}"/>
+            <Setter Property="Background" Value="#000000"/>
+        </Style>
+
+        <Style x:Key="PasswordBoxStyle" TargetType="PasswordBox">
+            <Setter Property="Width" Value="200"/>
+            <Setter Property="Height" Value="30"/>
+            <Setter Property="Margin" Value="5"/>
+            <Setter Property="Foreground" Value="{StaticResource TextColor}"/>
+            <Setter Property="Background" Value="#000000"/>
+        </Style>
+
+        <Style x:Key="ComboBoxStyle" TargetType="ComboBox">
+            <Setter Property="Width" Value="200"/>
+            <Setter Property="Height" Value="30"/>
+            <Setter Property="Margin" Value="5"/>
+            <Setter Property="Foreground" Value="{StaticResource TextColor}"/>
+            <Setter Property="Background" Value="#000000"/>
+            <Setter Property="BorderBrush" Value="#FFFFFF"/>
+        </Style>
+
+        <Style x:Key="ComboBoxItemStyle" TargetType="ComboBoxItem">
+            <Setter Property="Foreground" Value="{StaticResource TextColor}"/>
+            <Setter Property="Background" Value="#000000"/>
+        </Style>
+
+        <Style x:Key="ButtonStyle" TargetType="Button">
+            <Setter Property="Width" Value="100"/>
+            <Setter Property="Height" Value="30"/>
+            <Setter Property="Margin" Value="5"/>
+            <Setter Property="Foreground" Value="{StaticResource TextColor}"/>
+            <Setter Property="Background" Value="#FF5722"/>
+            <Setter Property="BorderBrush" Value="#FF5722"/>
+            <Setter Property="FontWeight" Value="Bold"/>
+        </Style>
+
+        <Style x:Key="GroupBoxStyle" TargetType="Border">
+            <Setter Property="Margin" Value="0,0,0,20"/>
+            <Setter Property="Background" Value="{StaticResource CardColor}"/>
+            <Setter Property="Padding" Value="10"/>
+            <Setter Property="BorderBrush" Value="{StaticResource BorderColor}"/>
+            <Setter Property="BorderThickness" Value="1"/>
+            <Setter Property="CornerRadius" Value="5"/>
+        </Style>
+
+        <Style x:Key="CheckBoxStyle" TargetType="CheckBox">
+            <Setter Property="Foreground" Value="{StaticResource TextColor}"/>
+            <Setter Property="Margin" Value="5"/>
+        </Style>
+
+        <Style x:Key="RadioButtonStyle" TargetType="RadioButton">
+            <Setter Property="Foreground" Value="{StaticResource TextColor}"/>
+            <Setter Property="Margin" Value="5"/>
+        </Style>
+    </UserControl.Resources>
+
+    <Grid Background="{StaticResource BackgroundColor}">
+        <TabControl Background="{StaticResource PanelBackgroundColor}">
+            <!-- System Tab -->
+            <TabItem Header="System">
+                <ScrollViewer VerticalScrollBarVisibility="Auto">
+                    <StackPanel Margin="20">
+                        <Border Style="{StaticResource GroupBoxStyle}">
+                            <StackPanel>
+                                <TextBlock Text="FTL Information" Style="{StaticResource HeaderStyle}"/>
+                                <Grid Margin="10">
+                                    <Grid.RowDefinitions>
+                                        <RowDefinition Height="Auto"/>
+                                        <RowDefinition Height="Auto"/>
+                                        <RowDefinition Height="Auto"/>
+                                        <RowDefinition Height="Auto"/>
+                                        <RowDefinition Height="Auto"/>
+                                        <RowDefinition Height="Auto"/>
+                                        <RowDefinition Height="Auto"/>
+                                        <RowDefinition Height="Auto"/>
+                                        <RowDefinition Height="Auto"/>
+                                        <RowDefinition Height="Auto"/>
+                                    </Grid.RowDefinitions>
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="*"/>
+                                        <ColumnDefinition Width="*"/>
+                                    </Grid.ColumnDefinitions>
+
+                                    <TextBlock Text="FTL version:" Style="{StaticResource LabelStyle}" Grid.Row="0" Grid.Column="0"/>
+                                    <TextBlock Text="v5.25.2" Style="{StaticResource LabelStyle}" Grid.Row="0" Grid.Column="1"/>
+                                    <TextBlock Text="Process identifier (PID):" Style="{StaticResource LabelStyle}" Grid.Row="1" Grid.Column="0"/>
+                                    <TextBlock Text="7016" Style="{StaticResource LabelStyle}" Grid.Row="1" Grid.Column="1"/>
+                                    <TextBlock Text="Time FTL started:" Style="{StaticResource LabelStyle}" Grid.Row="2" Grid.Column="0"/>
+                                    <TextBlock Text="Mon Aug 5 13:09:47 2024 UTC" Style="{StaticResource LabelStyle}" Grid.Row="2" Grid.Column="1"/>
+                                    <TextBlock Text="User / Group:" Style="{StaticResource LabelStyle}" Grid.Row="3" Grid.Column="0"/>
+                                    <TextBlock Text="pihole / pihole" Style="{StaticResource LabelStyle}" Grid.Row="3" Grid.Column="1"/>
+                                    <TextBlock Text="Total CPU utilization:" Style="{StaticResource LabelStyle}" Grid.Row="4" Grid.Column="0"/>
+                                    <TextBlock Text="0.0%" Style="{StaticResource LabelStyle}" Grid.Row="4" Grid.Column="1"/>
+                                    <TextBlock Text="Memory utilization:" Style="{StaticResource LabelStyle}" Grid.Row="5" Grid.Column="0"/>
+                                    <TextBlock Text="0.1%" Style="{StaticResource LabelStyle}" Grid.Row="5" Grid.Column="1"/>
+                                    <TextBlock Text="Used memory:" Style="{StaticResource LabelStyle}" Grid.Row="6" Grid.Column="0"/>
+                                    <TextBlock Text="6.78 MB" Style="{StaticResource LabelStyle}" Grid.Row="6" Grid.Column="1"/>
+                                    <TextBlock Text="DNS cache size:" Style="{StaticResource LabelStyle}" Grid.Row="7" Grid.Column="0"/>
+                                    <TextBlock Text="10000" Style="{StaticResource LabelStyle}" Grid.Row="7" Grid.Column="1"/>
+                                    <TextBlock Text="DNS cache insertions:" Style="{StaticResource LabelStyle}" Grid.Row="8" Grid.Column="0"/>
+                                    <TextBlock Text="0" Style="{StaticResource LabelStyle}" Grid.Row="8" Grid.Column="1"/>
+                                    <TextBlock Text="DNS cache evictions:" Style="{StaticResource LabelStyle}" Grid.Row="9" Grid.Column="0"/>
+                                    <TextBlock Text="0" Style="{StaticResource LabelStyle}" Grid.Row="9" Grid.Column="1"/>
+                                </Grid>
+                            </StackPanel>
+                        </Border>
+                        <Button Content="Disable Query Logging" Style="{StaticResource ButtonStyle}" HorizontalAlignment="Center" VerticalAlignment="Center" Click="DisableQueryLogging_Click"/>
+                    </StackPanel>
+                </ScrollViewer>
+            </TabItem>
+
+            <!-- DNS Tab -->
+            <TabItem Header="DNS">
+                <ScrollViewer VerticalScrollBarVisibility="Auto">
+                    <StackPanel Margin="20">
+                        <!-- Advanced DNS Settings -->
+                        <Border Style="{StaticResource GroupBoxStyle}">
+                            <StackPanel>
+                                <TextBlock Text="Advanced DNS settings" Style="{StaticResource HeaderStyle}"/>
+                                <CheckBox x:Name="DnsFqdnRequiredCheckBox" Content="Never forward non-FQDN A and AAAA queries" Style="{StaticResource CheckBoxStyle}" IsChecked="True"/>
+                                <TextBlock Text="When there is a Pi-hole domain set and this box is ticked, this asks FTL that this domain is purely local and FTL may answer queries from /etc/hosts lub DHCP leases but should never forward queries on that domain to any upstream servers. If Conditional Forwarding is enabled, unticking this box may cause a partial DNS loop under certain circumstances (e.g. if a client would send TLD DNSSEC queries)." Style="{StaticResource LabelStyle}" TextWrapping="Wrap"/>
+                                <CheckBox x:Name="DnsBogusPrivCheckBox" Content="Never forward reverse lookups for private IP ranges" Style="{StaticResource CheckBoxStyle}" IsChecked="True"/>
+                                <TextBlock Text="All reverse lookups for private IP ranges (i.e., 192.168.0.x/24, etc.) which are not found in /etc/hosts lub the DHCP leases are answered with 'no such domain' rather than being forwarded upstream. The set of prefixes affected is the list given in RFC6303." Style="{StaticResource LabelStyle}" TextWrapping="Wrap"/>
+                                <CheckBox x:Name="DnssecCheckBox" Content="Use DNSSEC" Style="{StaticResource CheckBoxStyle}"/>
+                                <TextBlock Text="Validate DNS replies and cache DNSSEC data. When forwarding DNS queries, Pi-hole requests the DNSSEC records needed to validate the replies. If a domain fails validation or the upstream does not support DNSSEC, this setting can cause issues resolving domains. Use an upstream DNS server which supports DNSSEC when activating DNSSEC. Note that the size of your log might increase significantly when enabling DNSSEC. A DNSSEC resolver test can be found here." Style="{StaticResource LabelStyle}" TextWrapping="Wrap"/>
+                            </StackPanel>
+                        </Border>
+
+                        <!-- Rate Limiting -->
+                        <Border Style="{StaticResource GroupBoxStyle}">
+                            <StackPanel>
+                                <TextBlock Text="Rate-limiting" Style="{StaticResource HeaderStyle}"/>
+                                <StackPanel Orientation="Horizontal">
+                                    <TextBlock Text="Block clients making more than" Style="{StaticResource LabelStyle}" VerticalAlignment="Center"/>
+                                    <TextBox x:Name="RateLimitQueryCountTextBox" Text="2137" Style="{StaticResource TextBoxStyle}" Width="50"/>
+                                    <TextBlock Text="queries within" Style="{StaticResource LabelStyle}" VerticalAlignment="Center"/>
+                                    <TextBox x:Name="RateLimitSecondsTextBox" Text="69" Style="{StaticResource TextBoxStyle}" Width="50"/>
+                                    <TextBlock Text="seconds." Style="{StaticResource LabelStyle}" VerticalAlignment="Center"/>
+                                </StackPanel>
+                                <TextBlock Text="When a client makes too many queries in too short time, it gets rate-limited. Rate-limited queries are answered with a REFUSED reply and not further processed by FTL and prevent Pi-holes getting overwhelmed by rogue clients. It is important to note that rate-limiting is happening on a per-client basis. Other clients can continue to use FTL while rate-limited clients are short-circuited at the same time." Style="{StaticResource LabelStyle}" TextWrapping="Wrap"/>
+                                <TextBlock Text="Rate-limiting may be disabled altogether by setting both values to zero. See our documentation for further details." Style="{StaticResource LabelStyle}" TextWrapping="Wrap"/>
+                                <Button Content="Apply" Style="{StaticResource ButtonStyle}" Click="ApplyRateLimit_Click"/>
+                            </StackPanel>
+                        </Border>
+
+                        <!-- Conditional Forwarding -->
+                        <Border Style="{StaticResource GroupBoxStyle}">
+                            <StackPanel>
+                                <TextBlock Text="Conditional forwarding" Style="{StaticResource HeaderStyle}"/>
+                                <CheckBox x:Name="ConditionalForwardingCheckBox" Content="Use Conditional Forwarding" Style="{StaticResource CheckBoxStyle}"/>
+                                <TextBlock Text="If not configured as your DHCP server, Pi-hole typically won't be able to determine the names of devices on your local network. As a result, tables such as Top Clients will only show IP addresses." Style="{StaticResource LabelStyle}" TextWrapping="Wrap"/>
+                                <TextBlock Text="One solution for this is to configure Pi-hole to forward these requests to your DHCP server (most likely your router), but only for devices on your home network. To configure this we will need to know the IP address of your DHCP server and which addresses belong to your local network. Exemplary input is given below as placeholder in the text boxes (if empty)." Style="{StaticResource LabelStyle}" TextWrapping="Wrap"/>
+                                <TextBlock Text="If your local network spans 192.168.0.1 - 192.168.0.255, then you will have to input 192.168.0.0/24. If your local network is 192.168.47.1 - 192.168.47.255, it will be 192.168.47.0/24 and similar. If your network is larger, the CIDR has to be different, for instance a range of 10.8.0.1 - 10.8.255.255 results in 10.8.0.0/16, whereas an even wider network of 10.0.0.1 - 10.255.255.255 results in 10.0.0.0/8. Setting up IPv6 ranges is exactly similar to setting up IPv4 here and fully supported. Feel free to reach out to us on our Discourse forum in case you need any assistance setting up local host name resolution for your particular system." Style="{StaticResource LabelStyle}" TextWrapping="Wrap"/>
+                                <TextBlock Text="You can also specify a local domain name (like fritz.box) to ensure queries to devices ending in your local domain name will not leave your network, however, this is optional. The local domain name must match the domain name specified in your DHCP server for this to work. You can likely find it within the DHCP settings." Style="{StaticResource LabelStyle}" TextWrapping="Wrap"/>
+                                <TextBlock Text="Enabling Conditional Forwarding will also forward all hostnames (i.e., non-FQDNs) to the router when 'Never forward non-FQDNs' is not enabled." Style="{StaticResource LabelStyle}" TextWrapping="Wrap"/>
+                                <Grid Margin="10">
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="*"/>
+                                        <ColumnDefinition Width="*"/>
+                                        <ColumnDefinition Width="*"/>
+                                    </Grid.ColumnDefinitions>
+
+                                    <TextBlock Text="Local network in CIDR notation" Style="{StaticResource LabelStyle}" Grid.Column="0"/>
+                                    <TextBlock Text="IP address of your DHCP server (router)" Style="{StaticResource LabelStyle}" Grid.Column="1"/>
+                                    <TextBlock Text="Local domain name (optional)" Style="{StaticResource LabelStyle}" Grid.Column="2"/>
+                                    <TextBox x:Name="LocalNetworkCidrTextBox" Text="192.168.0.0/16" Style="{StaticResource TextBoxStyle}" Grid.Column="0"/>
+                                    <TextBox x:Name="DhcpServerIpTextBox" Text="192.168.0.1" Style="{StaticResource TextBoxStyle}" Grid.Column="1"/>
+                                    <TextBox x:Name="LocalDomainNameTextBox" Text="local" Style="{StaticResource TextBoxStyle}" Grid.Column="2"/>
+                                </Grid>
+                                <Button Content="Apply" Style="{StaticResource ButtonStyle}" Click="ApplyConditionalForwarding_Click"/>
+                            </StackPanel>
+                        </Border>
+
+                        <!-- Upstream DNS Servers -->
+                        <Border Style="{StaticResource GroupBoxStyle}">
+                            <StackPanel>
+                                <TextBlock Text="Upstream DNS Servers" Style="{StaticResource HeaderStyle}"/>
+                                <Grid Margin="10">
+                                    <Grid.RowDefinitions>
+                                        <RowDefinition Height="Auto"/>
+                                        <RowDefinition Height="Auto"/>
+                                        <RowDefinition Height="Auto"/>
+                                        <RowDefinition Height="Auto"/>
+                                        <RowDefinition Height="Auto"/>
+                                        <RowDefinition Height="Auto"/>
+                                        <RowDefinition Height="Auto"/>
+                                        <RowDefinition Height="Auto"/>
+                                        <RowDefinition Height="Auto"/>
+                                        <RowDefinition Height="Auto"/>
+                                    </Grid.RowDefinitions>
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="50"/>
+                                        <ColumnDefinition Width="50"/>
+                                        <ColumnDefinition Width="*"/>
+                                    </Grid.ColumnDefinitions>
+
+                                    <TextBlock Text="IPv4" Style="{StaticResource LabelStyle}" Grid.Row="0" Grid.Column="0"/>
+                                    <TextBlock Text="IPv6" Style="{StaticResource LabelStyle}" Grid.Row="0" Grid.Column="1"/>
+                                    <TextBlock Text="Name" Style="{StaticResource LabelStyle}" Grid.Row="0" Grid.Column="2"/>
+
+                                    <CheckBox Style="{StaticResource CheckBoxStyle}" Grid.Row="1" Grid.Column="0"/>
+                                    <CheckBox Style="{StaticResource CheckBoxStyle}" Grid.Row="1" Grid.Column="1"/>
+                                    <TextBlock Text="Google (ECS, DNSSEC)" Style="{StaticResource LabelStyle}" Grid.Row="1" Grid.Column="2"/>
+
+                                    <CheckBox Style="{StaticResource CheckBoxStyle}" Grid.Row="2" Grid.Column="0"/>
+                                    <CheckBox Style="{StaticResource CheckBoxStyle}" Grid.Row="2" Grid.Column="1"/>
+                                    <TextBlock Text="OpenDNS (ECS, DNSSEC)" Style="{StaticResource LabelStyle}" Grid.Row="2" Grid.Column="2"/>
+
+                                    <CheckBox IsChecked="True" Style="{StaticResource CheckBoxStyle}" Grid.Row="3" Grid.Column="0"/>
+                                    <CheckBox Style="{StaticResource CheckBoxStyle}" Grid.Row="3" Grid.Column="1"/>
+                                    <TextBlock Text="Level3" Style="{StaticResource LabelStyle}" Grid.Row="3" Grid.Column="2"/>
+
+                                    <CheckBox Style="{StaticResource CheckBoxStyle}" Grid.Row="4" Grid.Column="0"/>
+                                    <CheckBox Style="{StaticResource CheckBoxStyle}" Grid.Row="4" Grid.Column="1"/>
+                                    <TextBlock Text="Comodo" Style="{StaticResource LabelStyle}" Grid.Row="4" Grid.Column="2"/>
+
+                                    <CheckBox Style="{StaticResource CheckBoxStyle}" Grid.Row="5" Grid.Column="0"/>
+                                    <CheckBox Style="{StaticResource CheckBoxStyle}" Grid.Row="5" Grid.Column="1"/>
+                                    <TextBlock Text="DNS.WATCH (DNSSEC)" Style="{StaticResource LabelStyle}" Grid.Row="5" Grid.Column="2"/>
+
+                                    <CheckBox Style="{StaticResource CheckBoxStyle}" Grid.Row="6" Grid.Column="0"/>
+                                    <CheckBox Style="{StaticResource CheckBoxStyle}" Grid.Row="6" Grid.Column="1"/>
+                                    <TextBlock Text="Quad9 (filtered, DNSSEC)" Style="{StaticResource LabelStyle}" Grid.Row="6" Grid.Column="2"/>
+
+                                    <CheckBox Style="{StaticResource CheckBoxStyle}" Grid.Row="7" Grid.Column="0"/>
+                                    <CheckBox Style="{StaticResource CheckBoxStyle}" Grid.Row="7" Grid.Column="1"/>
+                                    <TextBlock Text="Quad9 (unfiltered, no DNSSEC)" Style="{StaticResource LabelStyle}" Grid.Row="7" Grid.Column="2"/>
+
+                                    <CheckBox Style="{StaticResource CheckBoxStyle}" Grid.Row="8" Grid.Column="0"/>
+                                    <CheckBox Style="{StaticResource CheckBoxStyle}" Grid.Row="8" Grid.Column="1"/>
+                                    <TextBlock Text="Quad9 (filtered, ECS, DNSSEC)" Style="{StaticResource LabelStyle}" Grid.Row="8" Grid.Column="2"/>
+
+                                    <CheckBox Style="{StaticResource CheckBoxStyle}" Grid.Row="9" Grid.Column="0"/>
+                                    <CheckBox Style="{StaticResource CheckBoxStyle}" Grid.Row="9" Grid.Column="1"/>
+                                    <TextBlock Text="Cloudflare (DNSSEC)" Style="{StaticResource LabelStyle}" Grid.Row="9" Grid.Column="2"/>
+                                </Grid>
+                                <TextBox x:Name="Dns1TextBox" Text="8.8.8.8" Style="{StaticResource TextBoxStyle}" Grid.Row="10" Grid.Column="0"/>
+                                <TextBox x:Name="Dns2TextBox" Text="8.8.4.4" Style="{StaticResource TextBoxStyle}" Grid.Row="10" Grid.Column="1"/>
+                                <ComboBox x:Name="DnsmasqListeningComboBox" Style="{StaticResource ComboBoxStyle}" Grid.Row="11" Grid.Column="0">
+                                    <ComboBoxItem Content="Local" Style="{StaticResource ComboBoxItemStyle}"/>
+                                    <ComboBoxItem Content="All" Style="{StaticResource ComboBoxItemStyle}"/>
+                                </ComboBox>
+                                <Button Content="Apply" Style="{StaticResource ButtonStyle}" Click="ApplyDnsServers_Click"/>
+                            </StackPanel>
+                        </Border>
+                    </StackPanel>
+                </ScrollViewer>
+            </TabItem>
+
+            <!-- Interface Tab -->
+            <TabItem Header="Interface">
+                <ScrollViewer VerticalScrollBarVisibility="Auto">
+                    <StackPanel Margin="20">
+                        <Border Style="{StaticResource GroupBoxStyle}">
+                            <StackPanel>
+                                <TextBlock Text="Theme and Layout" Style="{StaticResource HeaderStyle}"/>
+                                <RadioButton Content="Pi-hole default theme (light, default)" GroupName="Theme" Style="{StaticResource RadioButtonStyle}"/>
+                                <RadioButton Content="Pi-hole midnight theme (dark)" GroupName="Theme" Style="{StaticResource RadioButtonStyle}"/>
+                                <RadioButton Content="Pi-hole deep-midnight theme (dark)" GroupName="Theme" Style="{StaticResource RadioButtonStyle}"/>
+                                <RadioButton Content="High contrast light" GroupName="Theme" Style="{StaticResource RadioButtonStyle}"/>
+                                <RadioButton Content="High contrast dark" GroupName="Theme" Style="{StaticResource RadioButtonStyle}"/>
+                                <RadioButton Content="Pi-hole auto theme (light/dark)" GroupName="Theme" Style="{StaticResource RadioButtonStyle}" IsChecked="True"/>
+                                <RadioButton Content="Star Trek LCARS theme (dark)" GroupName="Theme" Style="{StaticResource RadioButtonStyle}"/>
+                                <RadioButton Content="Star Trek Picard LCARS theme (dark)" GroupName="Theme" Style="{StaticResource RadioButtonStyle}"/>
+                                <CheckBox Content="Use boxed layout (for large screens)" Style="{StaticResource CheckBoxStyle}" IsChecked="True"/>
+                                <Button Content="Save" Style="{StaticResource ButtonStyle}" HorizontalAlignment="Right"/>
+                            </StackPanel>
+                        </Border>
+
+                        <Border Style="{StaticResource GroupBoxStyle}">
+                            <StackPanel>
+                                <TextBlock Text="Interface settings (auto saved)" Style="{StaticResource HeaderStyle}"/>
+                                <StackPanel Margin="10">
+                                    <TextBlock Text="Global Settings" FontWeight="Bold" Style="{StaticResource LabelStyle}"/>
+                                    <StackPanel Orientation="Horizontal" VerticalAlignment="Center">
+                                        <TextBlock Text="CPU Temperature Unit:" Style="{StaticResource LabelStyle}" VerticalAlignment="Center"/>
+                                        <ComboBox x:Name="CpuTemperatureUnitComboBox" Style="{StaticResource ComboBoxStyle}">
+                                            <ComboBoxItem Content="Celsius" Style="{StaticResource ComboBoxItemStyle}" IsSelected="True"/>
+                                            <ComboBoxItem Content="Fahrenheit" Style="{StaticResource ComboBoxItemStyle}"/>
+                                        </ComboBox>
+                                    </StackPanel>
+                                </StackPanel>
+
+                                <StackPanel Margin="10">
+                                    <TextBlock Text="Per Browser Settings" FontWeight="Bold" Style="{StaticResource LabelStyle}"/>
+                                    <StackPanel Orientation="Horizontal" VerticalAlignment="Center">
+                                        <TextBlock Text="Checkbox and radio buttons:" Style="{StaticResource LabelStyle}" VerticalAlignment="Center"/>
+                                        <ComboBox x:Name="CheckboxRadioButtonsComboBox" Style="{StaticResource ComboBoxStyle}">
+                                            <ComboBoxItem Content="primary" Style="{StaticResource ComboBoxItemStyle}" IsSelected="True"/>
+                                            <ComboBoxItem Content="secondary" Style="{StaticResource ComboBoxItemStyle}"/>
+                                            <ComboBoxItem Content="default" Style="{StaticResource ComboBoxItemStyle}"/>
+                                            <ComboBoxItem Content="warning" Style="{StaticResource ComboBoxItemStyle}"/>
+                                            <ComboBoxItem Content="danger" Style="{StaticResource ComboBoxItemStyle}"/>
+                                        </ComboBox>
+                                    </StackPanel>
+                                    <CheckBox x:Name="UseNewBarChartsCheckBox" Content="Use new Bar charts on dashboard" Style="{StaticResource CheckBoxStyle}" IsChecked="True"/>
+                                    <CheckBox x:Name="ColorfulQueryLogCheckBox" Content="Colorful Query Log" Style="{StaticResource CheckBoxStyle}"/>
+                                    <CheckBox x:Name="HideNonFatalWarningsCheckBox" Content="Hide non-fatal dnsmasq warnings (warnings listed here)" Style="{StaticResource CheckBoxStyle}"/>
+                                </StackPanel>
+                            </StackPanel>
+                        </Border>
+                    </StackPanel>
+                </ScrollViewer>
+            </TabItem>
+
+            <!-- Privacy Tab -->
+            <TabItem Header="Privacy">
+                <ScrollViewer VerticalScrollBarVisibility="Auto">
+                    <StackPanel Margin="20">
+                        <Border Style="{StaticResource GroupBoxStyle}">
+                            <StackPanel>
+                                <TextBlock Text="Privacy settings" Style="{StaticResource HeaderStyle}"/>
+                                <TextBlock Text="DNS resolver privacy level" Style="{StaticResource HeaderStyle}" Margin="0,10,0,0"/>
+                                <TextBlock Text="Specify if DNS queries should be anonymized, available options are:" Style="{StaticResource LabelStyle}" TextWrapping="Wrap"/>
+                                <RadioButton x:Name="ShowEverythingRadioButton" Content="Show everything and record everything" GroupName="PrivacyLevel" Style="{StaticResource RadioButtonStyle}" IsChecked="True"/>
+                                <TextBlock Text="Gives maximum amount of statistics" Style="{StaticResource LabelStyle}" TextWrapping="Wrap"/>
+                                <RadioButton x:Name="HideDomainsRadioButton" Content="Hide domains: Display and store all domains as 'hidden'" GroupName="PrivacyLevel" Style="{StaticResource RadioButtonStyle}"/>
+                                <TextBlock Text="This disables the Top Permitted Domains and Top Blocked Domains tables on the dashboard" Style="{StaticResource LabelStyle}" TextWrapping="Wrap"/>
+                                <RadioButton x:Name="HideDomainsAndClientsRadioButton" Content="Hide domains and clients: Display and store all domains as 'hidden' and all clients as '0.0.0.0'" GroupName="PrivacyLevel" Style="{StaticResource RadioButtonStyle}"/>
+                                <TextBlock Text="This disables all tables on the dashboard" Style="{StaticResource LabelStyle}" TextWrapping="Wrap"/>
+                                <RadioButton x:Name="AnonymousModeRadioButton" Content="Anonymous mode: This disables basically everything except the live anonymous statistics" GroupName="PrivacyLevel" Style="{StaticResource RadioButtonStyle}"/>
+                                <TextBlock Text="No history is saved at all to the database, and nothing is shown in the query log. Also, there are no top item lists." Style="{StaticResource LabelStyle}" TextWrapping="Wrap"/>
+                                <TextBlock Text="The privacy level may be increased at any time without having to restart the DNS resolver. However, note that the DNS resolver needs to be restarted when lowering the privacy level. This restarting is automatically done when saving." Style="{StaticResource LabelStyle}" TextWrapping="Wrap"/>
+                                <Button Content="Apply" Style="{StaticResource ButtonStyle}" Click="ApplyPrivacyLevel_Click" HorizontalAlignment="Right"/>
+                            </StackPanel>
+                        </Border>
+                    </StackPanel>
+                </ScrollViewer>
+            </TabItem>
+        </TabControl>
     </Grid>
 </UserControl>
