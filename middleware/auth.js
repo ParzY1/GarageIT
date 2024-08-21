@@ -10,13 +10,14 @@ async function auth(req, res, next) {
 
     try {
         const bearerToken = token.replace('Bearer ', '');
-        const user = await User.findOne({ token: bearerToken });
-        if (!user) {
+
+        const response = await axios.post(`${process.env.SERWER}/verify-token`, { token: bearerToken });
+
+        if (!response.data.valid) {
             return res.status(401).json({ message: 'Invalid token' });
         }
 
-        const decoded = jwt.verify(bearerToken, user.tokenSecret);
-        req.user = decoded;
+        req.user = response.data.user;
         next();
     } catch (error) {
         res.status(401).json({ message: 'Token is not valid' });
