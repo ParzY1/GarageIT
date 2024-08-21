@@ -60,9 +60,23 @@ const getUserProfile = async (req, res) => {
     }
 };
 
+const verifyToken = async (req, res) => {
+    const { token } = req.body;
+    try {
+        const isValid = await userService.verifyToken(token);
+        if (!isValid) {
+            return res.json({ valid: false });
+        }
+        res.json({ valid: true, user: isValid });
+    } catch (error) {
+        res.status(401).json({ message: 'Token is not valid' });
+    }
+};
+
 module.exports = {
     register,
     login,
     refreshToken,
     getUserProfile,
+    verifyToken
 };

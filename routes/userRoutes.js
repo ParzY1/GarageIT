@@ -11,6 +11,7 @@ const router = express.Router();
 router.post('/register', validateRegister, userController.register);
 router.post('/login', validateLogin, userController.login);
 router.post('/refresh-token', validateRefreshToken, userController.refreshToken);
+router.post('/verify-token', userController.verifyToken);
 
 router.get('/profile', auth, userController.getUserProfile);
 

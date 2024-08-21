@@ -12,7 +12,8 @@ const registerUser = async (username, password) => {
         username,
         password,
         tokenSecret,
-        refreshTokenSecret
+        refreshTokenSecret,
+        assignedServer: process.env.SERVER_NAME
     });
 
     const token = generateToken(user._id, user.tokenSecret);
@@ -74,9 +75,24 @@ const getUserProfile = async (userId) => {
     return await User.findById(userId).select('-password');
 };
 
+const verifyToken = async (token) => {
+    const user = await User.findOne({ token });
+    if (!user) {
+        return null;
+    }
+
+    try {
+        const decoded = jwt.verify(token, user.tokenSecret);
+        return { user: decoded, assignedServer: user.assignedServer };
+    } catch (error) {
+        return null;
+    }
+};
+
 module.exports = {
     registerUser,
     loginUser,
     refreshUserToken,
     getUserProfile,
+    verifyToken,
 };
