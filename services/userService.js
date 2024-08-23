@@ -1,5 +1,6 @@
 const User = require('../models/User');
 const { generateToken, generateRefreshToken, generateSecrets } = require('../utils/token');
+const jwt = require('jsonwebtoken');
 
 const registerUser = async (username, password) => {
     const userExists = await User.findOne({ username });
@@ -13,7 +14,7 @@ const registerUser = async (username, password) => {
         password,
         tokenSecret,
         refreshTokenSecret,
-        assignedServer: process.env.SERVER_NAME
+        assignedServer
     });
 
     const token = generateToken(user._id, user.tokenSecret);
@@ -28,6 +29,7 @@ const registerUser = async (username, password) => {
         username: user.username,
         token,
         refreshToken,
+        assignedServer: user.assignedServer
     };
 };
 
@@ -81,10 +83,12 @@ const verifyToken = async (token) => {
         return null;
     }
 
+    console.log('Token Secret:', user.tokenSecret);
     try {
         const decoded = jwt.verify(token, user.tokenSecret);
         return { user: decoded, assignedServer: user.assignedServer };
     } catch (error) {
+        console.error('Error verifying token:', error.message);
         return null;
     }
 };
