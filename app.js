@@ -6,6 +6,7 @@ const rateLimiter = require('./middleware/limiter');
 const helmet = require('helmet');
 const mongoSanitize = require('express-mongo-sanitize');
 const auth = require('./middleware/auth');
+const checkAssignedServer = require('./middleware/checkAssignedServer');
 const domainRoutes = require('./routes/domainRoutes');
 const groupRoutes = require('./routes/groupRoutes');
 const clientRoutes = require('./routes/clientRoutes');
@@ -23,6 +24,7 @@ app.use(corsm);
 app.use(rateLimiter);
 
 app.use(auth);
+app.use(checkAssignedServer);
 
 app.use('/domains', domainRoutes);
 app.use('/groups', groupRoutes);
