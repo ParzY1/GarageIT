@@ -73,10 +73,21 @@ const verifyToken = async (req, res) => {
     }
 };
 
+const verifyUserServer = async (req, res) => {
+    const { token, serverIp } = req.body;
+    try {
+        const result = await userService.verifyUserServer(token, serverIp);
+        res.json(result);
+    } catch (error) {
+        res.status(400).json({ message: error.message });
+    }
+};
+
 module.exports = {
     register,
     login,
     refreshToken,
     getUserProfile,
-    verifyToken
+    verifyToken,
+    verifyUserServer
 };

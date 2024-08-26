@@ -2,7 +2,7 @@ const User = require('../models/User');
 const { generateToken, generateRefreshToken, generateSecrets } = require('../utils/token');
 const jwt = require('jsonwebtoken');
 
-const registerUser = async (username, password) => {
+const registerUser = async (username, password, assignedServer) => {
     const userExists = await User.findOne({ username });
     if (userExists) {
         throw new Error('User already exists');
@@ -93,10 +93,32 @@ const verifyToken = async (token) => {
     }
 };
 
+const verifyUserServer = async (token, serverIp) => {
+    const user = await User.findOne({ token });
+
+    if (!user) {
+        throw new Error('User not found');
+    }
+
+    try {
+        jwt.verify(token, user.tokenSecret);
+
+        if (user.assignedServer !== serverIp) {
+            throw new Error('Access denied: Invalid server');
+        }
+
+        return { valid: true, userId: user._id };
+    } catch (error) {
+        console.error('Error verifying user server:', error.message);
+        return { valid: false, error: error.message };
+    }
+};
+
 module.exports = {
     registerUser,
     loginUser,
     refreshUserToken,
     getUserProfile,
     verifyToken,
+    verifyUserServer
 };
