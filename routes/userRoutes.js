@@ -8,11 +8,32 @@ const validateRefreshToken = require('../middleware/validateRefreshToken');
 
 const router = express.Router();
 
-router.post('/register', validateRegister, userController.register);
-router.post('/login', validateLogin, userController.login);
+router.post('/register', [
+    check('username', 'Username must be at least 3 characters long and contain only letters and numbers')
+        .isLength({ min: 3 })
+        .matches(/^[a-zA-Z0-9]+$/),
+    check('email', 'Please include a valid email').isEmail(),
+    check('password', 'Password must be at least 6 characters long').isLength({ min: 6 })
+], userController.register);
+
+router.post('/login', [
+    check('identifier', 'Please include a valid username or email').notEmpty(),
+    check('password', 'Password is required').exists()
+], userController.login);
+
 router.post('/refresh-token', validateRefreshToken, userController.refreshToken);
 router.post('/verify-token', userController.verifyToken);
 router.post('/verify-server', userController.verifyUserServer);
+
+router.put('/change-username', auth, [
+    check('newUsername', 'Username must be at least 3 characters long and contain only letters and numbers')
+        .isLength({ min: 3 })
+        .matches(/^[a-zA-Z0-9]+$/)
+], userController.changeUsername);
+
+router.put('/change-password', auth, [
+    check('newPassword', 'Password must be at least 6 characters long').isLength({ min: 6 })
+], userController.changePassword);
 
 router.get('/profile', auth, userController.getUserProfile);
 

@@ -2,15 +2,16 @@ const User = require('../models/User');
 const { generateToken, generateRefreshToken, generateSecrets } = require('../utils/token');
 const jwt = require('jsonwebtoken');
 
-const registerUser = async (username, password, assignedServer) => {
-    const userExists = await User.findOne({ username });
+const registerUser = async (username, email, password, assignedServer) => {
+    const userExists = await User.findOne({ $or: [{ username }, { email }] });
     if (userExists) {
-        throw new Error('User already exists');
+        throw new Error('Username or email already exists');
     }
 
     const { tokenSecret, refreshTokenSecret } = generateSecrets();
     const user = await User.create({
         username,
+        email,
         password,
         tokenSecret,
         refreshTokenSecret,
@@ -27,16 +28,17 @@ const registerUser = async (username, password, assignedServer) => {
     return {
         _id: user._id,
         username: user.username,
+        email: user.email,
         token,
         refreshToken,
         assignedServer: user.assignedServer
     };
 };
 
-const loginUser = async (username, password) => {
-    const user = await User.findOne({ username });
+const loginUser = async (identifier, password) => {
+    const user = await User.findOne({ $or: [{ username: identifier }, { email: identifier }] });
     if (!user || !(await user.matchPassword(password))) {
-        throw new Error('Invalid username or password');
+        throw new Error('Invalid username/email or password');
     }
 
     const token = generateToken(user._id, user.tokenSecret);
@@ -49,6 +51,7 @@ const loginUser = async (username, password) => {
     return {
         _id: user._id,
         username: user.username,
+        email: user.email,
         token,
         refreshToken,
     };
@@ -114,11 +117,42 @@ const verifyUserServer = async (token, serverIp) => {
     }
 };
 
+const changeUsername = async (userId, newUsername) => {
+    const userExists = await User.findOne({ username: newUsername });
+    if (userExists) {
+        throw new Error('Username already taken');
+    }
+
+    const user = await User.findById(userId);
+    if (!user) {
+        throw new Error('User not found');
+    }
+
+    user.username = newUsername;
+    await user.save();
+
+    return { message: 'Username updated successfully', username: newUsername };
+};
+
+const changePassword = async (userId, newPassword) => {
+    const user = await User.findById(userId);
+    if (!user) {
+        throw new Error('User not found');
+    }
+
+    user.password = newPassword;
+    await user.save();
+
+    return { message: 'Password updated successfully' };
+};
+
 module.exports = {
     registerUser,
     loginUser,
     refreshUserToken,
     getUserProfile,
     verifyToken,
-    verifyUserServer
+    verifyUserServer,
+    changeUsername,
+    changePassword
 };
