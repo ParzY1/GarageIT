@@ -5,20 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Logowanie - Garage IT Mobile & Desktop Manager</title>
     <link rel="stylesheet" href="styles.css">
-    <script src="https://www.google.com/recaptcha/api.js?render=6LfhoBoqAAAAABwtfKSkXsdfkamrwQepiuJvY80j"></script>
-    <script>
-        async function onSubmit(token) {
-            document.getElementById("login-form").submit();
-        }
 
-        grecaptcha.ready(function() {
-            document.getElementById('login-button').addEventListener('click', async function(e) {
-                e.preventDefault();
-                const token = await grecaptcha.execute('6LfhoBoqAAAAABwtfKSkXsdfkamrwQepiuJvY80j', { action: 'submit' });
-                onSubmit(token);
-            });
-        });
-    </script>
 </head>
 <body>
     <header>
