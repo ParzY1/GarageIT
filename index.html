@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Garage IT Mobile & Desktop Manager</title>
+    <title>Prone</title>
     <link rel="stylesheet" href="styles.css">
     <script src="scripts.js"></script>
 </head>
@@ -11,7 +11,7 @@
     <header>
         <div class="logo">
             <img src="Images/Icons/logo.png" alt="Garage IT Mobile & Desktop Manager Logo">
-            Garage IT Mobile & Desktop Manager
+            Prone
         </div>
         <nav>
             <ul id="nav-list">
@@ -19,9 +19,15 @@
                 <li><a href="#technology">Technologie</a></li>
                 <li><a href="#plans">Oferta</a></li>
                 <li><a href="blog.html">Blog</a></li>
-                <li><a href="log.html" id="login-link">Logowanie</a></li>
-                <li style="display: none;" id="user-link"><a href="#">Nazwa użytkownika</a></li>
-                <li style="display: none;" id="logout-link"><a href="#" id="logout">Wyloguj</a></li>
+                <li id="login-link"><a href="log.html">Logowanie</a></li>
+                <li id="user-menu" style="display: none; position: relative;">
+                    <a href="#" id="user-link">Profil</a>
+                    <ul id="user-dropdown" style="display: none; position: absolute; top: 100%; left: 0; background-color: #333; list-style: none; padding: 10px; margin: 0; border-radius: 5px;">
+                        <li><a href="Profile.html">Profil</a></li>
+                        <li><a href="Plan.html">Plan</a></li>
+                        <li><a href="#" id="logout">Wyloguj</a></li>
+                    </ul>
+                </li>
             </ul>
         </nav>
     </header>
@@ -158,34 +164,12 @@
                 <li><a href="#technology">Technologie</a></li>
                 <li><a href="#plans">Oferta</a></li>
                 <li><a href="blog.html">Blog</a></li>
-                <li><a href="log.html" id="login-link">Logowanie</a></li>
-                <li style="display: none;" id="user-link"><a href="#">Nazwa użytkownika</a></li>
-                <li style="display: none;" id="logout-link"><a href="#" id="logout">Wyloguj</a></li>
+                <li id="login-link"><a href="log.html">Logowanie</a></li>
+                <li id="user-link" style="display: none;"><a href="#">Nazwa użytkownika</a></li>
+                <li id="logout-link" style="display: none;"><a href="#" id="logout">Wyloguj</a></li>
             </ul>
         </nav>
         <p>&copy; 2024 Garage IT Mobile & Desktop Manager. Wszelkie prawa zastrzeżone.</p>
     </footer>
-
-    <script src="scripts.js"></script>
-    <script>
-        document.addEventListener("DOMContentLoaded", function() {
-            const isLoggedIn = sessionStorage.getItem('isLoggedIn');
-            const username = sessionStorage.getItem('username');
-
-            if (isLoggedIn === 'true' && username) {
-                document.getElementById('login-link').style.display = 'none';
-                document.getElementById('user-link').style.display = 'inline';
-                document.getElementById('user-link').innerText = username;
-                document.getElementById('logout-link').style.display = 'inline';
-            }
-
-            document.getElementById('logout').addEventListener('click', function(e) {
-                e.preventDefault();
-                sessionStorage.removeItem('isLoggedIn');
-                sessionStorage.removeItem('username');
-                window.location.href = 'index.html';
-            });
-        });
-    </script>
 </body>
 </html>

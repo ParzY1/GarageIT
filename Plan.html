@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Twój Plan - Prone</title>
+    <link rel="stylesheet" href="styles.css">
+    <script src="scripts.js" defer></script>
+</head>
+<body>
+    <header>
+        <div class="logo">
+            <img src="Images/Icons/logo.png" alt="Garage IT Mobile & Desktop Manager Logo">
+            Prone
+        </div>
+        <nav>
+            <ul id="nav-list">
+                <li><a href="#features">Funkcje</a></li>
+                <li><a href="#technology">Technologie</a></li>
+                <li><a href="#plans">Oferta</a></li>
+                <li><a href="blog.html">Blog</a></li>
+                <li id="login-link"><a href="log.html">Logowanie</a></li>
+                <li id="user-menu" style="display: none; position: relative;">
+                    <a href="#" id="user-link">Profil</a>
+                    <ul id="user-dropdown" style="display: none; position: absolute; top: 100%; left: 0; background-color: #333; list-style: none; padding: 10px; margin: 0; border-radius: 5px;">
+                        <li><a href="Profile.html">Profil</a></li>
+                        <li><a href="Plan.html">Plan</a></li>
+                        <li><a href="#" id="logout">Wyloguj</a></li>
+                    </ul>
+                </li>
+            </ul>
+        </nav>
+    </header>
+
+    <section class="plan-details">
+        <div class="plan-content">
+            <h1>Twój Aktualny Plan</h1>
+            <div id="current-plan">
+                <!-- Szczegóły planu zostaną załadowane dynamicznie -->
+            </div>
+            <a href="Profile.html" class="cta secondary">Edytuj Profil</a>
+            <a href="#plans" class="cta secondary">Zmień Plan</a>
+        </div>
+    </section>
+
+    <section id="plans" class="plans">
+        <h2>Nasze <span class="highlight">Plany</span></h2>
+        <div class="plan-list">
+            <div class="plan">
+                <h3>Pakiet Próbny</h3>
+                <p>Testowy dostęp na miesiąc bez umowy. Obejmuje dostęp do aplikacji i konfigurację serwera.</p>
+                <div class="plan-price">Za darmo</div>
+                <ul>
+                    <li>-Dostęp do aplikacji</li>
+                    <li>-Bez umowy</li>
+                    <li>-Testowy dostęp na miesiąc</li>
+                    <li>-Konfiguracja serwera</li>
+                </ul>
+                <a href="#" class="cta secondary">Wybierz ten plan</a>
+            </div>
+            <div class="plan">
+                <h3>Pakiet Standard</h3>
+                <p>Dostęp na 3 miesiące. Obejmuje dostęp do aplikacji, szkolenie oraz konfigurację serwera.</p>
+                <div class="plan-price">99 zł/miesiąc</div>
+                <ul>
+                    <li>-Dostęp do aplikacji</li>
+                    <li>-Szkolenie</li>
+                    <li>-Konfiguracja serwera</li>
+                    <li>-Umowa na 3 miesiące</li>
+                </ul>
+                <a href="#" class="cta secondary">Wybierz ten plan</a>
+            </div>
+            <div class="plan">
+                <h3>Pakiet Szkoła</h3>
+                <p>Dostęp na rok. Obejmuje dostęp do aplikacji, szkolenie, konfigurację serwera oraz pomoc techniczną.</p>
+                <div class="plan-price">299 zł/miesiąc</div>
+                <ul>
+                    <li>-Dostęp do aplikacji</li>
+                    <li>-Szkolenie, pomoc techniczna</li>
+                    <li>-Konfiguracja serwera</li>
+                    <li>-Umowa na rok</li>
+                </ul>
+                <a href="#" class="cta secondary">Wybierz ten plan</a>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <div class="social-media">
+            <a href="https://garageit.pl"><img src="Images/Icons/logo.png" alt="Garage IT"></a>
+        </div>
+        <nav class="footer-nav">
+            <ul>
+                <li><a href="#features">Funkcje</a></li>
+                <li><a href="#technology">Technologie</a></li>
+                <li><a href="#plans">Oferta</a></li>
+                <li><a href="blog.html">Blog</a></li>
+                <li id="login-link"><a href="log.html">Logowanie</a></li>
+                <li id="user-link" style="display: none;"><a href="#">Nazwa użytkownika</a></li>
+                <li id="logout-link" style="display: none;"><a href="#" id="logout">Wyloguj</a></li>
+            </ul>
+        </nav>
+        <p>&copy; 2024 Garage IT Mobile & Desktop Manager. Wszelkie prawa zastrzeżone.</p>
+    </footer>
+</body>
+</html>
