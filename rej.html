@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Logowanie</title>
+    <title>Rejestracja</title>
     <link rel="stylesheet" href="styles.css">
 </head>
 <body>
@@ -19,19 +19,23 @@
         </nav>
     </header>
     <section id="auth" class="auth">
-        <h2>Zaloguj się</h2>
+        <h2>Załóż konto</h2>
         <form id="auth-form" action="javascript:void(0);">
             <label for="username">Nazwa użytkownika:</label>
             <input type="text" id="username" name="username" required>
+            <label for="email">Adres e-mail:</label>
+            <input type="email" id="email" name="email" required>
             <label for="password">Hasło:</label>
             <input type="password" id="password" name="password" required>
+            <label for="confirm-password">Powtórz hasło:</label>
+            <input type="password" id="confirm-password" name="confirm-password" required>
             <button class="g-recaptcha" 
                     data-sitekey="6LfhoBoqAAAAABwtfKSkXsdfkamrwQepiuJvY80j" 
                     data-callback='onSubmit' 
-                    data-action='submit' id="auth-button">Zaloguj się</button>
+                    data-action='submit' id="auth-button">Załóż konto</button>
         </form>
-        <p>Nie masz jeszcze konta? <a href="rej.html">Załóż teraz!</a></p>
-        <div id="auth-message" style="display:none;">Zalogowano pomyślnie!</div>
+        <p>Masz już konto? <a href="log.html">Zaloguj się!</a></p>
+        <div id="auth-message" style="display:none;">Konto zostało założone pomyślnie!</div>
     </section>
     <footer>
         <div class="social-media">
@@ -39,6 +43,6 @@
         </div>
         <p>&copy; 2024 Garage IT Wszelkie prawa zastrzeżone.</p>
     </footer>
-    <script src="log.js"></script>
+    <script src="rej.js"></script>
 </body>
 </html>
