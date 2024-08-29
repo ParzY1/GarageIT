@@ -1,3 +1,4 @@
+using System;
 using System.Windows;
 using Newtonsoft.Json;
 using Garage.Services;
@@ -6,26 +7,32 @@ namespace Garage
 {
     public partial class MainWindow : Window
     {
-        private readonly ApiService _apiService;
+        private ApiService _apiService;
         private StatisticsPage _statisticsPage;
-        private string _baseUrl = "https://blockdns.garageit.pl";
+        private string _initialBaseUrl = "https://blockdns.garageit.pl";
 
         public MainWindow()
         {
             InitializeComponent();
-            _apiService = new ApiService();
-            LoginUser("tesciu", "tesciu"); // Zaloguj u¿ytkownika przy starcie aplikacji
+            _apiService = new ApiService(_initialBaseUrl);
         }
 
         private async void LoginUser(string username, string password)
         {
             try
             {
-                string loginResponse = await _apiService.LoginUser(_baseUrl, username, password);
+                string loginResponse = await _apiService.LoginUser(username, password);
                 var loginData = JsonConvert.DeserializeObject<dynamic>(loginResponse);
+
+                // Retrieve token and assignedServer from response
                 string token = loginData.token;
+                string assignedServer = loginData.assignedServer;
+
+                // Set bearer token and update base URL
                 _apiService.SetBearerToken(token);
-                ShowStatisticsPage(); // Poka¿ stronê statystyk po zalogowaniu
+                _apiService.SetBaseUrl(assignedServer);
+
+                ShowStatisticsPage(); // Show statistics page after login
             }
             catch (Exception ex)
             {
@@ -100,7 +107,7 @@ namespace Garage
 
         private void MainContent_Navigated(object sender, System.Windows.Navigation.NavigationEventArgs e)
         {
-            // Logika nawigacji, jeœli potrzebna
+            // Navigation logic if needed
         }
     }
 }

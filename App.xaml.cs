@@ -9,18 +9,25 @@ namespace Garage
         {
             base.OnStartup(e);
 
-            // Pokaż LoginWindow
+            // Initialize and show the LoginWindow
             LoginWindow loginWindow = new LoginWindow();
+
             loginWindow.LoginSuccessful += (sender, args) =>
             {
-                // Pokaż MainWindow po pomyślnym zalogowaniu
-                MainWindow mainWindow = new MainWindow();
-                mainWindow.WindowState = WindowState.Maximized;
+                // Initialize and show the MainWindow upon successful login
+                MainWindow mainWindow = new MainWindow
+                {
+                    WindowState = WindowState.Maximized
+                };
+
+                // Show the MainWindow
                 mainWindow.Show();
 
-                // Zamknij LoginWindow
+                // Close the LoginWindow
                 loginWindow.Close();
             };
+
+            // Show the LoginWindow as a dialog
             loginWindow.ShowDialog();
         }
     }

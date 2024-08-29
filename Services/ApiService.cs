@@ -14,18 +14,26 @@ namespace Garage.Services
     {
         private readonly HttpClient _httpClient;
         private string _bearerToken;
+        private string _baseUrl;
 
-        public ApiService()
+        public ApiService(string baseUrl)
         {
-            _httpClient = new HttpClient();
+            _httpClient = new HttpClient { BaseAddress = new Uri(baseUrl) };
+            _baseUrl = baseUrl;
         }
 
         public void SetBearerToken(string token)
         {
             _bearerToken = token;
         }
+        public void SetBaseUrl(string baseUrl)
+        {
+            _httpClient.BaseAddress = new Uri(baseUrl);
 
-        private void AddAuthorizationHeader()
+        }
+
+
+            private void AddAuthorizationHeader()
         {
             if (!string.IsNullOrEmpty(_bearerToken))
             {
@@ -33,11 +41,15 @@ namespace Garage.Services
             }
         }
 
-        public async Task<string> PostAsync<T>(string uri, T data)
+        private string GetFullUrl(string endpoint)
         {
-            AddAuthorizationHeader();
+            return $"{_baseUrl.TrimEnd('/')}/{endpoint.TrimStart('/')}";
+        }
+
+        public async Task<string> PostAsync<T>(string endpoint, T data)
+        {
             var content = new StringContent(JsonConvert.SerializeObject(data), Encoding.UTF8, "application/json");
-            var response = await _httpClient.PostAsync(uri, content);
+            var response = await _httpClient.PostAsync(endpoint, content);
             var responseString = await response.Content.ReadAsStringAsync();
 
             if (!response.IsSuccessStatusCode)
@@ -48,10 +60,11 @@ namespace Garage.Services
             return responseString;
         }
 
-        public async Task<T> GetAsync<T>(string uri)
+
+        public async Task<T> GetAsync<T>(string endpoint)
         {
             AddAuthorizationHeader();
-            var response = await _httpClient.GetAsync(uri);
+            var response = await _httpClient.GetAsync(GetFullUrl(endpoint));
             if (response.IsSuccessStatusCode)
             {
                 var content = await response.Content.ReadAsStringAsync();
@@ -151,11 +164,12 @@ namespace Garage.Services
             return await PostAsync($"{baseUrl}/users/register", userData);
         }
 
-        public async Task<string> LoginUser(string baseUrl, string identifier, string password)
+        public async Task<string> LoginUser(string username, string password)
         {
-            var userData = new { identifier, password }; // Zmienione z { username, password }
-            return await PostAsync($"{baseUrl}/users/login", userData);
+            var userData = new { identifier = username, password };
+            return await PostAsync("/users/login", userData);
         }
+
 
 
         public async Task<string> GetProfile(string baseUrl)
