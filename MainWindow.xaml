@@ -32,7 +32,7 @@
         </Grid.ColumnDefinitions>
         <StackPanel Grid.Column="0" Background="{StaticResource PanelBackgroundColor}">
             <TextBlock Foreground="{StaticResource HighlightColor}" FontSize="26" FontWeight="Bold" Margin="20 20" TextAlignment="Center">
-                Panel Garage
+                Panel Prone
             </TextBlock>
 
             <Button Style="{StaticResource SidebarButtonStyle}" Click="Dashboard_Click">

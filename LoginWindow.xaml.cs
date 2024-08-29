@@ -30,10 +30,7 @@ namespace Garage
 
                 if (loginData != null)
                 {
-                    // Podnieś zdarzenie informujące o pomyślnym zalogowaniu
                     LoginSuccessful?.Invoke(this, EventArgs.Empty);
-
-                    // Ukryj LoginWindow
                     this.Hide();
                 }
                 else
@@ -46,5 +43,6 @@ namespace Garage
                 MessageBox.Show($"Login failed: {ex.Message}", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
             }
         }
+
     }
 }

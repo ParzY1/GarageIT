@@ -151,11 +151,12 @@ namespace Garage.Services
             return await PostAsync($"{baseUrl}/users/register", userData);
         }
 
-        public async Task<string> LoginUser(string baseUrl, string username, string password)
+        public async Task<string> LoginUser(string baseUrl, string identifier, string password)
         {
-            var userData = new { username, password };
+            var userData = new { identifier, password }; // Zmienione z { username, password }
             return await PostAsync($"{baseUrl}/users/login", userData);
         }
+
 
         public async Task<string> GetProfile(string baseUrl)
         {

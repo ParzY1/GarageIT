@@ -8,14 +8,17 @@
              Loaded="DomainsPage_Loaded">
     <UserControl.Resources>
         <!-- Colors -->
-        <SolidColorBrush x:Key="PrimaryColor" Color="#4CAF50"/>
-        <SolidColorBrush x:Key="SecondaryColor" Color="#2196F3"/>
+        <SolidColorBrush x:Key="PrimaryColor" Color="#1E1E1E"/>
+        <SolidColorBrush x:Key="SecondaryColor" Color="#FFFFFF"/>
         <SolidColorBrush x:Key="TextColor" Color="#FFFFFF"/>
         <SolidColorBrush x:Key="BackgroundColor" Color="#1E1E1E"/>
         <SolidColorBrush x:Key="CardColor" Color="#2B2B2B"/>
-        <SolidColorBrush x:Key="HighlightColor" Color="#FF5722"/>
-        <SolidColorBrush x:Key="PanelBackgroundColor" Color="#2E3338"/>
+        <SolidColorBrush x:Key="HighlightColor" Color="#1E1E1E"/>
+        <SolidColorBrush x:Key="PanelBackgroundColor" Color="#2B2B2B"/>
         <SolidColorBrush x:Key="BorderColor" Color="#CCCCCC"/>
+        <SolidColorBrush x:Key="TextBoxBackgroundColor" Color="#2B2B2B"/>
+        <SolidColorBrush x:Key="ComboBoxBackgroundColor" Color="#2B2B2B"/>
+        <SolidColorBrush x:Key="ComboBoxPopupBackgroundColor" Color="#1E1E1E"/>
 
         <!-- ComboBox ToggleButton Template -->
         <ControlTemplate x:Key="ComboBoxToggleButton" TargetType="ToggleButton">

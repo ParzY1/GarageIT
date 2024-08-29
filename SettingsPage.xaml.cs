@@ -65,21 +65,6 @@ namespace Garage
             }
         }
 
-        private async void ApplyDnsServers_Click(object sender, RoutedEventArgs e)
-        {
-            try
-            {
-                var dns1 = Dns1TextBox.Text;
-                var dns2 = Dns2TextBox.Text;
-                var response = await _apiService.PostAsync("https://blockdns.garageit.pl/settings/dns-servers", new { dns1, dns2 });
-                MessageBox.Show("DNS server settings applied successfully.");
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show($"Error applying DNS server settings: {ex.Message}");
-            }
-        }
-
         private async void UserControl_Loaded(object sender, RoutedEventArgs e)
         {
             try
@@ -107,23 +92,7 @@ namespace Garage
                 }
 
                 var dnsServers = await _apiService.GetAsync<Dictionary<string, string>>("https://blockdns.garageit.pl/settings/dns-servers");
-                if (dnsServers != null)
-                {
-                    Dns1TextBox.Text = dnsServers["dns1"];
-                    Dns2TextBox.Text = dnsServers["dns2"];
-                }
-
-                var dnssec = await _apiService.GetAsync<bool>("https://blockdns.garageit.pl/settings/dnssec");
-                DnssecCheckBox.IsChecked = dnssec;
-
-                var dnsBogusPriv = await _apiService.GetAsync<bool>("https://blockdns.garageit.pl/settings/dns-bogus-priv");
-                DnsBogusPrivCheckBox.IsChecked = dnsBogusPriv;
-
-                var dnsFqdnRequired = await _apiService.GetAsync<bool>("https://blockdns.garageit.pl/settings/dns-fqdn-required");
-                DnsFqdnRequiredCheckBox.IsChecked = dnsFqdnRequired;
-
-                var dnsmasqListening = await _apiService.GetAsync<string>("https://blockdns.garageit.pl/settings/dnsmasq-listening");
-                DnsmasqListeningComboBox.SelectedItem = dnsmasqListening;
+              
             }
             catch (Exception ex)
             {

@@ -17,6 +17,9 @@
         <SolidColorBrush x:Key="ComboBoxPopupBackgroundColor" Color="#1E1E1E"/>
         <SolidColorBrush x:Key="EnabledColor" Color="Green"/>
         <SolidColorBrush x:Key="DisabledColor" Color="Red"/>
+        <SolidColorBrush x:Key="ComboBoxItemForegroundColor" Color="#FFFFFF"/>
+        <!-- Example color -->
+        <SolidColorBrush x:Key="ComboBoxItemBackgroundColor" Color="#2B2B2B"/>
 
         <local:StatusToColorConverter x:Key="StatusToColorConverter"/>
         <local:StatusToTextConverter x:Key="StatusToTextConverter"/>
@@ -42,19 +45,72 @@
             <Setter Property="BorderBrush" Value="{StaticResource BorderColor}"/>
         </Style>
 
-        <Style x:Key="ComboBoxItemStyle" TargetType="ComboBoxItem">
-            <Setter Property="Background" Value="{StaticResource ComboBoxBackgroundColor}"/>
-            <Setter Property="Foreground" Value="{StaticResource TextColor}"/>
-        </Style>
-
         <Style x:Key="ComboBoxStyle" TargetType="ComboBox">
             <Setter Property="Width" Value="200"/>
             <Setter Property="Height" Value="30"/>
             <Setter Property="Margin" Value="5"/>
+            <Setter Property="Foreground" Value="{StaticResource ComboBoxItemForegroundColor}"/>
             <Setter Property="Background" Value="{StaticResource ComboBoxBackgroundColor}"/>
-            <Setter Property="Foreground" Value="{StaticResource TextColor}"/>
-            <Setter Property="BorderBrush" Value="{StaticResource BorderColor}"/>
-            <Setter Property="ItemContainerStyle" Value="{StaticResource ComboBoxItemStyle}"/>
+            <Setter Property="BorderBrush" Value="#000000"/>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="ComboBox">
+                        <Grid>
+                            <ToggleButton x:Name="ToggleButton"
+                          Grid.Column="2"
+                          Focusable="False"
+                          IsChecked="{Binding Path=IsDropDownOpen, Mode=TwoWay, RelativeSource={RelativeSource TemplatedParent}}"
+                          ClickMode="Press"
+                          Background="{StaticResource ComboBoxBackgroundColor}"
+                          BorderBrush="{StaticResource ComboBoxBackgroundColor}">
+                                <ContentPresenter Content="{TemplateBinding SelectionBoxItem}"
+                                  ContentTemplate="{TemplateBinding SelectionBoxItemTemplate}"
+                                  ContentTemplateSelector="{TemplateBinding ItemTemplateSelector}"
+                                  Margin="3,3,23,3"
+                                  VerticalAlignment="Center"
+                                  HorizontalAlignment="Left">
+                                    <!-- Use TextElement.Foreground attached property to set the foreground color -->
+                                    <TextElement.Foreground>
+                                        <StaticResource ResourceKey="ComboBoxItemForegroundColor" />
+                                    </TextElement.Foreground>
+                                </ContentPresenter>
+                            </ToggleButton>
+                            <Popup x:Name="Popup"
+                   Placement="Bottom"
+                   IsOpen="{TemplateBinding IsDropDownOpen}"
+                   AllowsTransparency="True"
+                   Focusable="False"
+                   PopupAnimation="Slide">
+                                <Grid x:Name="DropDown"
+                      SnapsToDevicePixels="True"
+                      MinWidth="{TemplateBinding ActualWidth}"
+                      MaxHeight="{TemplateBinding MaxDropDownHeight}">
+                                    <Border x:Name="DropDownBorder"
+                            Background="{StaticResource ComboBoxBackgroundColor}"
+                            BorderBrush="{StaticResource ComboBoxBackgroundColor}"/>
+                                    <ScrollViewer Margin="4,6,4,6"
+                                  SnapsToDevicePixels="True">
+                                        <StackPanel IsItemsHost="True"
+                                    KeyboardNavigation.DirectionalNavigation="Contained"
+                                    Background="{StaticResource ComboBoxBackgroundColor}"/>
+                                    </ScrollViewer>
+                                </Grid>
+                            </Popup>
+                        </Grid>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+
+
+        <Style x:Key="ComboBoxItemStyle" TargetType="ComboBoxItem">
+            <Setter Property="Foreground" Value="{StaticResource ComboBoxItemForegroundColor}"/>
+            <Setter Property="Background" Value="{StaticResource ComboBoxItemBackgroundColor}"/>
+            <Setter Property="HorizontalContentAlignment" Value="Left"/>
+            <Setter Property="VerticalContentAlignment" Value="Center"/>
+            <Setter Property="Padding" Value="2"/>
+            <Setter Property="Margin" Value="1"/>
+            <Setter Property="BorderThickness" Value="0"/>
         </Style>
 
         <Style x:Key="ButtonStyle" TargetType="Button">
