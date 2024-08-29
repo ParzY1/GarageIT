@@ -1,5 +1,6 @@
 const User = require('../models/User');
 const { generateToken, generateRefreshToken, generateSecrets } = require('../utils/token');
+const { sendVerificationEmail } = require('./mailerService');
 const jwt = require('jsonwebtoken');
 
 const registerUser = async (username, email, password, assignedServer) => {
@@ -15,7 +16,8 @@ const registerUser = async (username, email, password, assignedServer) => {
         password,
         tokenSecret,
         refreshTokenSecret,
-        assignedServer
+        assignedServer,
+        verified: false
     });
 
     const token = generateToken(user._id, user.tokenSecret);
@@ -25,13 +27,16 @@ const registerUser = async (username, email, password, assignedServer) => {
     user.refreshToken = refreshToken;
     await user.save();
 
+    await sendVerificationEmail(user.email, token);
+
     return {
         _id: user._id,
         username: user.username,
         email: user.email,
         token,
         refreshToken,
-        assignedServer: user.assignedServer
+        assignedServer: user.assignedServer,
+        verified: user.verified
     };
 };
 
@@ -52,6 +57,7 @@ const loginUser = async (identifier, password) => {
         _id: user._id,
         username: user.username,
         email: user.email,
+        assignedServer: user.assignedServer,
         token,
         refreshToken,
     };
@@ -81,15 +87,15 @@ const getUserProfile = async (userId) => {
 };
 
 const verifyToken = async (token) => {
-    const user = await User.findOne({ token });
-    if (!user) {
-        return null;
-    }
-
-    console.log('Token Secret:', user.tokenSecret);
     try {
-        const decoded = jwt.verify(token, user.tokenSecret);
-        return { user: decoded, assignedServer: user.assignedServer };
+        const decoded = jwt.decode(token);
+        const user = await User.findOne({ _id: decoded.id, token });
+        if (!user) {
+            return null;
+        }
+        console.log('Token Secret:', user.tokenSecret);
+        jwt.verify(token, user.tokenSecret);
+        return { user, assignedServer: user.assignedServer };
     } catch (error) {
         console.error('Error verifying token:', error.message);
         return null;
@@ -146,6 +152,18 @@ const changePassword = async (userId, newPassword) => {
     return { message: 'Password updated successfully' };
 };
 
+const verifyUser = async (userId) => {
+    const user = await User.findById(userId);
+    if (!user) {
+        throw new Error('User not found');
+    }
+
+    user.verified = true;
+    await user.save();
+
+    return { message: 'User verified successfully', verified: user.verified };
+};
+
 module.exports = {
     registerUser,
     loginUser,
@@ -154,5 +172,6 @@ module.exports = {
     verifyToken,
     verifyUserServer,
     changeUsername,
-    changePassword
+    changePassword,
+    verifyUser
 };

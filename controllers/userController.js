@@ -107,6 +107,16 @@ const changePassword = async (req, res) => {
     }
 };
 
+const verifyUser = async (req, res) => {
+    try {
+        const result = await userService.verifyUser(req.user.id);
+        await auditService.logAction('verifyUser', `User ${req.user.id} was verified`);
+        res.json(result);
+    } catch (error) {
+        res.status(400).json({ message: error.message });
+    }
+};
+
 module.exports = {
     register,
     login,
@@ -115,5 +125,6 @@ module.exports = {
     verifyToken,
     verifyUserServer,
     changeUsername,
-    changePassword
+    changePassword,
+    verifyUser
 };

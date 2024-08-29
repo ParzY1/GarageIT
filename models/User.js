@@ -21,6 +21,10 @@ const UserSchema = new mongoose.Schema({
         required: true,
         minlength: 6
     },
+    verified: {
+        type: Boolean,
+        default: false
+    },
     token: { type: String },
     refreshToken: { type: String },
     tokenSecret: { type: String },

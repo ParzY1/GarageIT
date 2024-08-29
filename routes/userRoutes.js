@@ -1,6 +1,7 @@
 const express = require('express');
 const { check, validationResult } = require('express-validator');
 const userController = require('../controllers/userController');
+const mailerController = require('../controllers/mailerController');
 const auth = require('../middleware/auth');
 const validateRegister = require('../middleware/validateRegister');
 const validateLogin = require('../middleware/validateLogin');
@@ -35,6 +36,9 @@ router.put('/change-password', auth, [
     check('newPassword', 'Password must be at least 6 characters long').isLength({ min: 6 })
 ], userController.changePassword);
 
+router.put('/verify-user', auth, userController.verifyUser);
+
+router.get('/verify-email', mailerController.verifyEmail);
 router.get('/profile', auth, userController.getUserProfile);
 
 module.exports = router;
