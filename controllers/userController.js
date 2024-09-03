@@ -8,9 +8,9 @@ const register = async (req, res) => {
         return res.status(400).json({ errors: errors.array() });
     }
 
-    const { username, email, password, assignedServer } = req.body;
+    const { username, email, password, assignedServer, assignedDomain } = req.body;
     try {
-        const user = await userService.registerUser(username, email, password, assignedServer);
+        const user = await userService.registerUser(username, email, password, assignedServer, assignedDomain);
         await auditService.logAction('registerUser', `Registered user ${user.username}`);
         res.status(201).json(user);
     } catch (error) {

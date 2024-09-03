@@ -14,7 +14,8 @@ router.post('/register', [
         .isLength({ min: 3 })
         .matches(/^[a-zA-Z0-9]+$/),
     check('email', 'Please include a valid email').isEmail(),
-    check('password', 'Password must be at least 6 characters long').isLength({ min: 6 })
+    check('password', 'Password must be at least 6 characters long').isLength({ min: 6 }),
+    check('assignedDomain', 'Assigned domain is required').not().isEmpty(),
 ], userController.register);
 
 router.post('/login', [

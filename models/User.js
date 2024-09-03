@@ -29,7 +29,8 @@ const UserSchema = new mongoose.Schema({
     refreshToken: { type: String },
     tokenSecret: { type: String },
     refreshTokenSecret: { type: String },
-    assignedServer: { type: String, required: true }
+    assignedServer: { type: String, required: true },
+    assignedDomain: { type: String, required: true }
 });
 
 UserSchema.pre('save', async function (next) {

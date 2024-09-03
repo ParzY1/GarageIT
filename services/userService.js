@@ -3,7 +3,7 @@ const { generateToken, generateRefreshToken, generateSecrets } = require('../uti
 const { sendVerificationEmail } = require('./mailerService');
 const jwt = require('jsonwebtoken');
 
-const registerUser = async (username, email, password, assignedServer) => {
+const registerUser = async (username, email, password, assignedServer, assignedDomain) => {
     const userExists = await User.findOne({ $or: [{ username }, { email }] });
     if (userExists) {
         throw new Error('Username or email already exists');
@@ -17,6 +17,7 @@ const registerUser = async (username, email, password, assignedServer) => {
         tokenSecret,
         refreshTokenSecret,
         assignedServer,
+        assignedDomain,
         verified: false
     });
 
@@ -36,6 +37,7 @@ const registerUser = async (username, email, password, assignedServer) => {
         token,
         refreshToken,
         assignedServer: user.assignedServer,
+        assignedDomain: user.assignedDomain,
         verified: user.verified
     };
 };
@@ -58,6 +60,7 @@ const loginUser = async (identifier, password) => {
         username: user.username,
         email: user.email,
         assignedServer: user.assignedServer,
+        assignedDomain: user.assignedDomain,
         token,
         refreshToken,
     };
