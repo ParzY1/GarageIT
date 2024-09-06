@@ -21,7 +21,7 @@ const registerUser = async (username, email, password, assignedServer, assignedD
         verified: false
     });
 
-    const token = generateToken(user._id, user.tokenSecret);
+    const token = generateToken(user, user.tokenSecret);
     const refreshToken = generateRefreshToken(user._id, user.refreshTokenSecret);
 
     user.token = token;
@@ -31,14 +31,8 @@ const registerUser = async (username, email, password, assignedServer, assignedD
     await sendVerificationEmail(user.email, token);
 
     return {
-        _id: user._id,
-        username: user.username,
-        email: user.email,
         token,
         refreshToken,
-        assignedServer: user.assignedServer,
-        assignedDomain: user.assignedDomain,
-        verified: user.verified
     };
 };
 
@@ -48,7 +42,7 @@ const loginUser = async (identifier, password) => {
         throw new Error('Invalid username/email or password');
     }
 
-    const token = generateToken(user._id, user.tokenSecret);
+    const token = generateToken(user, user.tokenSecret);
     const refreshToken = generateRefreshToken(user._id, user.refreshTokenSecret);
 
     user.token = token;
@@ -56,11 +50,6 @@ const loginUser = async (identifier, password) => {
     await user.save();
 
     return {
-        _id: user._id,
-        username: user.username,
-        email: user.email,
-        assignedServer: user.assignedServer,
-        assignedDomain: user.assignedDomain,
         token,
         refreshToken,
     };
@@ -96,7 +85,6 @@ const verifyToken = async (token) => {
         if (!user) {
             return null;
         }
-        console.log('Token Secret:', user.tokenSecret);
         jwt.verify(token, user.tokenSecret);
         return { user, assignedServer: user.assignedServer };
     } catch (error) {

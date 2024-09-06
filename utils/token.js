@@ -1,8 +1,14 @@
 const jwt = require('jsonwebtoken');
 const crypto = require('crypto');
 
-const generateToken = (userId, secret) => {
-    return jwt.sign({ id: userId }, secret, { expiresIn: '1h' });
+const generateToken = (user, secret) => {
+    return jwt.sign({
+        id: user._id,
+        username: user.username,
+        email: user.email,
+        assignedServer: user.assignedServer,
+        assignedDomain: user.assignedDomain
+    }, secret, { expiresIn: '1h' });
 };
 
 const generateRefreshToken = (userId, secret) => {
