@@ -1,5 +1,8 @@
 document.addEventListener("DOMContentLoaded", function() {
     const authForm = document.getElementById("auth-form");
+    const authMessage = document.getElementById("auth-message");
+    const resendVerification = document.getElementById("resend-verification");
+    const resendButton = document.getElementById("resend-button");
 
     if (authForm) {
         authForm.addEventListener("submit", function(e) {
@@ -9,16 +12,21 @@ document.addEventListener("DOMContentLoaded", function() {
             const password = document.getElementById("password").value;
             const confirmPassword = document.getElementById("confirm-password").value;
 
-            // Logika rejestracji
+            // Sprawdzenie hasła
             if (password !== confirmPassword) {
                 alert('Hasła się nie zgadzają.');
             } else {
                 // Symulacja udanej rejestracji
-                alert('Konto zarejestrowane pomyślnie. Możesz się teraz zalogować.');
-                window.location.href = "log.html";
+                authForm.style.display = 'none';
+                authMessage.style.display = 'block';
+                resendVerification.style.display = 'block';
             }
         });
-    } else {
-        console.error("Formularz rejestracji nie został znaleziony.");
+    }
+
+    if (resendButton) {
+        resendButton.addEventListener("click", function() {
+            alert('Link weryfikacyjny został wysłany ponownie.');
+        });
     }
 });
