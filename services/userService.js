@@ -1,6 +1,7 @@
 const User = require('../models/User');
 const { generateToken, generateRefreshToken, generateSecrets } = require('../utils/token');
 const { sendVerificationEmail } = require('./mailerService');
+const TokenBlacklist = require('../models/TokenBlacklist');
 const jwt = require('jsonwebtoken');
 
 const registerUser = async (username, email, password, assignedServer, assignedDomain) => {
@@ -42,8 +43,24 @@ const loginUser = async (identifier, password) => {
         throw new Error('Invalid username/email or password');
     }
 
+    let refreshToken = user.refreshToken;
+    let tokenExpiryCheck;
+
+    try {
+        const decodedRefreshToken = jwt.decode(refreshToken);
+        const currentTime = Date.now() / 1000;
+
+
+        tokenExpiryCheck = decodedRefreshToken.exp - currentTime < (24 * 60 * 60);
+
+        if (tokenExpiryCheck || !decodedRefreshToken) {
+            refreshToken = generateRefreshToken(user._id, user.refreshTokenSecret);
+        }
+    } catch (error) {
+        refreshToken = generateRefreshToken(user._id, user.refreshTokenSecret);
+    }
+
     const token = generateToken(user, user.tokenSecret);
-    const refreshToken = generateRefreshToken(user._id, user.refreshTokenSecret);
 
     user.token = token;
     user.refreshToken = refreshToken;
@@ -54,25 +71,49 @@ const loginUser = async (identifier, password) => {
         refreshToken,
     };
 };
+const logoutUser = async (token) => {
+    const decoded = jwt.decode(token);
+    if (decoded && decoded.exp) {
+        const expiryDate = new Date(decoded.exp * 1000);
+        await TokenBlacklist.create({ token, expiryDate });
+    }
+};
 
 const refreshUserToken = async (refreshToken) => {
-    const user = await User.findOne({ refreshToken });
-    if (!user) {
-        throw new Error('Invalid token');
+    try {
+        const blacklisted = await TokenBlacklist.findOne({ token: refreshToken });
+        if (blacklisted) {
+            throw new Error('Refresh token has been invalidated');
+        }
+
+        const decoded = jwt.verify(refreshToken, process.env.JWT_REFRESH_SECRET);
+        const user = await User.findById(decoded.id);
+        if (!user) {
+            throw new Error('Invalid user');
+        }
+
+        const newAccessToken = generateToken(user, user.tokenSecret);
+
+        const currentTime = Date.now() / 1000;
+        const tokenExpiryCheck = decoded.exp - currentTime < (24 * 60 * 60);
+
+        let newRefreshToken = refreshToken;
+        if (tokenExpiryCheck) {
+            newRefreshToken = generateRefreshToken(user._id, user.refreshTokenSecret);
+            user.refreshToken = newRefreshToken;
+        }
+
+        await user.save();
+
+        return {
+            token: newAccessToken,
+            refreshToken: newRefreshToken,
+        };
+    } catch (error) {
+        throw new Error(error.message || 'Error refreshing token');
     }
-
-    const newToken = generateToken(user._id, user.tokenSecret);
-    const newRefreshToken = generateRefreshToken(user._id, user.refreshTokenSecret);
-
-    user.token = newToken;
-    user.refreshToken = newRefreshToken;
-    await user.save();
-
-    return {
-        token: newToken,
-        refreshToken: newRefreshToken,
-    };
 };
+
 
 const getUserProfile = async (userId) => {
     return await User.findById(userId).select('-password');
@@ -80,6 +121,11 @@ const getUserProfile = async (userId) => {
 
 const verifyToken = async (token) => {
     try {
+        const blacklisted = await TokenBlacklist.findOne({ token });
+        if (blacklisted) {
+            return null;
+        }
+
         const decoded = jwt.decode(token);
         const user = await User.findOne({ _id: decoded.id, token });
         if (!user) {
@@ -158,6 +204,7 @@ const verifyUser = async (userId) => {
 module.exports = {
     registerUser,
     loginUser,
+    logoutUser,
     refreshUserToken,
     getUserProfile,
     verifyToken,

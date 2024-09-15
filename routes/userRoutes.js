@@ -23,6 +23,8 @@ router.post('/login', [
     check('password', 'Password is required').exists()
 ], userController.login);
 
+router.post('/logout', auth, userController.logout);
+
 router.post('/refresh-token', validateRefreshToken, userController.refreshToken);
 router.post('/verify-token', userController.verifyToken);
 router.post('/verify-server', userController.verifyUserServer);

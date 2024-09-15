@@ -4,10 +4,7 @@ const crypto = require('crypto');
 const generateToken = (user, secret) => {
     return jwt.sign({
         id: user._id,
-        username: user.username,
-        email: user.email,
-        assignedServer: user.assignedServer,
-        assignedDomain: user.assignedDomain
+        username: user.username
     }, secret, { expiresIn: '1h' });
 };
 

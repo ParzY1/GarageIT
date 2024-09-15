@@ -34,16 +34,22 @@ const login = async (req, res) => {
     }
 };
 
-const refreshToken = async (req, res) => {
-    const errors = validationResult(req);
-    if (!errors.isEmpty()) {
-        return res.status(400).json({ errors: errors.array() });
-    }
-
+const logout = async (req, res) => {
     const { token } = req.body;
+
     try {
-        const tokens = await userService.refreshUserToken(token);
-        await auditService.logAction('refreshUserToken', `Token refreshed`);
+        await userService.logoutUser(token);
+        res.status(200).json({ message: 'User logged out' });
+    } catch (error) {
+        res.status(500).json({ message: error.message });
+    }
+};
+
+const refreshToken = async (req, res) => {
+    const { refreshToken } = req.body;
+
+    try {
+        const tokens = await userService.refreshUserToken(refreshToken);
         res.json(tokens);
     } catch (error) {
         res.status(401).json({ message: error.message });
@@ -120,6 +126,7 @@ const verifyUser = async (req, res) => {
 module.exports = {
     register,
     login,
+    logout,
     refreshToken,
     getUserProfile,
     verifyToken,
