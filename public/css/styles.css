@@ -1,0 +1,298 @@
+/* General Styles */
+body {
+    font-family: 'SF New Republic', sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #11111F;
+    color: #F9F6F2;
+}
+
+/* Navbar */
+.navbar {
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    background-color: #161625;
+    padding: 25px 30px;
+}
+
+.navbar .logo img {
+    max-height: 40px; /* Ustaw wysokość logo */
+    max-width: 160px;
+    vertical-align: middle; /* Wyrównanie pionowe */
+    margin-top:7px;
+    
+}
+
+.nav-links {
+    margin-left: 20px;
+}
+
+.nav-links ul {
+    position: relative;
+    list-style: none;
+    display: flex;
+    margin: 0;
+    padding: 0;
+}
+.nav-icon-container {
+    position: absolute;  /* Allows positioning in relation to the closest positioned ancestor */
+    right: 0px;  /* Push it to the right of its parent container */
+    top: 0px;    /* Align it to the top */
+    padding: 5px;
+}
+
+.nav-link {
+    position: relative;  /* Ensures the icon can be placed within the link */
+    display: inline-block; /* Keeps the text and image together */
+    padding-right: 20px;   /* Adds space for the icon */
+  }
+  
+  .nav-external-icon {
+    width: 14px;   /* Adjust size */
+    height: 14px;
+    position: absolute;
+    right: 0;      /* Push it to the right edge of the text */
+    top: 0;        /* Align it to the top */
+    margin-left: 5px; /* Add space between text and icon */
+    fill: white;
+    
+  }
+  
+
+.nav-links ul li {
+    margin-right: 20px;
+}
+
+.nav-links ul li a {
+    color: #F9F6F2;
+    text-decoration: none;
+    font-weight: bold;
+    font-size: 1.1em;
+    transition: color 0.3s;
+}
+
+.nav-links ul li a:hover {
+    color: #eaaa00;
+}
+
+.language-switch {
+    display: flex;
+    align-items: center;
+    margin-left: auto;
+}
+
+.language-switch a img {
+    margin-left: 10px;
+    width: 40px;
+}
+
+/* Hero Section */
+.hero {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 100px 50px;
+    background-color: #11111F;
+}
+
+.hero-content {
+    max-width: 50%;
+}
+
+.hero h1 {
+    color: #F9F6F2;
+    font-size: 3.5em;
+    margin-bottom: 30px;
+}
+
+.hero h1 .highlight-prone {
+    color: #eaaa00;
+}
+
+.hero p {
+    color: #A9A9B1;
+    font-size: 1.4em;
+    margin-bottom: 40px;
+}
+
+.cta-btn {
+    background-color: #eaaa00;
+    padding: 15px 30px;
+    border-radius: 25px;
+    text-decoration: none;
+    color: white;
+    font-weight: bold;
+    transition: background-color 0.3s;
+}
+
+.cta-btn:hover {
+    background-color: #d49a00;
+}
+
+.hero-image img {
+    max-width: 100%;
+    border-radius: 10px;
+}
+
+/* Section Styles */
+.section {
+    padding: 70px 50px;
+    text-align: center;
+    background-color: #161625;
+    margin-bottom: 40px; /* Dodano więcej miejsca pomiędzy sekcjami */
+}
+
+.section h2 {
+    color: #F9F6F2;
+    font-size: 2.5em;
+    margin-bottom: 20px;
+}
+
+/* Sekcje jako "cards" */
+.card {
+    background-color: #1A1A28;
+    padding: 30px;
+    border-radius: 10px;
+    box-shadow: 0px 4px 20px rgba(0, 0, 0, 0.4);
+    margin: 20px 0;
+}
+
+.card p {
+    color: #A9A9B1;
+    font-size: 1.2em;
+    line-height: 1.6;
+}
+
+/* Key Features */
+.key-features {
+    padding: 80px 50px;
+    background-color: #1A1A28;
+}
+
+.features-container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+    gap: 30px;
+}
+
+.feature-box {
+    background-color: #161625;
+    padding: 30px;
+    border-radius: 10px;
+    width: 45%;
+    max-width: 400px;
+    text-align: left;
+    box-shadow: 0 0 15px rgba(0, 0, 0, 0.2);
+}
+
+.feature-box h3 {
+    color: #eaaa00;
+    margin-bottom: 15px;
+}
+
+.feature-box p {
+    color: #F9F6F2;
+    font-size: 1.1em;
+}
+
+
+/* Container for Flip Cards */
+.flip-card-container {
+    display: flex;
+    justify-content: space-around;
+    gap: 30px;
+    padding: 50px 0;
+}
+
+/* Individual Flip Card */
+.flip-card {
+    background-color: transparent;
+    width: 300px;
+    height: 200px;
+    perspective: 1000px; /* Perspective for 3D effect */
+}
+
+/* Flip Card Inner Part */
+.flip-card-inner {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    text-align: center;
+    transition: transform 0.8s;
+    transform-style: preserve-3d;
+}
+
+/* Flip Card on Hover */
+.flip-card:hover .flip-card-inner {
+    transform: rotateY(180deg);
+}
+
+/* Flip Card Front and Back */
+.flip-card-front, .flip-card-back {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    -webkit-backface-visibility: hidden;
+    backface-visibility: hidden;
+    border-radius: 10px;
+    box-shadow: 0px 4px 20px rgba(0, 0, 0, 0.4);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+}
+
+.flip-card-front {
+    background-color: #161625;
+    color: #eaaa00;
+}
+
+.flip-card-back {
+    background-color: #1A1A28;
+    color: #F9F6F2;
+    transform: rotateY(180deg);
+}
+
+/* Text Styling */
+.flip-card h3 {
+    font-size: 1.8em;
+    font-weight: bold;
+}
+
+.flip-card p {
+    font-size: 1.2em;
+    line-height: 1.5;
+}
+
+
+
+/* Footer */
+.footer {
+    padding: 20px;
+    text-align: center;
+    background-color: #11111F;
+    color: #F9F6F2;
+    font-size: 1em;
+}
+
+/* Responsive Styles */
+@media (max-width: 768px) {
+    .hero {
+        flex-direction: column;
+        text-align: center;
+    }
+
+    .hero-content {
+        max-width: 100%;
+    }
+
+    .features-container {
+        flex-direction: column;
+    }
+
+    .feature-box {
+        width: 90%;
+    }
+}
