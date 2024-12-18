@@ -12,6 +12,7 @@ const groupRoutes = require('./routes/groupRoutes');
 const clientRoutes = require('./routes/clientRoutes');
 const auditRoutes = require('./routes/auditRoutes');
 const piHoleRoutes = require('./routes/piHoleRoutes');
+const adlistRoutes = require('./routes/adlistRoutes');
 const settingsRoutes = require('./routes/settingsRoutes');
 
 const app = express();
@@ -31,6 +32,7 @@ app.use('/groups', groupRoutes);
 app.use('/clients', clientRoutes);
 app.use('/audit', auditRoutes);
 app.use('/pi-hole', piHoleRoutes);
+app.use('/adlists', adlistRoutes);
 app.use('/settings', settingsRoutes);
 
 app.listen(process.env.PORT, () => {
